@@ -60,11 +60,11 @@
   </div>
   <div class="row m-t-20">
     <!-- Form -->
-    <form class="col-12" action="">
+    <form class="col-12" action="<?= base_url('auth/forgotPassword'); ?>" method="POST">
       <!-- email -->
       <div class="form-group row">
         <div class="col-12">
-          <input class="form-control form-control-lg" type="email" required="" placeholder="Email">
+          <input class="form-control form-control-lg" type="email" placeholder="Email" name="email">
         </div>
       </div>
       <!-- pwd -->
