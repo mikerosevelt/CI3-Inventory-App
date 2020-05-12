@@ -5,25 +5,29 @@
 <!-- Form -->
 <div class="row">
   <div class="col-12">
-    <form class="form-horizontal m-t-20" action="index.html">
+    <form class="form-horizontal m-t-20" action="<?= base_url('auth/register'); ?>" method="POST">
       <div class="form-group row ">
         <div class="col-12 ">
-          <input class="form-control form-control-lg" type="text" required=" " placeholder="Name">
+          <input class="form-control form-control-lg" type="text" placeholder="Name" name="name" value="<?= set_value('name'); ?>">
+          <?= form_error('name', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-12 ">
-          <input class="form-control form-control-lg" type="text" required=" " placeholder="Email">
+          <input class="form-control form-control-lg" type="text" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
+          <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-12 ">
-          <input class="form-control form-control-lg" type="password" required=" " placeholder="Password">
+          <input class="form-control form-control-lg" type="password" placeholder="Password" name="password">
+          <?= form_error('password', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>
       </div>
       <div class="form-group row">
         <div class="col-12 ">
-          <input class="form-control form-control-lg" type="password" required=" " placeholder="Confirm Password">
+          <input class="form-control form-control-lg" type="password" placeholder="Confirm Password" name="password2">
+          <?= form_error('password2', '<small class="text-danger pl-1">', '</small>'); ?>
         </div>
       </div>
       <div class="form-group row">

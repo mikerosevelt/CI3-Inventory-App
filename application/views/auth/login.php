@@ -3,22 +3,25 @@
   <h5 class="font-medium m-b-20 mt-2">Sign In to Dashboard</h5>
 </div>
 <!-- Form -->
+<?= $this->session->flashdata('message') ?>
 <div class="row">
   <div class="col-12">
-    <form class="form-horizontal m-t-20" id="loginform" action="">
-      <div class="input-group mb-3">
+    <form class="form-horizontal m-t-20" id="loginform" action="<?= base_url('auth'); ?>" method="POST">
+      <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon1"><i class="ti-user"></i></span>
         </div>
-        <input type="text" class="form-control form-control-lg" placeholder="Email" aria-label="Username" aria-describedby="basic-addon1">
+        <input type="text" class="form-control form-control-lg" placeholder="Email" name="email" value="<?= set_value('email'); ?>">
       </div>
-      <div class="input-group mb-3">
+      <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
+      <div class="input-group mt-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="basic-addon2"><i class="ti-pencil"></i></span>
         </div>
-        <input type="text" class="form-control form-control-lg" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+        <input type="password" class="form-control form-control-lg" placeholder="Password" name="password">
       </div>
-      <div class="form-group row">
+      <?= form_error('password', '<small class="text-danger pl-1">', '</small>'); ?>
+      <div class="form-group row mt-3">
         <div class="col-md-12">
           <div class="custom-control custom-checkbox">
             <input type="checkbox" class="custom-control-input" id="customCheck1">
