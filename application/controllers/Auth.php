@@ -56,9 +56,9 @@ class Auth extends CI_Controller
           $this->db->set('user_agent', $this->input->user_agent());
           $this->db->set('last_login', time());
           $this->db->where('user_id', $user['id']);
-          $this->db->update('user_log');
+          $this->db->update('user_logs');
         } else {
-          $this->db->insert('user_log', $datalog);
+          $this->db->insert('user_logs', $datalog);
         }
         $this->session->set_userdata($data);
         redirect('dashboard');
@@ -232,6 +232,9 @@ class Auth extends CI_Controller
 
   public function logout()
   {
-    # code...
+    $data = ['email', 'role_id'];
+    $this->session->unset_userdata($data);
+    $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">You have been logout.</div>');
+    redirect('auth');
   }
 }
