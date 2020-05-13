@@ -12,7 +12,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/'); ?>images/favicon.png">
   <title><?= $title; ?></title>
   <!-- Custom CSS -->
-
+  <link href="<?= base_url('assets/'); ?>libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="<?= base_url('assets/'); ?>extra-libs/c3/c3.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
@@ -52,7 +52,7 @@
           <!-- ============================================================== -->
           <!-- Logo -->
           <!-- ============================================================== -->
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="<?= base_url('dashboard') ?>">
             <!-- Logo icon -->
             <b class="logo-icon">
               <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->

@@ -11,7 +11,7 @@ class Auth extends CI_Controller
 
   public function index()
   {
-    // check if user already login cannot visit auth page.
+    // check if user already login cannot visit Login page.
     if ($this->session->userdata('email')) {
       redirect('dashboard');
     }
@@ -90,6 +90,11 @@ class Auth extends CI_Controller
 
   public function register()
   {
+    // check if user already login cannot visit Register page.
+    if ($this->session->userdata('email')) {
+      redirect('dashboard');
+    }
+
     $this->form_validation->set_rules('name', 'Name', 'required|trim');
     $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
       'is_unique' => 'Email is already registered!'
@@ -122,6 +127,11 @@ class Auth extends CI_Controller
 
   public function forgotPassword()
   {
+    // check if user already login cannot visit Login page.
+    if ($this->session->userdata('email')) {
+      redirect('dashboard');
+    }
+
     $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
     if ($this->form_validation->run() == false) {
       $this->index();
