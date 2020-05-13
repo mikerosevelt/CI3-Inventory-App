@@ -52,29 +52,38 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role/Position</th>
-                    <th>Age</th>
                     <th>Date Created</th>
-                    <th>Action</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Tiger Nixon</td>
-                    <td>Employee</td>
-                    <td>Edinburgh</td>
-                    <td>61</td>
-                    <td>2011/04/25</td>
-                    <td>$320,800</td>
-                  </tr>
+                  <?php foreach ($userlist as $list) : ?>
+                    <tr>
+                      <td><?= $list['name'] ?></td>
+                      <td><?= $list['email'] ?></td>
+                      <td><?= $list['role'] ?></td>
+                      <td><?= date('d F Y', $list['createdAt']) ?></td>
+                      <td class="text-center">
+                        <div class="dropdown">
+                          <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-light">
+                            <a class="dropdown-item text-dark" href="<?= base_url('users/show/') . $list['id']; ?>">Detail</a>
+                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('users/destroy/') . $list['id']; ?>">Delete</a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
                 <tfoot>
                   <tr>
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role/Position</th>
-                    <th>Age</th>
                     <th>Date Created</th>
-                    <th>Action</th>
+                    <th></th>
                   </tr>
                 </tfoot>
               </table>

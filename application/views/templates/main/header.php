@@ -13,6 +13,7 @@
   <title><?= $title; ?></title>
   <!-- Custom CSS -->
   <link href="<?= base_url('assets/'); ?>libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
+  <link href="<?= base_url('assets/'); ?>libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
   <link href="<?= base_url('assets/'); ?>extra-libs/c3/c3.min.css" rel="stylesheet">
 
   <!-- Custom CSS -->
@@ -26,6 +27,7 @@
 </head>
 
 <body>
+  <div class="flash-data" data-flashdata="<?= $this->session->flashdata('swal'); ?>"></div>
   <!-- ============================================================== -->
   <!-- Preloader - style you can find in spinners.css -->
   <!-- ============================================================== -->

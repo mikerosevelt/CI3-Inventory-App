@@ -35,7 +35,7 @@ class Auth extends CI_Controller
     $password = $this->input->post('password', true);
 
     $user = $this->db->get_where('users', ['email' => $email])->row_array();
-    if ($user) {
+    if ($user && $user['deletedAt'] == null) {
       if (password_verify($password, $user['password'])) {
         $data = [
           'email' => $user['email'],

@@ -15,4 +15,12 @@ class User extends CI_Model
 
     $this->db->insert('users', $data);
   }
+
+  public function getAllUsers()
+  {
+    $this->db->select('user_role.*, users.id,users.name, users.email, users.role_id, users.createdAt, users.deletedAt, users.updatedAt');
+    $this->db->from('users');
+    $this->db->join('user_role', 'users.role_id = user_role.id');
+    return $this->db->get()->result_array();
+  }
 }
