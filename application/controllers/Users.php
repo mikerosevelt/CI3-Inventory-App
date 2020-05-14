@@ -60,9 +60,23 @@ class Users extends CI_Controller
   }
 
   /**
-   * @desc Add new user
+   * @desc Add new user page
    */
   public function create()
+  {
+    $data['title'] = 'Add New User | Inventory App';
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/users/create', $data);
+    $this->load->view('templates/main/footer');
+  }
+
+  /**
+   * @desc Insert new user to Database
+   */
+  public function insert()
   {
     # code...
   }
