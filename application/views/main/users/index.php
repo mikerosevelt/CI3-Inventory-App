@@ -40,6 +40,7 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     <!-- File export -->
+    <?= $this->session->flashdata('message') ?>
     <div class="row">
       <div class="col-12">
         <div class="card">
@@ -61,19 +62,27 @@
                     <tr>
                       <td><?= $list['name'] ?></td>
                       <td><?= $list['email'] ?></td>
-                      <td><?= $list['role'] ?></td>
+                      <?php if ($list['role'] == 'Administrator') : ?>
+                        <td><span class="label label-inverse"><?= $list['role'] ?></span></td>
+                      <?php else : ?>
+                        <td><span class="label label-success"><?= $list['role'] ?></span></td>
+                      <?php endif; ?>
                       <td><?= date('d F Y', $list['createdAt']) ?></td>
-                      <td class="text-center">
-                        <div class="dropdown">
-                          <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-light">
-                            <a class="dropdown-item text-dark" href="<?= base_url('users/show/') . $list['id']; ?>">Detail</a>
-                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('users/destroy/') . $list['id']; ?>">Delete</a>
+                      <?php if ($list['role'] == 'Administrator') : ?>
+                        <td></td>
+                      <?php else : ?>
+                        <td class="text-center">
+                          <div class="dropdown">
+                            <a class="btn btn-sm btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="mdi mdi-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow bg-light">
+                              <a class="dropdown-item text-dark" href="<?= base_url('users/detail/') . $list['id']; ?>">Detail</a>
+                              <a class="dropdown-item text-danger del-btn" href="<?= base_url('users/delete/') . $list['id']; ?>">Delete</a>
+                            </div>
                           </div>
-                        </div>
-                      </td>
+                        </td>
+                      <?php endif; ?>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

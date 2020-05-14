@@ -9,11 +9,11 @@
       <ul id="sidebarnav">
 
         <!-- DASHBOARD-->
-        <li class="nav-small-cap">
+        <!-- <li class="nav-small-cap">
           <i class="mdi mdi-dots-horizontal"></i>
           <span class="hide-menu">Dashboards</span>
-        </li>
-        <li class="sidebar-item">
+        </li> -->
+        <li class="sidebar-item mt-4">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('dashboard') ?>" aria-expanded="false">
             <i class="icon-Receipt"></i>
             <span class="hide-menu">Dashboards</span>
@@ -50,6 +50,12 @@
               <a href="<?= base_url('users') ?>" class="sidebar-link">
                 <i class="mdi mdi-users"></i>
                 <span class="hide-menu"> View All Users </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url('users/create') ?>" class="sidebar-link">
+                <i class="mdi mdi-account-plus"></i>
+                <span class="hide-menu"> Add New User </span>
               </a>
             </li>
           </ul>
