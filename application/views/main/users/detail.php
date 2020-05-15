@@ -50,11 +50,16 @@
               <h4 class="card-title m-t-10"><?= $detail['name']; ?></h4>
               <h6 class="card-subtitle"><?= $detail['role']; ?> Inventory App</h6>
               <div class="form-group mt-3">
-                <label class="col-sm-8">Assign as :</label>
+                <label class="col-sm-8">Assigned as :</label>
                 <div class="col-sm-8">
                   <select class="form-control form-control-line">
-                    <option>Employee</option>
-                    <option>Administrator</option>
+                    <?php if ($detail['role'] == 'Administrator') : ?>
+                      <option selected value="1">Administrator</option>
+                      <option value="2">Employee</option>
+                    <?php else : ?>
+                      <option value="1">Administrator</option>
+                      <option selected value="2">Employee</option>
+                    <?php endif; ?>
                   </select>
                 </div>
                 <small class="form-control-feedback"> Select one to change. </small>

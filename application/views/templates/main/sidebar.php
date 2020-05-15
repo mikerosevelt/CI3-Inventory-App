@@ -1,3 +1,7 @@
+<?php
+$user = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+?>
+
 <!-- ============================================================== -->
 <!-- Left Sidebar - style you can find in sidebar.scss  -->
 <!-- ============================================================== -->
@@ -25,21 +29,7 @@
           <i class="mdi mdi-dots-horizontal"></i>
           <span class="hide-menu">Menu</span>
         </li>
-        <li class="sidebar-item">
-          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-            <i class="icon-Mailbox-Empty"></i>
-            <span class="hide-menu">Inbox </span>
-          </a>
-          <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item">
-              <a href="inbox-email.html" class="sidebar-link">
-                <i class="mdi mdi-email"></i>
-                <span class="hide-menu"> Email </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
+        <!-- MANAGE USERS -->
         <li class="sidebar-item">
           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
             <i class="icon-User"></i>
@@ -61,11 +51,122 @@
           </ul>
         </li>
 
+        <!-- MANAGE INVENTORY -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="icon-Box-Open"></i>
+            <span class="hide-menu">Manage Inventory </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> Inventory Products </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-account-plus"></i>
+                <span class="hide-menu"> Add New Product </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- SALES -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="icon-Add-Cart"></i>
+            <span class="hide-menu">Sales </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> Orders </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-account-plus"></i>
+                <span class="hide-menu"> Add New Order </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- PURCHASES -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="icon-Money"></i>
+            <span class="hide-menu">Purchases </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> View All Purchases </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-account-plus"></i>
+                <span class="hide-menu"> Add New Purchase </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- TRANSACTIONS -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="icon-Dollar"></i>
+            <span class="hide-menu">Transactions </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> View All Transactions </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-account-plus"></i>
+                <span class="hide-menu"> Invoices </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
         <!-- OTHER -->
         <li class="nav-small-cap">
           <i class="mdi mdi-dots-horizontal"></i>
           <span class="hide-menu">Other</span>
         </li>
+
+        <!-- REPORTS -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="mdi mdi-library-books"></i>
+            <span class="hide-menu">Reports </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="inbox-email.html" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> Transactions Report </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="inbox-email.html" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> Product Stock Report </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- SETTINGS -->
         <li class="sidebar-item">
           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
             <i class="mdi mdi-settings"></i>
@@ -75,7 +176,13 @@
             <li class="sidebar-item">
               <a href="inbox-email.html" class="sidebar-link">
                 <i class="mdi mdi-email"></i>
-                <span class="hide-menu"> API Setting</span>
+                <span class="hide-menu"> API Setting </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="inbox-email.html" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> Backup Database </span>
               </a>
             </li>
           </ul>
