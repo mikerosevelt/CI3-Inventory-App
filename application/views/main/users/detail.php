@@ -49,6 +49,16 @@
             <center class="m-t-30"> <img src="../../assets/images/users/5.jpg" class="rounded-circle" width="150" />
               <h4 class="card-title m-t-10"><?= $detail['name']; ?></h4>
               <h6 class="card-subtitle"><?= $detail['role']; ?> Inventory App</h6>
+              <div class="form-group mt-3">
+                <label class="col-sm-8">Assign as :</label>
+                <div class="col-sm-8">
+                  <select class="form-control form-control-line">
+                    <option>Employee</option>
+                    <option>Administrator</option>
+                  </select>
+                </div>
+                <small class="form-control-feedback"> Select one to change. </small>
+              </div>
               <!-- <div class="row text-center justify-content-md-center">
                 <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i>
                     <font class="font-medium">254</font>
@@ -64,8 +74,8 @@
           </div>
           <div class="card-body"> <small class="text-muted">Email address </small>
             <h6><?= $detail['email']; ?></h6> <small class="text-muted p-t-30 db">Phone</small>
-            <h6>+91 654 784 547</h6> <small class="text-muted p-t-30 db">Address</small>
-            <h6>71 Pilgrim Avenue Chevy Chase, MD 20815</h6>
+            <h6><?= $detail['phone']; ?></h6> <small class="text-muted p-t-30 db">Address</small>
+            <h6><?= $detail['address']; ?> <?= $detail['city']; ?>, <?= $detail['state']; ?> <?= $detail['postcode']; ?></h6>
             <!-- <div class="map-box">
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d470029.1604841957!2d72.29955005258641!3d23.019996818380896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C+Gujarat!5e0!3m2!1sen!2sin!4v1493204785508" width="100%" height="150" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>  -->
@@ -161,7 +171,7 @@
                   </div>
                   <div class="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
                     <br>
-                    <p class="text-muted">(123) 456 7890</p>
+                    <p class="text-muted"><?= $detail['phone']; ?></p>
                   </div>
                   <div class="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
                     <br>
@@ -169,7 +179,7 @@
                   </div>
                   <div class="col-md-3 col-xs-6"> <strong>Location</strong>
                     <br>
-                    <p class="text-muted">London</p>
+                    <p class="text-muted"><?= $detail['country']; ?></p>
                   </div>
                 </div>
                 <hr>
@@ -220,7 +230,41 @@
                   <div class="form-group">
                     <label class="col-md-12">Phone No</label>
                     <div class="col-md-12">
-                      <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
+                      <input type="text" placeholder="<?= $detail['phone']; ?>" class="form-control form-control-line">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-12">Address</label>
+                    <div class="col-md-12">
+                      <input type="text" placeholder="<?= $detail['address']; ?>" class="form-control form-control-line">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label class="col-md">City</label>
+                      <div class="col-md">
+                        <input type="text" placeholder="<?= $detail['city']; ?>" class="form-control form-control-line">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="col-md">State</label>
+                      <div class="col-md">
+                        <input type="text" placeholder="<?= $detail['state']; ?>" class="form-control form-control-line">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <div class="col-md-6">
+                      <label class="col-md">Post Code</label>
+                      <div class="col-md">
+                        <input type="text" placeholder="<?= $detail['postcode']; ?>" class="form-control form-control-line">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label class="col-md">Country</label>
+                      <div class="col-md">
+                        <input type="text" placeholder="<?= $detail['country']; ?>" class="form-control form-control-line">
+                      </div>
                     </div>
                   </div>
                   <!-- <div class="form-group">
@@ -229,7 +273,7 @@
                       <textarea rows="5" class="form-control form-control-line"></textarea>
                     </div>
                   </div> -->
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label class="col-sm-12">Select Country</label>
                     <div class="col-sm-12">
                       <select class="form-control form-control-line">
@@ -240,7 +284,7 @@
                         <option>Thailand</option>
                       </select>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="form-group">
                     <div class="col-sm-12">
                       <button type="submit" class="btn btn-success">Update Profile</button>

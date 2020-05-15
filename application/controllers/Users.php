@@ -78,7 +78,26 @@ class Users extends CI_Controller
    */
   public function insert()
   {
-    # code...
+    $this->form_validation->set_rules('name', 'Full Name', 'required|trim');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[users.email]', [
+      'is_unique' => 'Email is already registered!'
+    ]);
+    $this->form_validation->set_rules('password', 'Password', 'required|trim|min_length[6]');
+    $this->form_validation->set_rules('phone', 'Phone Number', 'required|trim|max_length[13]');
+    $this->form_validation->set_rules('dob', 'Date of Birth', 'required|trim');
+    $this->form_validation->set_rules('address', 'Address', 'required|trim|max_length[60]');
+    $this->form_validation->set_rules('city', 'City', 'required|trim');
+    $this->form_validation->set_rules('state', 'State', 'required|trim');
+    $this->form_validation->set_rules('postcode', 'PostCode', 'required|trim');
+    $this->form_validation->set_rules('country', 'Country', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      $this->create();
+    } else {
+      $this->User->createNewAccount();
+      $this->session->set_flashdata('swal', 'New user has been created');
+      redirect('users');
+    }
   }
 
   /**

@@ -3,12 +3,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class User extends CI_Model
 {
+  // Create a new user
   public function createNewAccount()
   {
     $data = [
       'name' => $this->input->post('name', true),
       'email' => $this->input->post('email', true),
       'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+      'dob' => strtotime($this->input->post('dob', true)),
+      'phone' => $this->input->post('phone', true),
+      'address' => $this->input->post('address', true),
+      'city' => $this->input->post('city', true),
+      'state' => $this->input->post('state', true),
+      'postcode' => $this->input->post('postcode', true),
+      'country' => $this->input->post('country', true),
       'role_id' => 2,
       'createdAt' => time()
     ];
@@ -27,7 +35,7 @@ class User extends CI_Model
 
   public function getUserById($id)
   {
-    $this->db->select('user_role.*, users.id, users.name, users.email, users.role_id, users.createdAt, users.deletedAt, users.updatedAt');
+    $this->db->select('user_role.*, users.id, users.name, users.email, users.dob, users.phone, users.address, users.city, users.state, users.postcode, users.country, users.role_id, users.createdAt, users.deletedAt, users.updatedAt');
     $this->db->from('users');
     $this->db->join('user_role', 'users.role_id = user_role.id');
     $this->db->where('users.id', $id);
