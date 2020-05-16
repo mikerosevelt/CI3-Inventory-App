@@ -33,7 +33,6 @@ class Users extends CI_Controller
         $data['title'] = 'User Detail | Inventory App';
         $data['detail'] = $this->User->getUserById($id);
         $data['log'] = $this->User->getUserLog($id);
-        // $data['roles'] = ['Administrator', 'Employee'];
 
         $this->load->view('templates/main/header', $data);
         $this->load->view('templates/main/topbar');

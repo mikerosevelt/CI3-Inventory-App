@@ -124,7 +124,7 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
           </a>
           <ul aria-expanded="false" class="collapse  first-level">
             <li class="sidebar-item">
-              <a href="<?= base_url() ?>" class="sidebar-link">
+              <a href="<?= base_url('transactions') ?>" class="sidebar-link">
                 <i class="mdi mdi-users"></i>
                 <span class="hide-menu"> View All Transactions </span>
               </a>
