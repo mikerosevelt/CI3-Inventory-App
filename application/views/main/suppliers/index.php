@@ -51,10 +51,11 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Receipt #</th>
-                    <th>Invoice #</th>
-                    <th>Amount In</th>
-                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Date Created</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -63,10 +64,11 @@
                 <tfoot>
                   <tr>
                     <th>#</th>
-                    <th>Receipt #</th>
-                    <th>Invoice #</th>
-                    <th>Amount In</th>
-                    <th>Status</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Date Created</th>
                     <th></th>
                   </tr>
                 </tfoot>
