@@ -5,21 +5,20 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
 <!-- ============================================================== -->
 <!-- Left Sidebar - style you can find in sidebar.scss  -->
 <!-- ============================================================== -->
-<aside class="left-sidebar">
+<aside class="left-sidebar mt-4">
   <!-- Sidebar scroll-->
   <div class="scroll-sidebar">
     <!-- Sidebar navigation-->
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-
         <!-- DASHBOARD-->
         <!-- <li class="nav-small-cap">
           <i class="mdi mdi-dots-horizontal"></i>
           <span class="hide-menu">Dashboards</span>
         </li> -->
-        <li class="sidebar-item mt-4">
+        <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('dashboard') ?>" aria-expanded="false">
-            <i class="icon-Receipt"></i>
+            <i class="mdi mdi-home-outline"></i>
             <span class="hide-menu">Dashboards</span>
           </a>
         </li>
@@ -32,7 +31,7 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
         <!-- MANAGE USERS -->
         <li class="sidebar-item">
           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-            <i class="icon-User"></i>
+            <i class="mdi mdi-account-edit"></i>
             <span class="hide-menu">Manage Users </span>
           </a>
           <ul aria-expanded="false" class="collapse  first-level">
@@ -59,15 +58,27 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
           </a>
           <ul aria-expanded="false" class="collapse  first-level">
             <li class="sidebar-item">
-              <a href="<?= base_url() ?>" class="sidebar-link">
+              <a href="<?= base_url('products') ?>" class="sidebar-link">
                 <i class="mdi mdi-users"></i>
-                <span class="hide-menu"> Inventory Products </span>
+                <span class="hide-menu"> View All Products </span>
               </a>
             </li>
             <li class="sidebar-item">
               <a href="<?= base_url() ?>" class="sidebar-link">
-                <i class="mdi mdi-account-plus"></i>
-                <span class="hide-menu"> Add New Product </span>
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> Outgoing Product </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url() ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> Incoming Product </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url('products/categories') ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> View All Categories </span>
               </a>
             </li>
           </ul>
@@ -82,40 +93,11 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
             <li class="sidebar-item">
               <a href="<?= base_url() ?>" class="sidebar-link">
                 <i class="mdi mdi-users"></i>
-                <span class="hide-menu"> Orders </span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?= base_url() ?>" class="sidebar-link">
-                <i class="mdi mdi-account-plus"></i>
-                <span class="hide-menu"> Add New Order </span>
+                <span class="hide-menu"> View All Orders </span>
               </a>
             </li>
           </ul>
         </li>
-
-        <!-- PURCHASES -->
-        <li class="sidebar-item">
-          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-            <i class="icon-Money"></i>
-            <span class="hide-menu">Purchases </span>
-          </a>
-          <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item">
-              <a href="<?= base_url() ?>" class="sidebar-link">
-                <i class="mdi mdi-users"></i>
-                <span class="hide-menu"> View All Purchases </span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?= base_url() ?>" class="sidebar-link">
-                <i class="mdi mdi-account-plus"></i>
-                <span class="hide-menu"> Add New Purchase </span>
-              </a>
-            </li>
-          </ul>
-        </li>
-
         <!-- TRANSACTIONS -->
         <li class="sidebar-item">
           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
@@ -133,6 +115,28 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
               <a href="<?= base_url() ?>" class="sidebar-link">
                 <i class="mdi mdi-account-plus"></i>
                 <span class="hide-menu"> Invoices </span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Customers & Suppliers -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="mdi mdi-account-multiple"></i>
+            <span class="hide-menu">Customers & Suppliers </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?= base_url('customers') ?>" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> View All Customers </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="<?= base_url('suppliers') ?>" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> View All Suppliers </span>
               </a>
             </li>
           </ul>
@@ -186,13 +190,6 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
               </a>
             </li>
           </ul>
-        </li>
-        <li class="sidebar-item">
-          <a class="sidebar-link waves-effect waves-dark sidebar-link" href="../../docs/documentation.html
-                                   " aria-expanded="false">
-            <i class="mdi mdi-content-paste"></i>
-            <span class="hide-menu">Documentation</span>
-          </a>
         </li>
         <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('auth/logout') ?>">

@@ -109,7 +109,7 @@ class Users extends CI_Controller
   }
 
   /**
-   * @desc Delete user
+   * @desc Soft delete a user
    */
   public function delete()
   {

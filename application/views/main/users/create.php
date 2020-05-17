@@ -45,12 +45,10 @@
       <div class="col-lg-12">
         <div class="card">
           <form action="<?= base_url('users/insert') ?>" method="POST">
-            <div class="card-body">
-              <h4 class="card-title">Person Info</h4>
-            </div>
-            <hr>
             <div class="form-body">
               <div class="card-body">
+                <h4 class="card-title">Person Info</h4>
+                <hr>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
@@ -98,10 +96,10 @@
                   <!--/span-->
                 </div>
                 <!--/row-->
-                <h4 class="card-title m-t-40">Address</h4>
               </div>
-              <hr>
               <div class="card-body">
+                <h4 class="card-title">Address</h4>
+                <hr>
                 <div class="row">
                   <div class="col-md-12 ">
                     <div class="form-group">

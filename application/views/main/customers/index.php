@@ -25,7 +25,67 @@
         </div>
       </div>
     </div>
+    <div class="mt-3">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewCustomerModal">Add New Customer</button>
+    </div>
   </div>
+  <!-- MODAL -->
+  <div class="modal fade" id="addNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addNewCustomerModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title" id="exampleModalLabel1">Add New Customer</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="POST">
+            <div class="form-group">
+              <label for="name" class="control-label">Name</label>
+              <input type="text" class="form-control" id="name" name="name" placeholder="John Doe or Company Name">
+            </div>
+            <div class="form-group">
+              <label for="email" class="control-label">Email</label>
+              <input type="text" class="form-control" id="email" name="email" placeholder="johndoe@example.com">
+            </div>
+            <div class="form-group">
+              <label for="phone" class="control-label">Phone</label>
+              <input type="text" class="form-control" id="phone" name="phone" placeholder="+1 234 567 890">
+            </div>
+            <div class="form-group">
+              <label for="address" class="control-label">Address</label>
+              <input type="text" class="form-control" id="address" name="address" placeholder="1365 Example Avenue">
+            </div>
+            <div class="form-group">
+              <label for="city" class="control-label">City</label>
+              <input type="text" class="form-control" id="city" name="city" placeholder="City">
+            </div>
+            <div class="form-group">
+              <label for="state" class="control-label">State</label>
+              <input type="text" class="form-control" id="state" name="state" placeholder="State">
+            </div>
+            <div class="form-group">
+              <label for="postcode" class="control-label">Postcode</label>
+              <input type="text" class="form-control" id="postcode" name="postcode" placeholder="12345">
+            </div>
+            <div class="form-group">
+              <label>Country</label>
+              <select class="form-control custom-select" name="country">
+                <option>--Select your Country--</option>
+                <option value="Indonesia">Indonesia</option>
+                <option value="Singapore">Singapore</option>
+                <option value="USA">USA</option>
+              </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-muted" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- /.modal -->
   <!-- ============================================================== -->
   <!-- End Bread crumb and right sidebar toggle -->
   <!-- ============================================================== -->

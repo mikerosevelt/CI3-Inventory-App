@@ -8,7 +8,7 @@
   <div class="page-breadcrumb mt-1">
     <div class="row">
       <div class="col-5 align-self-center">
-        <h4 class="page-title">Manage Suppliers</h4>
+        <h4 class="page-title">Manage Products</h4>
         <div class="d-flex align-items-center">
         </div>
       </div>
@@ -19,31 +19,29 @@
               <li class="breadcrumb-item">
                 <a href="<?= base_url('dashboard') ?>">Dashboard</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">Manage Suppliers</li>
+              <li class="breadcrumb-item">
+                <a href="<?= base_url('products') ?>">Manage Inventory</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">All Products</li>
             </ol>
           </nav>
         </div>
       </div>
     </div>
     <div class="mt-3">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewSupplierModal">Add New Supplier</button>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewCustomerModal">Add New Products</button>
     </div>
   </div>
   <!-- MODAL -->
-  <div class="modal fade" id="addNewSupplierModal" tabindex="-1" role="dialog" aria-labelledby="addNewSupplierModal">
+  <div class="modal fade" id="addNewCustomerModal" tabindex="-1" role="dialog" aria-labelledby="addNewCustomerModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title" id="exampleModalLabel1">Add New Supplier</h4>
+          <h4 class="modal-title" id="exampleModalLabel1">Add New Customer</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         </div>
         <div class="modal-body">
           <form action="" method="POST">
-            <div class="form-group">
-              <label for="supplier-code" class="control-label">Supplier Code</label>
-              <input type="text" class="form-control" id="supplier-code" name="suppliercode" placeholder="eg: JD, CN">
-              <small>Supplier code must be unique (can not same)</small>
-            </div>
             <div class="form-group">
               <label for="name" class="control-label">Name</label>
               <input type="text" class="form-control" id="name" name="name" placeholder="John Doe or Company Name">
@@ -110,23 +108,42 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Suppliers List</h4>
+            <h4 class="card-title">Products List</h4>
             <div class="table-responsive">
               <table id="zero_config" class="table table-striped table-bordered table-hover display">
                 <thead>
                   <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Address</th>
-                    <th>Date Created</th>
-                    <th></th>
+                    <th class="text-center">Image</th>
+                    <th>Code</th>
+                    <th>name</th>
+                    <th>Price/unit</th>
+                    <th>Stock</th>
+                    <th>Unit</th>
+                    <th class="text-center">Action</th>
                   </tr>
                 </thead>
                 <tbody>
+                  <tr>
+                    <td class="text-center"><img src="<?= base_url('assets/') ?>images/gallery/chair.jpg" alt="iMac" width="70"></td>
+                    <td>BK465</td>
+                    <td>Modern Wood Chair</td>
+                    <td>$80</td>
+                    <td>10</td>
+                    <td>Box</td>
+                    <td class="text-center">
+                      <div class="dropdown">
+                        <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <i class="mdi mdi-dots-vertical"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                          <a class="dropdown-item text-dark" href="<?= base_url('users/detail/') ?>">Detail</a>
+                          <a class="dropdown-item text-danger del-btn" href="<?= base_url('users/delete/') ?>">Delete</a>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
                 </tbody>
-                <tfoot>
+                <!-- <tfoot>
                   <tr>
                     <th>#</th>
                     <th>Name</th>
@@ -136,7 +153,7 @@
                     <th>Date Created</th>
                     <th></th>
                   </tr>
-                </tfoot>
+                </tfoot> -->
               </table>
             </div>
           </div>
