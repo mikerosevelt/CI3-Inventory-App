@@ -98,27 +98,29 @@
                 </thead>
                 <tbody>
                   <?php foreach ($categories as $cat) : ?>
-                    <tr>
-                      <td><?= $cat['category'] ?></td>
-                      <?php if ($cat['isActive'] != 1) : ?>
-                        <td class="text-center"><span class="label label-inverse">Inactive</span></td>
-                      <?php else : ?>
-                        <td class="text-center"><span class="label label-success">Active</span></td>
-                      <?php endif; ?>
-                      <td><?= $cat['name'] ?></td>
-                      <td><?= date('d F Y', $cat['createdAt']) ?></td>
-                      <td class="text-center">
-                        <div class="dropdown">
-                          <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item text-dark edit-btn" href="javascript:void(0)" data-toggle="modal" data-target="#addNewCategoryModal" data-id="<?= $cat['id']; ?>">Edit</a>
-                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('products/delete/') . $cat['id']; ?>">Delete</a>
+                    <?php if ($cat['deletedAt'] == null) : ?>
+                      <tr>
+                        <td><?= $cat['category'] ?></td>
+                        <?php if ($cat['isActive'] != 1) : ?>
+                          <td class="text-center"><span class="label label-inverse">Inactive</span></td>
+                        <?php else : ?>
+                          <td class="text-center"><span class="label label-success">Active</span></td>
+                        <?php endif; ?>
+                        <td><?= $cat['name'] ?></td>
+                        <td><?= date('d F Y', $cat['createdAt']) ?></td>
+                        <td class="text-center">
+                          <div class="dropdown">
+                            <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="mdi mdi-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item text-dark edit-btn" href="javascript:void(0)" data-toggle="modal" data-target="#addNewCategoryModal" data-id="<?= $cat['id']; ?>">Edit</a>
+                              <a class="dropdown-item text-danger del-btn" href="<?= base_url('products/deleteCategory/') . $cat['id']; ?>">Delete</a>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                    </tr>
+                        </td>
+                      </tr>
+                    <?php endif; ?>
                   <?php endforeach; ?>
                 </tbody>
               </table>

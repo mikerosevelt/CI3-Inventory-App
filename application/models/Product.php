@@ -41,4 +41,12 @@ class Product extends CI_Model
     $this->db->where('id', $id);
     $this->db->update('categories');
   }
+
+  // Soft delete category
+  public function deleteCategory($id)
+  {
+    $this->db->set('deletedAt', time());
+    $this->db->where('id', $id);
+    $this->db->update('categories');
+  }
 }

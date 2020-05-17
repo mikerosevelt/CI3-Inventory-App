@@ -86,11 +86,13 @@ class Products extends CI_Controller
     }
   }
 
+  /**
+   * Update a category data
+   */
   public function editCategory()
   {
     $this->form_validation->set_rules('category', 'Category', 'required|trim|is_unique[categories.category]');
     $this->form_validation->set_rules('status', 'Status', 'required|trim');
-
 
     if ($this->form_validation->run() == false) {
       $this->categories();
@@ -113,6 +115,30 @@ class Products extends CI_Controller
    */
   public function deleteCategory()
   {
-    # code...
+    $id = $this->uri->segment(3);
+    $data['user'] = $this->db->get_where('users', ['id' => $id])->row_array();
+    if ($id) {
+      if ($data['user']) {
+        $this->Product->deleteCategory($id);
+        $this->session->set_flashdata('swal', 'Category successfully deleted');
+        redirect('products/categories');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Category not found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('products/categories');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Something went wrong.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>');
+      redirect('products/categories');
+    }
   }
 }
