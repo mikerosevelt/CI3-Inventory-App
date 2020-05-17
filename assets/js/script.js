@@ -29,3 +29,42 @@ $(function () {
 		});
 	});
 });
+
+// Edit Supplier
+$(function () {
+	// Add button
+	$("#btnAddCategory").on("click", function () {
+		$("#supplierModalLabel").html("Add New Supplier");
+		$(".modal-footer button[type=submit]").html("Add");
+		$(".modal-body form").attr("action", `${url}suppliers`);
+	});
+
+	// Edit button
+	$(".edit-btn").on("click", function () {
+		$("#supplierModalLabel").html("Edit Supplier");
+		$(".modal-footer button[type=submit]").html("Save Changes");
+		$(".modal-body form").attr("action", `${url}suppliers/update`);
+
+		// Category Id
+		const id = $(this).data("id");
+		// Get category data by Id
+		$.ajax({
+			url: "http://localhost/gudang/suppliers/getSingleSupplier",
+			data: { id: id },
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				$("#id").val(data.id);
+				$("#code").val(data.code);
+				$("#name").val(data.name);
+				$("#email").val(data.email);
+				$("#phone").val(data.phone);
+				$("#address").val(data.address);
+				$("#city").val(data.city);
+				$("#state").val(data.state);
+				$("#postcode").val(data.postcode);
+				$("#country").val(data.country);
+			},
+		});
+	});
+});

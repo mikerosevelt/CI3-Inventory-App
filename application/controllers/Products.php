@@ -116,9 +116,9 @@ class Products extends CI_Controller
   public function deleteCategory()
   {
     $id = $this->uri->segment(3);
-    $data['user'] = $this->db->get_where('users', ['id' => $id])->row_array();
+    $data['category'] = $this->db->get_where('categories', ['id' => $id])->row_array();
     if ($id) {
-      if ($data['user']) {
+      if ($data['category']) {
         $this->Product->deleteCategory($id);
         $this->session->set_flashdata('swal', 'Category successfully deleted');
         redirect('products/categories');

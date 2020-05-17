@@ -378,10 +378,14 @@
 <!-- <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script> -->
 <script src="<?= base_url('assets/'); ?>js/pages/datatable/datatable-basic.init.js"></script>
-
+<!-- Sweetalert -->
 <script src="<?= base_url('assets/'); ?>libs/sweetalert2/dist/sweetalert2.all.min.js"></script>
 <script src="<?= base_url('assets/'); ?>js/sweet.js"></script>
 <!-- <script src="<?= base_url('assets/'); ?>libs/sweetalert2/sweet-alert.init.js"></script> -->
+<!-- Select2 -->
+<!-- <script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.full.min.js"></script>
+<script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.min.js"></script>
+<script src="<?= base_url('assets/'); ?>js/pages/forms/select2/select2.init.js"></script> -->
 <!--This page JavaScript -->
 <!--c3 JavaScript -->
 <script src="<?= base_url('assets/'); ?>extra-libs/c3/d3.min.js"></script>

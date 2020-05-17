@@ -39,11 +39,57 @@ class Suppliers extends CI_Controller
 
   public function update()
   {
-    # code...
+    $this->form_validation->set_rules('code', 'Code', 'required|trim|is_unique[suppliers.code]');
+    $this->form_validation->set_rules('name', 'Name', 'required|trim');
+    $this->form_validation->set_rules('email', 'Email', 'required|trim');
+    $this->form_validation->set_rules('phone', 'Phone', 'required|trim');
+    $this->form_validation->set_rules('address', 'Address', 'required|trim');
+    $this->form_validation->set_rules('city', 'City', 'required|trim');
+    $this->form_validation->set_rules('state', 'State', 'required|trim');
+    $this->form_validation->set_rules('postcode', 'Postcode', 'required|trim');
+    $this->form_validation->set_rules('country', 'Country', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      $this->index();
+    } else {
+      $id = $this->input->post('id');
+      $this->Supplier->updateSupplier($id);
+      $this->session->set_flashdata('swal', 'Supplier has been edited');
+      redirect('suppliers');
+    }
+  }
+
+  public function getSingleSupplier()
+  {
+    echo json_encode($this->Supplier->getSupplierById($this->input->post('id')));
   }
 
   public function delete()
   {
-    # code...
+    $id = $this->uri->segment(3);
+    $data['supplier'] = $this->db->get_where('suppliers', ['id' => $id])->row_array();
+    if ($id) {
+      if ($data['supplier']) {
+        $this->Supplier->deleteSupplier($id);
+        $this->session->set_flashdata('swal', 'Supplier successfully deleted');
+        redirect('suppliers');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Supplier not found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('suppliers');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Something went wrong.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>');
+      redirect('suppliers');
+    }
   }
 }

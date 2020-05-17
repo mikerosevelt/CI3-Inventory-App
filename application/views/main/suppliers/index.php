@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="mt-3">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewSupplierModal">Add New Supplier</button>
+      <button id="addNewSupplier" type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNewSupplierModal">Add New Supplier</button>
     </div>
   </div>
   <!-- MODAL -->
@@ -39,6 +39,7 @@
         </div>
         <div class="modal-body">
           <form action="<?= base_url('suppliers') ?>" method="POST">
+            <input type="hidden" name="id" id="id">
             <div class="form-group">
               <label for="supplier-code" class="control-label">Supplier Code</label>
               <input type="text" class="form-control" id="code" name="code" placeholder="eg: JD, CN" value="<?= set_value('code'); ?>">
@@ -82,10 +83,12 @@
             </div>
             <div class="form-group">
               <label>Country</label>
-              <select class="form-control custom-select" name="country">
+              <select class="form-control custom-select" name="country" id="country" style="width: 100%;">
                 <option>--Select your Country--</option>
                 <option value="Indonesia">Indonesia</option>
+                <option value="Malaysia">Malaysia</option>
                 <option value="Singapore">Singapore</option>
+                <option value="Thailand">Thailand</option>
                 <option value="USA">USA</option>
               </select>
               <?= form_error('country', '<small class="text-danger pl-1">', '</small>'); ?>
@@ -138,24 +141,26 @@
                   <?php $n = 1;
                   foreach ($suppliers as $sup) : ?>
                     <?php if ($sup['deletedAt'] == null) : ?>
-                      <td><?= $n++ ?></td>
-                      <td><?= $sup['code'] ?></td>
-                      <td><?= $sup['name'] ?></td>
-                      <td><?= $sup['email'] ?></td>
-                      <td><?= $sup['phone'] ?></td>
-                      <td><?= $sup['address'] ?></td>
-                      <td><?= date('d F Y', $sup['createdAt']) ?></td>
-                      <td class="text-center">
-                        <div class="dropdown">
-                          <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="mdi mdi-dots-vertical"></i>
-                          </a>
-                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item text-dark edit-btn" href="javascript:void(0)" data-toggle="modal" data-target="#addNewCategoryModal" data-id="<?= $sup['id']; ?>">Edit</a>
-                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('products/deleteCategory/') . $sup['id']; ?>">Delete</a>
+                      <tr>
+                        <td><?= $n++ ?></td>
+                        <td><?= $sup['code'] ?></td>
+                        <td><?= $sup['name'] ?></td>
+                        <td><?= $sup['email'] ?></td>
+                        <td><?= $sup['phone'] ?></td>
+                        <td><?= $sup['address'] ?></td>
+                        <td><?= date('d F Y', $sup['createdAt']) ?></td>
+                        <td class="text-center">
+                          <div class="dropdown">
+                            <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <i class="mdi mdi-dots-vertical"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                              <a class="dropdown-item text-dark edit-btn" href="javascript:void(0)" data-toggle="modal" data-target="#addNewSupplierModal" data-id="<?= $sup['id']; ?>">Edit</a>
+                              <a class="dropdown-item text-danger del-btn" href="<?= base_url('suppliers/delete/') . $sup['id']; ?>">Delete</a>
+                            </div>
                           </div>
-                        </div>
-                      </td>
+                        </td>
+                      </tr>
                     <?php endif; ?>
                   <?php endforeach; ?>
                 </tbody>
