@@ -383,9 +383,9 @@
 <script src="<?= base_url('assets/'); ?>js/sweet.js"></script>
 <!-- <script src="<?= base_url('assets/'); ?>libs/sweetalert2/sweet-alert.init.js"></script> -->
 <!-- Select2 -->
-<!-- <script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.full.min.js"></script>
+<script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.min.js"></script>
-<script src="<?= base_url('assets/'); ?>js/pages/forms/select2/select2.init.js"></script> -->
+<script src="<?= base_url('assets/'); ?>js/pages/forms/select2/select2.init.js"></script>
 <!--This page JavaScript -->
 <!--c3 JavaScript -->
 <script src="<?= base_url('assets/'); ?>extra-libs/c3/d3.min.js"></script>

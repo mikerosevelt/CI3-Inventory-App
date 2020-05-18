@@ -15,7 +15,7 @@
   <link href="<?= base_url('assets/'); ?>libs/datatables.net-bs4/css/dataTables.bootstrap4.css" rel="stylesheet">
   <link href="<?= base_url('assets/'); ?>libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
   <link href="<?= base_url('assets/'); ?>extra-libs/c3/c3.min.css" rel="stylesheet">
-  <!-- <link rel="stylesheet" href="<?= base_url('assets/'); ?>libs/select2/dist/css/select2.min.css"> -->
+  <link rel="stylesheet" href="<?= base_url('assets/'); ?>libs/select2/dist/css/select2.min.css">
 
   <!-- Custom CSS -->
   <link href="<?= base_url('assets/'); ?>css/style.min.css" rel="stylesheet">
