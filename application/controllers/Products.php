@@ -12,7 +12,7 @@ class Products extends CI_Controller
   public function index()
   {
     $data['title'] = 'Manage Products | Inventory App';
-    // $data['userlist'] = $this->User->getAllUsers();
+    $data['products'] = $this->Product->getAllProducts();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
@@ -34,7 +34,17 @@ class Products extends CI_Controller
    */
   public function create()
   {
-    # code...
+    $data['title'] = 'Add New Product | Inventory App';
+    // $data['userlist'] = $this->User->getAllUsers();
+    $data['suppliers'] = $this->db->get('suppliers')->result_array();
+    $data['categories'] = $this->db->get('categories')->result_array();
+    $data['employee'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/inventory/incoming-product', $data);
+    $this->load->view('templates/main/footer');
   }
 
   /**
@@ -42,7 +52,23 @@ class Products extends CI_Controller
    */
   public function insert()
   {
-    # code...
+    $this->form_validation->set_rules('code', 'Product Code', 'required|trim|is_unique[products.product_code]');
+    $this->form_validation->set_rules('name', 'Name', 'required|trim');
+    $this->form_validation->set_rules('category', 'Category', 'required|trim');
+    $this->form_validation->set_rules('supplier', 'Supplier', 'required|trim');
+    $this->form_validation->set_rules('employee', 'Employee', 'required|trim');
+    $this->form_validation->set_rules('price', 'Price', 'required|trim');
+    $this->form_validation->set_rules('quantity', 'Quantity', 'required|trim');
+    $this->form_validation->set_rules('unit', 'Unit', 'required|trim');
+    $this->form_validation->set_rules('description', 'Description', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      $this->create();
+    } else {
+      $this->Product->addProduct();
+      $this->session->set_flashdata('swal', 'New product has been added');
+      redirect('products');
+    }
   }
 
   /**
@@ -58,7 +84,31 @@ class Products extends CI_Controller
    */
   public function delete()
   {
-    # code...
+    $id = $this->uri->segment(3);
+    $data['product'] = $this->db->get_where('products', ['id' => $id])->row_array();
+    if ($id) {
+      if ($data['product']) {
+        $this->Product->deleteProduct($id);
+        $this->session->set_flashdata('swal', 'Product successfully deleted');
+        redirect('products/categories');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Product not found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('products/categories');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Something went wrong.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>');
+      redirect('products/categories');
+    }
   }
 
   /**
