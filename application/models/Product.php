@@ -53,7 +53,7 @@ class Product extends CI_Model
 
       $invoice = [
         'purchase_id' => $this->db->insert_id(),
-        'total_amount' => '',
+        'total_amount' => $totalPrice,
         'status' => 'Unpaid',
         'type' => 'Purchase',
         'createdAt' => time()

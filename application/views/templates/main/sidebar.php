@@ -98,6 +98,21 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
             </li>
           </ul>
         </li>
+        <!-- PURCAHSES -->
+        <li class="sidebar-item">
+          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+            <i class="icon-Add-Cart"></i>
+            <span class="hide-menu">Purchases </span>
+          </a>
+          <ul aria-expanded="false" class="collapse  first-level">
+            <li class="sidebar-item">
+              <a href="<?= base_url('purchases') ?>" class="sidebar-link">
+                <i class="mdi mdi-users"></i>
+                <span class="hide-menu"> View All Purchases </span>
+              </a>
+            </li>
+          </ul>
+        </li>
         <!-- TRANSACTIONS -->
         <li class="sidebar-item">
           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
