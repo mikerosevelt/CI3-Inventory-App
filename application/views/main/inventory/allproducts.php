@@ -77,7 +77,7 @@
                             <i class="mdi mdi-dots-vertical"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item text-dark" href="<?= base_url('users/detail/') ?>">Detail</a>
+                            <a class="dropdown-item text-dark" href="<?= base_url('products/detail/') . $p['id']; ?>">Detail</a>
                             <a class="dropdown-item text-danger del-btn" href="<?= base_url('products/delete/') . $p['id'] ?>">Delete</a>
                           </div>
                         </div>

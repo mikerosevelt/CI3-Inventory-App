@@ -395,6 +395,21 @@
 <script src="<?= base_url('assets/'); ?>extra-libs/c3/c3.min.js"></script>
 <script src="<?= base_url('assets/'); ?>js/pages/dashboards/dashboard3.js"></script>
 
+<script src="<?= base_url('assets/'); ?>js/pages/samplepages/jquery.PrintArea.js"></script>
+<script>
+  $(function() {
+    $("#print").click(function() {
+      var mode = 'iframe'; //popup
+      var close = mode == "popup";
+      var options = {
+        mode: mode,
+        popClose: close
+      };
+      $("div.printableArea").printArea(options);
+    });
+  });
+</script>
+
 </body>
 
 </html>

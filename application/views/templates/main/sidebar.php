@@ -101,7 +101,7 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
         <!-- PURCAHSES -->
         <li class="sidebar-item">
           <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-            <i class="icon-Add-Cart"></i>
+            <i class="icon-Money"></i>
             <span class="hide-menu">Purchases </span>
           </a>
           <ul aria-expanded="false" class="collapse  first-level">

@@ -11,4 +11,11 @@ class Purchase extends CI_Model
     $this->db->join('suppliers', 'suppliers.id = purchases.supplier_id');
     return $this->db->get()->result_array();
   }
+
+  public function softdelete($id)
+  {
+    $this->db->set('deletedAt', time());
+    $this->db->where('id', $id);
+    $this->db->update('purchases');
+  }
 }

@@ -55,11 +55,11 @@
                   <tr>
                     <th>#</th>
                     <th>Invoice #</th>
-                    <th>Purchase #</th>
                     <th>Total Amount</th>
                     <th>Type</th>
-                    <th>Status</th>
+                    <th class="text-center">Status</th>
                     <th>Invoice Date</th>
+                    <th>Due Date</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -68,11 +68,15 @@
                   foreach ($invoices as $i) : ?>
                     <tr>
                       <td><?= $n++ ?></td>
-                      <td><?= $i['id'] ?></td>
-                      <td><?= $i['purchase_id'] ?></td>
+                      <td><a href=""><?= $i['id'] ?></a></td>
                       <td><?= $i['total_amount'] ?></td>
                       <td><?= $i['type'] ?></td>
-                      <td><?= $i['status'] ?></td>
+                      <?php if ($i['status'] == 'Paid') : ?>
+                        <td class="text-center"><span class="label label-success"><?= $i['status'] ?></span></td>
+                      <?php else : ?>
+                        <td class="text-center"><span class="label label-danger"><?= $i['status'] ?></span></td>
+                      <?php endif; ?>
+                      <td><?= date('d F Y', $i['createdAt']) ?></td>
                       <td><?= date('d F Y', $i['createdAt']) ?></td>
                       <td class="text-center">
                         <div class="dropdown">
@@ -80,8 +84,8 @@
                             <i class="mdi mdi-dots-vertical"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item text-dark" href="<?= base_url('users/detail/') ?>">Detail</a>
-                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('products/delete/') . $i['id'] ?>">Delete</a>
+                            <a class="dropdown-item text-dark" href="<?= base_url('invoices/detail/') . $i['id'] ?>">Detail</a>
+                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('invoices/delete/') . $i['id'] ?>">Delete</a>
                           </div>
                         </div>
                       </td>

@@ -26,14 +26,35 @@ class Products extends CI_Controller
    */
   public function detail()
   {
-    $data['title'] = 'Manage Products | Inventory App';
-    // $data['products'] = $this->Product->getAllProducts();
+    $id = $this->uri->segment(3);
+    $data['product'] = $this->Product->getProductDetailById($id);
+    if ($id) {
+      if ($data['product']) {
+        $data['title'] = 'Product Detail | Inventory App';
 
-    $this->load->view('templates/main/header', $data);
-    $this->load->view('templates/main/topbar');
-    $this->load->view('templates/main/sidebar');
-    $this->load->view('main/inventory/product-detail', $data);
-    $this->load->view('templates/main/footer');
+        $this->load->view('templates/main/header', $data);
+        $this->load->view('templates/main/topbar');
+        $this->load->view('templates/main/sidebar');
+        $this->load->view('main/inventory/product-detail', $data);
+        $this->load->view('templates/main/footer');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Product not found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('products');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Something went wrong.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>');
+      redirect('products');
+    }
   }
 
   /**
@@ -97,7 +118,7 @@ class Products extends CI_Controller
       if ($data['product']) {
         $this->Product->deleteProduct($id);
         $this->session->set_flashdata('swal', 'Product successfully deleted');
-        redirect('products/categories');
+        redirect('products');
       } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
         Product not found.
@@ -105,7 +126,7 @@ class Products extends CI_Controller
             <span aria-hidden="true">&times;</span>
             </button>
           </div>');
-        redirect('products/categories');
+        redirect('products');
       }
     } else {
       $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -114,7 +135,7 @@ class Products extends CI_Controller
           <span aria-hidden="true">&times;</span>
           </button>
         </div>');
-      redirect('products/categories');
+      redirect('products');
     }
   }
 

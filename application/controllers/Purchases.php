@@ -20,4 +20,34 @@ class Purchases extends CI_Controller
     $this->load->view('main/purchases/index', $data);
     $this->load->view('templates/main/footer');
   }
+
+
+  public function delete()
+  {
+    $id = $this->uri->segment(3);
+    $data['purchase'] = $this->db->get_where('purchases', ['id' => $id])->row_array();
+    if ($id) {
+      if ($data['purchase']) {
+        $this->Purchase->softdelete($id);
+        $this->session->set_flashdata('swal', 'Purchase successfully deleted');
+        redirect('purchases');
+      } else {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+        Purchase not found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('purchases');
+      }
+    } else {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          Something went wrong.
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+        </div>');
+      redirect('purchases');
+    }
+  }
 }

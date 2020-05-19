@@ -86,7 +86,7 @@
                     <select class="form-control custom-select" name="supplier" id="supplier">
                       <option>--Select Product Supplier--</option>
                       <?php foreach ($suppliers as $sup) : ?>
-                        <option value="<?= $sup['id'] ?>"><?= $sup['name'] ?></option>
+                        <option value="<?= $sup['id'] ?>"><?= $sup['supplier_name'] ?></option>
                       <?php endforeach; ?>
                     </select>
                     <?= form_error('supplier', '<small class="text-danger pl-1">', '</small>'); ?>

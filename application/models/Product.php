@@ -8,6 +8,16 @@ class Product extends CI_Model
     return $this->db->get('products')->result_array();
   }
 
+  public function getProductDetailById($id)
+  {
+    $this->db->select('users.id, users.name, suppliers.id, suppliers.code, suppliers.supplier_name,products.*');
+    $this->db->from('products');
+    $this->db->join('users', 'users.id = products.user_id');
+    $this->db->join('suppliers', 'suppliers.id = products.supplier_id');
+    $this->db->where('products.id', $id);
+    return $this->db->get()->row_array();
+  }
+
   public function addProduct()
   {
     $employeeId = $this->input->post('employeeId', true);
@@ -44,21 +54,13 @@ class Product extends CI_Model
         'user_id' => $employeeId,
         'supplier_id' => $supplier,
         'product' => $productName,
+        'price' => $price,
         'qty' => $qty,
         'unit' => $unit,
         'total_price' => $totalPrice,
         'createdAt' => time()
       ];
       $this->db->insert('purchases', $purchase);
-
-      $invoice = [
-        'purchase_id' => $this->db->insert_id(),
-        'total_amount' => $totalPrice,
-        'status' => 'Unpaid',
-        'type' => 'Purchase',
-        'createdAt' => time()
-      ];
-      $this->db->insert('invoices', $invoice);
     } else {
       echo $this->upload->display_errors();
     }

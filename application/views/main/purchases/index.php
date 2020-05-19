@@ -54,7 +54,7 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Name</th>
+                    <th>Product Name</th>
                     <th>Supplier</th>
                     <th>Employee Name</th>
                     <th>Qty</th>
@@ -77,15 +77,15 @@
                       <td><?= $p['total_price'] ?></td>
                       <td><?= date('d F Y', $p['createdAt']) ?></td>
                       <td class="text-center">
-                        <div class="dropdown">
+                        <!-- <div class="dropdown">
                           <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="mdi mdi-dots-vertical"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item text-dark" href="<?= base_url('users/detail/') ?>">Detail</a>
-                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('products/delete/') . $p['id'] ?>">Delete</a>
+                            <a class="dropdown-item text-dark" href="<?= base_url('purchases/detail/') ?>">Detail</a>
+                            <a class="dropdown-item text-danger del-btn" href="<?= base_url('purchases/delete/') . $p['id'] ?>">Delete</a>
                           </div>
-                        </div>
+                        </div> -->
                       </td>
                     </tr>
                   <?php endforeach; ?>
