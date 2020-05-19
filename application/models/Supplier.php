@@ -12,7 +12,7 @@ class Supplier extends CI_Model
   {
     $data = [
       'code' => $this->input->post('code'),
-      'name' => $this->input->post('name'),
+      'supplier_name' => $this->input->post('name'),
       'email' => $this->input->post('email'),
       'phone' => $this->input->post('phone'),
       'address' => $this->input->post('address'),
@@ -33,7 +33,7 @@ class Supplier extends CI_Model
   public function updateSupplier($id)
   {
     $this->db->set('code', $this->input->post('code'));
-    $this->db->set('name', $this->input->post('name'));
+    $this->db->set('supplier_name', $this->input->post('name'));
     $this->db->set('email', $this->input->post('email'));
     $this->db->set('phone', $this->input->post('phone'));
     $this->db->set('address', $this->input->post('address'));

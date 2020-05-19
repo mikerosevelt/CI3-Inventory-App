@@ -26,7 +26,14 @@ class Products extends CI_Controller
    */
   public function detail()
   {
-    # code...
+    $data['title'] = 'Manage Products | Inventory App';
+    // $data['products'] = $this->Product->getAllProducts();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/inventory/product-detail', $data);
+    $this->load->view('templates/main/footer');
   }
 
   /**

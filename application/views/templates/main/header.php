@@ -16,7 +16,7 @@
   <link href="<?= base_url('assets/'); ?>libs/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
   <link href="<?= base_url('assets/'); ?>extra-libs/c3/c3.min.css" rel="stylesheet">
   <link rel="stylesheet" href="<?= base_url('assets/'); ?>libs/select2/dist/css/select2.min.css">
-
+  <link href="<?= base_url('assets/'); ?>libs/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
   <!-- Custom CSS -->
   <link href="<?= base_url('assets/'); ?>css/style.min.css" rel="stylesheet">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

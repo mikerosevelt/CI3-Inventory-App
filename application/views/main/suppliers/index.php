@@ -144,7 +144,7 @@
                       <tr>
                         <td><?= $n++ ?></td>
                         <td><?= $sup['code'] ?></td>
-                        <td><?= $sup['name'] ?></td>
+                        <td><?= $sup['supplier_name'] ?></td>
                         <td><?= $sup['email'] ?></td>
                         <td><?= $sup['phone'] ?></td>
                         <td><?= $sup['address'] ?></td>

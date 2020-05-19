@@ -386,6 +386,9 @@
 <script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.full.min.js"></script>
 <script src="<?= base_url('assets/'); ?>libs/select2/dist/js/select2.min.js"></script>
 <script src="<?= base_url('assets/'); ?>js/pages/forms/select2/select2.init.js"></script>
+<!-- Mignific -->
+<script src="<?= base_url('assets/'); ?>libs/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="<?= base_url('assets/'); ?>libs/magnific-popup/meg.init.js"></script>
 <!--This page JavaScript -->
 <!--c3 JavaScript -->
 <script src="<?= base_url('assets/'); ?>extra-libs/c3/d3.min.js"></script>
