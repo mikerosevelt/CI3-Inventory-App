@@ -31,6 +31,8 @@ class Products extends CI_Controller
     if ($id) {
       if ($data['product']) {
         $data['title'] = 'Product Detail | Inventory App';
+        $data['categories'] = $this->db->get_where('categories', ['isActive' => 1])->result_array();
+        $data['suppliers'] = $this->db->get_where('suppliers', ['deletedAt' => null])->result_array();
 
         $this->load->view('templates/main/header', $data);
         $this->load->view('templates/main/topbar');
@@ -104,7 +106,23 @@ class Products extends CI_Controller
    */
   public function update()
   {
-    # code...
+    $this->form_validation->set_rules('code', 'Product Code', 'required|trim|is_unique[products.product_code]');
+    $this->form_validation->set_rules('name', 'Name', 'required|trim');
+    $this->form_validation->set_rules('category', 'Category', 'required|trim');
+    $this->form_validation->set_rules('supplier', 'Supplier', 'required|trim');
+    $this->form_validation->set_rules('employee', 'Employee', 'required|trim');
+    $this->form_validation->set_rules('price', 'Price', 'required|trim');
+    $this->form_validation->set_rules('stock', 'Stock', 'required|trim');
+    $this->form_validation->set_rules('unit', 'Unit', 'required|trim');
+    $this->form_validation->set_rules('description', 'Description', 'required|trim');
+
+    if ($this->form_validation->run() == false) {
+      redirect('products/detail/' . $this->input->post('id'));
+    } else {
+      $this->Product->updateDataProduct();
+      $this->session->set_flashdata('swal', 'Product has been updated');
+      redirect('products');
+    }
   }
 
   /**

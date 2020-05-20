@@ -66,16 +66,36 @@ class Product extends CI_Model
     }
   }
 
-  public function addCategory($id)
+  public function updateDataProduct()
   {
-    $data = [
-      'user_id' => $id,
-      'category' => $this->input->post('category', true),
-      'isActive' => $this->input->post('status'),
-      'createdAt' => time()
-    ];
+    $id = $id = $this->input->post('id');
+    $data['products'] = $this->db->get_where('products', ['id' => $id])->row_array();
 
-    $this->db->insert('categories', $data);
+    $config['upload_path']          = './assets/images/product/';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = '2000';
+
+    $this->upload->initialize($config);
+    if ($this->upload->do_upload('image')) {
+      if ($data['products']['image'] != 'default.png') {
+        unlink(FCPATH . '/assets/images/product/' . $data['products']['image']);
+      }
+      $this->db->set('user_id', $this->input->post('employeeId', true));
+      $this->db->set('supplier_id', $this->input->post('supplier', true));
+      $this->db->set('product_code', $this->input->post('code', true));
+      $this->db->set('product_name', $this->input->post('name', true));
+      $this->db->set('image', $this->upload->data('file_name'));
+      $this->db->set('price', $this->input->post('price', true));
+      $this->db->set('description', $this->input->post('description', true));
+      $this->db->set('qty_stock', $this->input->post('stock', true));
+      $this->db->set('unit', $this->input->post('unit', true));
+      $this->db->set('category_id', $this->input->post('category', true));
+      $this->db->set('updatedAt', time());
+      $this->db->where('id', $id);
+      $this->db->update('products');
+    } else {
+      echo $this->upload->display_errors();
+    }
   }
 
   public function softDeleteProduct($id)
@@ -91,12 +111,27 @@ class Product extends CI_Model
     $this->db->delete('products');
   }
 
+  /**
+   * Categories functions
+   */
   public function getAllCategories()
   {
     $this->db->select('users.id, users.name, categories.*');
     $this->db->from('categories');
     $this->db->join('users', 'categories.user_id = users.id');
     return $this->db->get()->result_array();
+  }
+
+  public function addCategory($id)
+  {
+    $data = [
+      'user_id' => $id,
+      'category' => $this->input->post('category', true),
+      'isActive' => $this->input->post('status'),
+      'createdAt' => time()
+    ];
+
+    $this->db->insert('categories', $data);
   }
 
   public function getCategoryById($id)
