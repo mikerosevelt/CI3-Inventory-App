@@ -71,7 +71,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Category</label>
-                    <select class="form-control custom-select" name="category" id="category">
+                    <select class="form-control custom-select select2" style="width: 100%" name="category" id="category">
                       <option>--Select Product Category--</option>
                       <?php foreach ($categories as $cat) : ?>
                         <option value="<?= $cat['id'] ?>"><?= $cat['category'] ?></option>
@@ -83,7 +83,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label>Supplier</label>
-                    <select class="form-control custom-select" name="supplier" id="supplier">
+                    <select class="form-control custom-select select2" style="width: 100%" name="supplier" id="supplier">
                       <option>--Select Product Supplier--</option>
                       <?php foreach ($suppliers as $sup) : ?>
                         <option value="<?= $sup['id'] ?>"><?= $sup['supplier_name'] ?></option>

@@ -64,7 +64,7 @@
                 <div class="col-md-6">
                   <div class="form-group">
                     <label class="control-label">Product Code</label>
-                    <input type="text" id="code" name="code" class="form-control" value="<?= $product['product_code'] ?>">
+                    <input type="text" id="code" name="code" class="form-control" value="<?= $product['product_code'] ?>" required>
                     <?= form_error('code', '<small class="text-danger pl-1">', '</small>'); ?>
                   </div>
                 </div>

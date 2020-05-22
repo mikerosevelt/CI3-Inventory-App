@@ -65,7 +65,7 @@
                 <tbody>
                   <?php foreach ($products as $p) : ?>
                     <tr>
-                      <td class="text-center"><img src="<?= base_url('assets/images/product/') . $p['image'] ?>" alt="iMac" width="70"></td>
+                      <td class="text-center"><img src="<?= base_url('assets/images/product/') . $p['image'] ?>" alt="iMac" width="70px" style="max-width: 70px"></td>
                       <td><?= $p['product_code'] ?></td>
                       <td><?= $p['product_name'] ?></td>
                       <td><?= $p['price'] ?></td>

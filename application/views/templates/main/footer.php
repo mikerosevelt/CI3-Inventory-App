@@ -396,6 +396,8 @@
 <script src="<?= base_url('assets/'); ?>js/pages/dashboards/dashboard3.js"></script>
 
 <script src="<?= base_url('assets/'); ?>js/pages/samplepages/jquery.PrintArea.js"></script>
+
+<!-- PRINT FUNC -->
 <script>
   $(function() {
     $("#print").click(function() {
@@ -409,7 +411,6 @@
     });
   });
 </script>
-
 </body>
 
 </html>

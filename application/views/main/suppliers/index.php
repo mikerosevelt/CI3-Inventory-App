@@ -83,7 +83,7 @@
             </div>
             <div class="form-group">
               <label>Country</label>
-              <select class="select2 form-control custom-select" name="country" id="country" style="width: 100%;">
+              <select class="form-control custom-select select2" name="country" id="country" style="width: 100%;">
                 <option>--Select your Country--</option>
                 <option value="Indonesia">Indonesia</option>
                 <option value="Malaysia">Malaysia</option>

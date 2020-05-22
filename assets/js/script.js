@@ -112,3 +112,68 @@ $(function () {
 		});
 	});
 });
+
+// Add outgoing product (order)
+$(function () {
+	function fetchProductOrder() {
+		$.ajax({
+			url: `${url}orders/fetchProductOrder`,
+			method: "get",
+			dataType: "json",
+			success: function (res) {
+				console.log(res);
+			},
+		});
+	}
+	fetchProductOrder();
+
+	$("#product").on("change", function () {
+		// Product Id
+		const id = $(this).find(":selected").val();
+
+		$.ajax({
+			url: `${url}orders/getDataProduct`,
+			data: { id: id },
+			method: "post",
+			dataType: "json",
+			success: function (data) {
+				$("#qty").val(1);
+				$("#unit").val(data.unit);
+				$("#price").val(data.price);
+				$("#subtotal").val(data.price);
+
+				$("#qty").on("change", function () {
+					let total = $(this).val() * $("#price").val();
+					$("#subtotal").val(total);
+				});
+			},
+		});
+	});
+
+	$(".btn-add-product").on("click", function () {
+		const id = $("#product").find(":selected").val();
+		const product_name = $("#product").find(":selected").text();
+		const qty = $("#qty").val();
+		const unit = $("#unit").val();
+		const price = $("#price").val();
+		const subtotal = $("#subtotal").val();
+
+		$.ajax({
+			url: `${url}orders/addProductOrder`,
+			data: {
+				id: id,
+				product_name: product_name,
+				qty: qty,
+				unit: unit,
+				price: price,
+				subtotal: subtotal,
+			},
+			method: "post",
+			dataType: "json",
+			success: function () {
+				console.log("saved");
+				fetchProductOrder();
+			},
+		});
+	});
+});
