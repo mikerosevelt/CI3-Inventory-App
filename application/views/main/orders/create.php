@@ -44,7 +44,7 @@
     <div class="row">
       <div class="col-lg-12">
         <div class="card">
-          <form action="<?= base_url('users/insert') ?>" method="POST">
+          <form action="<?= base_url('orders/insert') ?>" method="POST">
             <div class="form-body">
               <div class="card-body">
                 <h4 class="card-title">Customer Info</h4>
@@ -181,15 +181,7 @@
                 <th>Subtotal</th>
                 <th></th>
               </thead>
-              <tbody>
-                <tr>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td>test</td>
-                  <td></td>
-                </tr>
+              <tbody id="show_data">
               </tbody>
             </table>
           </div>
@@ -220,6 +212,31 @@
         </form>
       </div>
     </div>
+    <!--MODAL HAPUS-->
+    <div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title" id="myModalLabel">Remove item</h4>
+          </div>
+          <form class="form-horizontal">
+            <div class="modal-body">
+
+              <input type="hidden" name="itemId" id="itemId" value="">
+              <div class="alert alert-warning">
+                <p>Are you sure to remove this item?</p>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button class="remove-btn btn btn-danger" id="remove-btn">Remove</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--END MODAL HAPUS-->
     <!-- ============================================================== -->
     <!-- End PAge Content -->
     <!-- ============================================================== -->

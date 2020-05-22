@@ -68,26 +68,32 @@ class Orders extends CI_Controller
 
   public function fetchProductOrder()
   {
-    echo json_encode($this->session->userdata('products'));
+    echo json_encode($this->db->get('items')->result_array());
   }
 
-  public function addProductorder()
+  public function addProductOrder()
   {
-    $product = [
-      'id' => $this->input->post('id'),
+    $data = [
+      'product_id' => $this->input->post('id'),
       'product_name' => $this->input->post('product_name'),
       'qty' => $this->input->post('qty'),
       'unit' => $this->input->post('unit'),
       'price' => $this->input->post('price'),
       'subtotal' => $this->input->post('subtotal')
     ];
-    $this->session->set_userdata('products', $product);
+    $this->db->insert('items', $data);
+  }
+
+  public function removeItem()
+  {
+    $this->db->where('id', $this->input->post('itemid'));
+    $this->db->delete('items');
   }
 
   public function insert()
   {
-    $this->session->unset_userdata('products');
-    $this->create();
+    $this->db->query('DELETE FROM items');
+    redirect('orders/create');
   }
 
   public function delete()

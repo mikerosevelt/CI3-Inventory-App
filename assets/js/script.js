@@ -115,17 +115,43 @@ $(function () {
 
 // Add outgoing product (order)
 $(function () {
+	fetchProductOrder();
+
 	function fetchProductOrder() {
 		$.ajax({
 			url: `${url}orders/fetchProductOrder`,
-			method: "get",
+			method: "GET",
 			dataType: "json",
-			success: function (res) {
-				console.log(res);
+			success: function (data) {
+				var html = "";
+				var i;
+				for (i = 0; i < data.length; i++) {
+					html +=
+						"<tr>" +
+						"<td>" +
+						data[i].product_name +
+						"</td>" +
+						"<td>" +
+						data[i].qty +
+						"</td>" +
+						"<td>" +
+						data[i].unit +
+						"</td>" +
+						"<td>" +
+						data[i].price +
+						"</td>" +
+						"<td>" +
+						data[i].subtotal +
+						"</td>" +
+						`<td>
+							<button class="btn btn-xs btn-danger btn-remove" data="${data[i].id}">Remove</button>
+						</td>`;
+					("</tr>");
+				}
+				$("#show_data").html(html);
 			},
 		});
 	}
-	fetchProductOrder();
 
 	$("#product").on("change", function () {
 		// Product Id
@@ -141,7 +167,6 @@ $(function () {
 				$("#unit").val(data.unit);
 				$("#price").val(data.price);
 				$("#subtotal").val(data.price);
-
 				$("#qty").on("change", function () {
 					let total = $(this).val() * $("#price").val();
 					$("#subtotal").val(total);
@@ -157,10 +182,9 @@ $(function () {
 		const unit = $("#unit").val();
 		const price = $("#price").val();
 		const subtotal = $("#subtotal").val();
-
-		$.ajax({
-			url: `${url}orders/addProductOrder`,
-			data: {
+		$.post(
+			`${url}orders/addProductOrder`,
+			{
 				id: id,
 				product_name: product_name,
 				qty: qty,
@@ -168,12 +192,25 @@ $(function () {
 				price: price,
 				subtotal: subtotal,
 			},
-			method: "post",
-			dataType: "json",
-			success: function () {
-				console.log("saved");
+			function () {
 				fetchProductOrder();
-			},
+			}
+		);
+	});
+
+	//GET HAPUS
+	$("#show_data").on("click", ".btn-remove", function () {
+		var id = $(this).attr("data");
+		$("#ModalHapus").modal("show");
+		$('[name="itemId"]').val(id);
+	});
+
+	//Hapus Barang
+	$("#remove-btn").on("click", function () {
+		var itemid = $("#itemId").val();
+		$.post(`${url}orders/removeItem`, { itemid: itemid }, function () {
+			$("#ModalHapus").modal("hide");
+			fetchProductOrder();
 		});
 	});
 });
