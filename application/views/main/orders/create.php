@@ -45,6 +45,7 @@
       <div class="col-lg-12">
         <div class="card">
           <form action="<?= base_url('orders/insert') ?>" method="POST">
+            <input type="hidden" name="employeeId" id="employeeId" value="<?= $user['id'] ?>">
             <div class="form-body">
               <div class="card-body">
                 <h4 class="card-title">Customer Info</h4>
@@ -117,7 +118,7 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>Country</label>
-                      <select class="form-control custom-select" name="country">
+                      <select class="form-control custom-select select2" name="country" style="width: 100%">
                         <option>--Select your Country--</option>
                         <option value="Indonesia">Indonesia</option>
                         <option value="Singapore">Singapore</option>
@@ -185,19 +186,19 @@
               </tbody>
             </table>
           </div>
-          <div class="col-lg mb-4">
+          <!-- <div class="col-lg mb-4">
             <div class="row float-right">
               <div class="col-lg">
                 <span class="h5 mr-5">Subtotal</span>
                 <span class="">0000000</span>
               </div>
             </div>
-          </div>
+          </div> -->
           <div class="col-lg mb-4">
             <div class="row float-right">
               <div class="col-lg">
                 <span class="h5 mr-5">Total Amount</span>
-                <span class="">0000000</span>
+                <span class="mr-3 h6" id="totalAmount">0000000</span>
               </div>
             </div>
           </div>
@@ -213,7 +214,7 @@
       </div>
     </div>
     <!--MODAL HAPUS-->
-    <div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <!-- <div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -235,7 +236,7 @@
           </form>
         </div>
       </div>
-    </div>
+    </div> -->
     <!--END MODAL HAPUS-->
     <!-- ============================================================== -->
     <!-- End PAge Content -->

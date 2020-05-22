@@ -6,7 +6,7 @@ class Orders extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    // $this->load->model('Product');
+    $this->load->model('Order');
   }
 
   public function index()
@@ -52,6 +52,7 @@ class Orders extends CI_Controller
   public function create()
   {
     $data['title'] = 'Add Order | Inventory App';
+    $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
     $data['products'] = $this->db->get('products')->result_array();
 
     $this->load->view('templates/main/header', $data);
@@ -68,32 +69,78 @@ class Orders extends CI_Controller
 
   public function fetchProductOrder()
   {
-    echo json_encode($this->db->get('items')->result_array());
+    // echo json_encode($this->db->get('items')->result_array());
+    echo json_encode($this->cart->contents());
   }
 
-  public function addProductOrder()
+
+
+  public function test()
+  {
+    var_dump($this->cart->contents());
+    die();
+  }
+
+  public function addItem()
   {
     $data = [
-      'product_id' => $this->input->post('id'),
-      'product_name' => $this->input->post('product_name'),
+      'id' => $this->input->post('id'),
+      'name' => $this->input->post('product_name'),
       'qty' => $this->input->post('qty'),
       'unit' => $this->input->post('unit'),
-      'price' => $this->input->post('price'),
-      'subtotal' => $this->input->post('subtotal')
+      'price' => $this->input->post('price')
     ];
-    $this->db->insert('items', $data);
+    // $this->db->insert('items', $data);
+    $this->cart->insert($data);
+    echo $this->showItemList();
   }
 
-  public function removeItem()
+  public function showItemList()
   {
-    $this->db->where('id', $this->input->post('itemid'));
-    $this->db->delete('items');
+    $output = '';
+    $no = 0;
+    foreach ($this->cart->contents() as $items) {
+      $no++;
+      $output .= '
+				<tr>
+					<td>' . $items['name'] . '</td>
+					<td>' . $items['qty'] . '</td>
+					<td>' . $items['unit'] . '</td>
+					<td>' . number_format($items['price']) . '</td>
+					<td>' . number_format($items['subtotal']) . '</td>
+					<td class="text-center"><button type="button" id="' . $items['rowid'] . '" class="romove_cart btn btn-danger btn-sm">Remove</button></td>
+				</tr>
+			';
+    }
+    return $output;
   }
 
+  public function getTotal()
+  {
+    echo json_encode($this->cart->total());
+  }
+
+  function load_cart()
+  {
+    echo $this->showItemList();
+  }
+
+  function delete_item()
+  {
+    $data = array(
+      'rowid' => $this->input->post('row_id'),
+      'qty' => 0,
+    );
+    $this->cart->update($data);
+    echo $this->showItemList();
+  }
+
+  // Insert order data to database
   public function insert()
   {
-    $this->db->query('DELETE FROM items');
-    redirect('orders/create');
+    $this->Order->addNewOrder();
+    $this->cart->destroy();
+    redirect('orders');
   }
 
   public function delete()

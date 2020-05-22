@@ -115,41 +115,50 @@ $(function () {
 
 // Add outgoing product (order)
 $(function () {
-	fetchProductOrder();
+	// fetchProductOrder();
 
-	function fetchProductOrder() {
-		$.ajax({
-			url: `${url}orders/fetchProductOrder`,
-			method: "GET",
-			dataType: "json",
-			success: function (data) {
-				var html = "";
-				var i;
-				for (i = 0; i < data.length; i++) {
-					html +=
-						"<tr>" +
-						"<td>" +
-						data[i].product_name +
-						"</td>" +
-						"<td>" +
-						data[i].qty +
-						"</td>" +
-						"<td>" +
-						data[i].unit +
-						"</td>" +
-						"<td>" +
-						data[i].price +
-						"</td>" +
-						"<td>" +
-						data[i].subtotal +
-						"</td>" +
-						`<td>
-							<button class="btn btn-xs btn-danger btn-remove" data="${data[i].id}">Remove</button>
-						</td>`;
-					("</tr>");
-				}
-				$("#show_data").html(html);
-			},
+	// function fetchProductOrder() {
+	// 	$.ajax({
+	// 		url: `${url}orders/fetchProductOrder`,
+	// 		method: "GET",
+	// 		dataType: "json",
+	// 		success: function (data) {
+	// 			var html = "";
+	// 			var i;
+	// 			for (i = 0; i < data.length; i++) {
+	// 				html +=
+	// 					"<tr>" +
+	// 					"<td>" +
+	// 					data[i].name +
+	// 					"</td>" +
+	// 					"<td>" +
+	// 					data[i].qty +
+	// 					"</td>" +
+	// 					"<td>" +
+	// 					data[i].unit +
+	// 					"</td>" +
+	// 					"<td>" +
+	// 					data[i].price +
+	// 					"</td>" +
+	// 					"<td>" +
+	// 					data[i].subtotal +
+	// 					"</td>" +
+	// 					`<td>
+	// 						<button class="btn btn-xs btn-danger btn-remove" data="${data[i].id}">Remove</button>
+	// 					</td>`;
+	// 				("</tr>");
+	// 			}
+	// 			$("#show_data").html(html);
+	// 		},
+	// 	});
+	// }
+
+	getTotal();
+
+	function getTotal() {
+		$.get(`${url}orders/getTotal`, function (data) {
+			// console.log(data);
+			$("#totalAmount").text(data);
 		});
 	}
 
@@ -170,6 +179,7 @@ $(function () {
 				$("#qty").on("change", function () {
 					let total = $(this).val() * $("#price").val();
 					$("#subtotal").val(total);
+					getTotal();
 				});
 			},
 		});
@@ -183,7 +193,7 @@ $(function () {
 		const price = $("#price").val();
 		const subtotal = $("#subtotal").val();
 		$.post(
-			`${url}orders/addProductOrder`,
+			`${url}orders/addItem`,
 			{
 				id: id,
 				product_name: product_name,
@@ -192,25 +202,42 @@ $(function () {
 				price: price,
 				subtotal: subtotal,
 			},
-			function () {
-				fetchProductOrder();
+			function (data) {
+				// fetchProductOrder();
+				$("#show_data").html(data);
+				getTotal();
 			}
 		);
 	});
 
-	//GET HAPUS
-	$("#show_data").on("click", ".btn-remove", function () {
-		var id = $(this).attr("data");
-		$("#ModalHapus").modal("show");
-		$('[name="itemId"]').val(id);
-	});
+	$("#show_data").load(`${url}orders/load_cart`);
 
-	//Hapus Barang
-	$("#remove-btn").on("click", function () {
-		var itemid = $("#itemId").val();
-		$.post(`${url}orders/removeItem`, { itemid: itemid }, function () {
-			$("#ModalHapus").modal("hide");
-			fetchProductOrder();
+	// Show modal remove
+	// $("#show_data").on("click", ".btn-remove", function () {
+	// 	var id = $(this).attr("data");
+	// 	$("#ModalHapus").modal("show");
+	// 	$('[name="itemId"]').val(id);
+	// });
+
+	//Remove item
+	// $("#remove-btn").on("click", function () {
+	// 	var itemid = $("#itemId").val();
+	// 	$.post(`${url}orders/removeItem`, { itemid: itemid }, function () {
+	// 		$("#ModalHapus").modal("hide");
+	// 		fetchProductOrder();
+	// 	});
+	// });
+
+	$(document).on("click", ".romove_cart", function () {
+		var row_id = $(this).attr("id");
+		$.ajax({
+			url: `${url}orders/delete_item`,
+			method: "POST",
+			data: { row_id: row_id },
+			success: function (data) {
+				$("#show_data").html(data);
+				getTotal();
+			},
 		});
 	});
 });
