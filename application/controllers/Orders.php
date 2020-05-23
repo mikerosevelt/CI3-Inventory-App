@@ -11,7 +11,14 @@ class Orders extends CI_Controller
 
   public function index()
   {
-    # code...
+    $data['title'] = 'Manage Order | Inventory App';
+    $data['orders'] = $this->Order->getAllOrders();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/orders/index', $data);
+    $this->load->view('templates/main/footer');
   }
 
   public function detail()
@@ -21,13 +28,11 @@ class Orders extends CI_Controller
     if ($id) {
       if ($data['product']) {
         $data['title'] = 'Order Detail | Inventory App';
-        $data['categories'] = $this->db->get_where('categories', ['isActive' => 1])->result_array();
-        $data['suppliers'] = $this->db->get_where('suppliers', ['deletedAt' => null])->result_array();
 
         $this->load->view('templates/main/header', $data);
         $this->load->view('templates/main/topbar');
         $this->load->view('templates/main/sidebar');
-        $this->load->view('main/inventory/product-detail', $data);
+        $this->load->view('main/orders/detail', $data);
         $this->load->view('templates/main/footer');
       } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -62,6 +67,7 @@ class Orders extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  // Get selected product data (Id, Price, Unit, etc)
   public function getDataProduct()
   {
     echo json_encode($this->db->get_where('products', ['id' => $this->input->post('id')])->row_array());

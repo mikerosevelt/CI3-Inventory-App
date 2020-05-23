@@ -5,7 +5,7 @@ class Order extends CI_Model
 {
   public function getAllOrders()
   {
-    $this->db->get('orders')->result_array();
+    return $this->db->get('orders')->result_array();
   }
 
   public function addNewOrder()
