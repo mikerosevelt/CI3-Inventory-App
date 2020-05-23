@@ -21,6 +21,9 @@ class Orders extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  /**
+   * Order detail page
+   */
   public function detail()
   {
     $id = $this->uri->segment(3);
@@ -54,6 +57,9 @@ class Orders extends CI_Controller
     }
   }
 
+  /**
+   * Create new order view
+   */
   public function create()
   {
     $data['title'] = 'Add Order | Inventory App';
@@ -79,14 +85,7 @@ class Orders extends CI_Controller
     echo json_encode($this->cart->contents());
   }
 
-
-
-  public function test()
-  {
-    var_dump($this->cart->contents());
-    die();
-  }
-
+  // Add item/product on create new order page
   public function addItem()
   {
     $data = [
@@ -101,6 +100,7 @@ class Orders extends CI_Controller
     echo $this->showItemList();
   }
 
+  // Show Item list on create new order page
   public function showItemList()
   {
     $output = '';
@@ -121,16 +121,19 @@ class Orders extends CI_Controller
     return $output;
   }
 
+  // Get total amount on create new order page
   public function getTotal()
   {
     echo json_encode($this->cart->total());
   }
 
-  function load_cart()
+  // Load items list
+  function load_items()
   {
     echo $this->showItemList();
   }
 
+  // Delete an item on create new order page
   function delete_item()
   {
     $data = array(
@@ -141,7 +144,9 @@ class Orders extends CI_Controller
     echo $this->showItemList();
   }
 
-  // Insert order data to database
+  /**
+   * Insert order data to database
+   */
   public function insert()
   {
     $this->Order->addNewOrder();
@@ -149,6 +154,9 @@ class Orders extends CI_Controller
     redirect('orders');
   }
 
+  /**
+   * Delete order data from database
+   */
   public function delete()
   {
     $id = $this->uri->segment(3);

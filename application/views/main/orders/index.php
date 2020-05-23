@@ -8,7 +8,7 @@
   <div class="page-breadcrumb mt-1">
     <div class="row">
       <div class="col-5 align-self-center">
-        <h4 class="page-title">Manage Purchases</h4>
+        <h4 class="page-title">Manage Orders</h4>
         <div class="d-flex align-items-center">
         </div>
       </div>
@@ -20,9 +20,9 @@
                 <a href="<?= base_url('dashboard') ?>">Dashboard</a>
               </li>
               <li class="breadcrumb-item">
-                <a href="<?= base_url('products') ?>">Manage Purchases</a>
+                <a href="<?= base_url('products') ?>">Manage Orders</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">All Purchases</li>
+              <li class="breadcrumb-item active" aria-current="page">All Orders</li>
             </ol>
           </nav>
         </div>
@@ -48,7 +48,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Purchases List</h4>
+            <h4 class="card-title">Orders List</h4>
             <div class="table-responsive">
               <table id="zero_config" class="table table-striped table-bordered table-hover display">
                 <thead>
@@ -56,7 +56,7 @@
                     <th>#</th>
                     <th>Order #</th>
                     <th>Customer Name</th>
-                    <th>Total Products</th>
+                    <th class="text-center">Total Items</th>
                     <th>Total Amount</th>
                     <th>Status</th>
                     <th>Order Date</th>
@@ -70,9 +70,15 @@
                       <td><?= $n++ ?></td>
                       <td><?= $o['id'] ?></td>
                       <td><?= $o['customer_name'] ?></td>
-                      <td><?= $o['total_item'] ?></td>
-                      <td><?= $o['total_price'] ?></td>
-                      <td><?= $o['status'] ?></td>
+                      <td class="text-center"><?= $o['total_item'] ?></td>
+                      <td><?= number_format($o['total_price']) ?></td>
+                      <?php if ($o['status'] == 'Success') : ?>
+                        <td><span class="label label-success"><?= $o['status'] ?></span></td>
+                      <?php elseif ($o['status'] == 'Cancelled') : ?>
+                        <td><span class="label label-danger"><?= $o['status'] ?></span></td>
+                      <?php elseif ($o['status'] == 'Processing') : ?>
+                        <td><span class="label label-info"><?= $o['status'] ?></span></td>
+                      <?php endif; ?>
                       <td><?= date('d F Y', $o['createdAt']) ?></td>
                       <td class="text-center">
                         <div class="dropdown">

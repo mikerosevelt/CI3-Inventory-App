@@ -115,44 +115,6 @@ $(function () {
 
 // Add outgoing product (order)
 $(function () {
-	// fetchProductOrder();
-
-	// function fetchProductOrder() {
-	// 	$.ajax({
-	// 		url: `${url}orders/fetchProductOrder`,
-	// 		method: "GET",
-	// 		dataType: "json",
-	// 		success: function (data) {
-	// 			var html = "";
-	// 			var i;
-	// 			for (i = 0; i < data.length; i++) {
-	// 				html +=
-	// 					"<tr>" +
-	// 					"<td>" +
-	// 					data[i].name +
-	// 					"</td>" +
-	// 					"<td>" +
-	// 					data[i].qty +
-	// 					"</td>" +
-	// 					"<td>" +
-	// 					data[i].unit +
-	// 					"</td>" +
-	// 					"<td>" +
-	// 					data[i].price +
-	// 					"</td>" +
-	// 					"<td>" +
-	// 					data[i].subtotal +
-	// 					"</td>" +
-	// 					`<td>
-	// 						<button class="btn btn-xs btn-danger btn-remove" data="${data[i].id}">Remove</button>
-	// 					</td>`;
-	// 				("</tr>");
-	// 			}
-	// 			$("#show_data").html(html);
-	// 		},
-	// 	});
-	// }
-
 	getTotal();
 
 	function getTotal() {
@@ -210,24 +172,9 @@ $(function () {
 		);
 	});
 
-	$("#show_data").load(`${url}orders/load_cart`);
-
-	// Show modal remove
-	// $("#show_data").on("click", ".btn-remove", function () {
-	// 	var id = $(this).attr("data");
-	// 	$("#ModalHapus").modal("show");
-	// 	$('[name="itemId"]').val(id);
-	// });
-
-	//Remove item
-	// $("#remove-btn").on("click", function () {
-	// 	var itemid = $("#itemId").val();
-	// 	$.post(`${url}orders/removeItem`, { itemid: itemid }, function () {
-	// 		$("#ModalHapus").modal("hide");
-	// 		fetchProductOrder();
-	// 	});
-	// });
-
+	// Load items list
+	$("#show_data").load(`${url}orders/load_items`);
+	// Remove an item
 	$(document).on("click", ".romove_cart", function () {
 		var row_id = $(this).attr("id");
 		$.ajax({
