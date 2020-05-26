@@ -55,8 +55,8 @@
                   <tr>
                     <th>#</th>
                     <th>Invoice #</th>
+                    <th>Order #</th>
                     <th>Total Amount</th>
-                    <th>Type</th>
                     <th class="text-center">Status</th>
                     <th>Invoice Date</th>
                     <th>Due Date</th>
@@ -69,8 +69,8 @@
                     <tr>
                       <td><?= $n++ ?></td>
                       <td><a href=""><?= $i['id'] ?></a></td>
+                      <td><a href=""><?= $i['order_id'] ?></a></td>
                       <td><?= $i['total_amount'] ?></td>
-                      <td><?= $i['type'] ?></td>
                       <?php if ($i['status'] == 'Paid') : ?>
                         <td class="text-center"><span class="label label-success"><?= $i['status'] ?></span></td>
                       <?php else : ?>

@@ -7,6 +7,7 @@ class Invoices extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Invoice');
+    $this->load->model('Order');
   }
 
   public function index()
@@ -32,6 +33,9 @@ class Invoices extends CI_Controller
     if ($id) {
       if ($data['invoice']) {
         $data['title'] = 'Invoice Detail | Inventory App';
+        $data['status'] = ['Paid', 'Unpaid', 'Cancelled'];
+        $data['invoice'] = $this->Invoice->getInvoiceDetailById($id);
+        $data['items'] = $this->Order->getOderDetailById($data['invoice']['order_id']);
 
         $this->load->view('templates/main/header', $data);
         $this->load->view('templates/main/topbar');

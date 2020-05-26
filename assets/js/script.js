@@ -51,9 +51,9 @@ $(function () {
 		$(".modal-footer button[type=submit]").html("Save Changes");
 		$(".modal-body form").attr("action", `${url}suppliers/update`);
 
-		// Category Id
+		// Supplier Id
 		const id = $(this).data("id");
-		// Get category data by Id
+		// Get Supplier data by Id
 		$.ajax({
 			url: "http://localhost/gudang/suppliers/getSingleSupplier",
 			data: { id: id },
@@ -75,7 +75,7 @@ $(function () {
 	});
 });
 
-// Edit Customer
+// Edit Customer Data
 $(function () {
 	// Add button
 	$("#btnAddCustomer").on("click", function () {
@@ -90,9 +90,9 @@ $(function () {
 		$(".modal-footer button[type=submit]").html("Save Changes");
 		$(".modal-body form").attr("action", `${url}customers/update`);
 
-		// Category Id
+		// Customer Id
 		const id = $(this).data("id");
-		// Get category data by Id
+		// Get Customer data by Id
 		$.ajax({
 			url: `${url}customers/getSingleCustomer`,
 			data: { id: id },
@@ -114,6 +114,9 @@ $(function () {
 });
 
 // Add outgoing product (order)
+// Get total price
+// Add items
+// Remove items
 $(function () {
 	getTotal();
 

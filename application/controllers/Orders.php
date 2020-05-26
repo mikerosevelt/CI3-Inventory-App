@@ -151,19 +151,23 @@ class Orders extends CI_Controller
   {
     $this->Order->addNewOrder();
     $this->cart->destroy();
+    $this->session->set_flashdata('swal', 'New order has been added');
     redirect('orders');
   }
 
   /**
-   * Delete order data from database
+   * Delete order data from database 
+   * (Include delete order detail and invoice)
    */
   public function delete()
   {
     $id = $this->uri->segment(3);
-    $data['product'] = $this->Product->getProductDetailById($id);
+    $data['order'] = $this->Order->getOderDetailById($id);
     if ($id) {
-      if ($data['product']) {
-        // DELETE FUNCTION
+      if ($data['order']) {
+        $this->Order->softDeleteOrder($id);
+        $this->session->set_flashdata('swal', 'Order has been deleted');
+        redirect('orders');
       } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
         Order not found.

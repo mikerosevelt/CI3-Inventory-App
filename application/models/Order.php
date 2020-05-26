@@ -3,11 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Order extends CI_Model
 {
+  // Get all orders from database
   public function getAllOrders()
   {
     return $this->db->get('orders')->result_array();
   }
 
+  // Get Order Detail/Items by id
+  public function getOderDetailById($id)
+  {
+    return $this->db->get_where('orders_detail', ['order_id' => $id])->result_array();
+  }
+
+  // Add new order to database
   public function addNewOrder()
   {
     $address = $this->input->post('address') . "|" . $this->input->post('city') . "|" . $this->input->post('state') . "|" . $this->input->post('postcode') . "|" . $this->input->post('country');
@@ -43,7 +51,31 @@ class Order extends CI_Model
       $this->db->where('id', $c['id']);
       $this->db->update('products');
     }
-    // Update qty stock product
-    // $this->db->set();
+
+    // Create new order invoice
+    $invoice = [
+      'order_id' => $order_id,
+      'total_amount' => $this->cart->total(),
+      'status' => "Unpaid",
+      'createdAt' => time()
+    ];
+    $this->db->insert('invoices', $invoice);
+  }
+
+  // Update an order status
+  public function updateOrderStatus()
+  {
+    # code...
+  }
+
+  // Delete an order & invoice
+  public function deleteOrder($id)
+  {
+    $this->db->where('id', $id);
+    $this->db->delete('orders');
+    $this->db->where('order_id', $id);
+    $this->db->delete('orders_detail');
+    $this->db->where('order_id', $id);
+    $this->db->delete('invoices');
   }
 }

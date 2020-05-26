@@ -40,9 +40,13 @@
   <div class="container-fluid">
     <div class="form-group col-sm-3">
       <select class="custom-select" name="status" id="status">
-        <option value="Paid">Paid</option>
-        <option value="Unpaid">Unpaid</option>
-        <option value="Cancelled">Cancelled</option>
+        <?php foreach ($status as $s) : ?>
+          <?php if ($s == $invoice['status']) : ?>
+            <option value="<?= $s ?>" selected><?= $s ?></option>
+          <?php else : ?>
+            <option value="<?= $s ?>"><?= $s ?></option>
+          <?php endif; ?>
+        <?php endforeach; ?>
       </select>
       <small class="pl-2">Select one to change the status</small>
     </div>
@@ -68,11 +72,13 @@
               <div class="pull-right text-right">
                 <address>
                   <h3>To,</h3>
-                  <h4 class="font-bold">Gaala & Sons,</h4>
-                  <p class="text-muted m-l-30">E 104, Dharti-2,
-                    <br /> Nr' Viswakarma Temple,
-                    <br /> Talaja Road,
-                    <br /> Bhavnagar - 364002</p>
+                  <h4 class="font-bold"><?= $invoice['customer_name'] ?></h4>
+                  <?php $address = explode('|', $invoice['customer_address']) ?>
+                  <p class="text-muted m-l-30"><?= $invoice['customer_email'] ?>,
+                    <br /> <?= $address[0] ?>
+                    <br /> <?= $address[1] ?> - <?= $address[3] ?>
+                    <br /> <?= $address[2] ?> - <?= $address[4] ?>
+                  </p>
                   <p class="m-t-30"><b>Invoice Date :</b> <i class="fa fa-calendar"></i> <?= date('d F Y', $invoice['createdAt']) ?></p>
                   <p><b>Due Date :</b> <i class="fa fa-calendar"></i> <?= date('d F Y', $invoice['createdAt']) ?></p>
                 </address>
@@ -91,23 +97,26 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="text-center">1</td>
-                      <td>Milk Powder</td>
-                      <td class="text-right">2</td>
-                      <td class="text-right">Box</td>
-                      <td class="text-right">$48</td>
-                    </tr>
+                    <?php $n = 1;
+                    foreach ($items as $i) : ?>
+                      <tr>
+                        <td class="text-center"><?= $n++ ?></td>
+                        <td><?= $i['product_name'] ?></td>
+                        <td class="text-right"><?= $i['quantity'] ?></td>
+                        <td class="text-right"><?= $i['unit'] ?></td>
+                        <td class="text-right"><?= number_format($i['subtotal']) ?></td>
+                      </tr>
+                    <?php endforeach; ?>
                   </tbody>
                 </table>
               </div>
             </div>
             <div class="col-md-12">
               <div class="pull-right m-t-30 text-right">
-                <p>Sub - Total amount: $96</p>
+                <p>Sub - Total amount: <?= number_format($invoice['total_price']) ?></p>
                 <!-- <p>vat (10%) : $138 </p> -->
                 <hr>
-                <h3><b>Total :</b> $96</h3>
+                <h3><b>Total :</b> <?= number_format($invoice['total_amount']) ?></h3>
               </div>
               <div class="clearfix"></div>
               <hr>
@@ -120,10 +129,10 @@
         </div>
         <form action="">
           <div class="form-control">
-            <label for="notes">Notes</label>
+            <label for="notes" class="h4">Notes</label>
             <textarea class="form-control" name="notes" id="notes" cols="30" rows="3"></textarea>
             <div class="text-center">
-              <button class="btn btn-primary mt-3 mb-3">Save Changes</button>
+              <button type="submit" class="btn btn-primary mt-3 mb-3">Save Changes</button>
             </div>
           </div>
         </form>
