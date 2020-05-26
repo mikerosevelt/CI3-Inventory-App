@@ -86,6 +86,12 @@ class Invoices extends CI_Controller
     # code...
   }
 
+  // Update an invoice status
+  public function updateStatus()
+  {
+    $this->Invoice->updateInvoiceStatus($this->input->post('id'));
+  }
+
   /**
    * Delete an invoice
    */

@@ -128,6 +128,8 @@
           </div>
         </div>
         <form action="">
+          <input type="hidden" name="id" id="id" value="<?= $invoice['id'] ?>">
+          <input type="hidden" name="order_id" id="order_id" value="<?= $invoice['order_id'] ?>">
           <div class="form-control">
             <label for="notes" class="h4">Notes</label>
             <textarea class="form-control" name="notes" id="notes" cols="30" rows="3"></textarea>

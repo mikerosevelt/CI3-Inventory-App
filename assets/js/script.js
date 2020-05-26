@@ -191,3 +191,23 @@ $(function () {
 		});
 	});
 });
+
+// Update Invoice Status
+$(function () {
+	$("#status").on("change", function () {
+		const id = $("#id").val();
+		const status = $("#status").val();
+		const order_id = $("#order_id").val();
+		$.post(
+			`${url}invoices/updateStatus`,
+			{ id: id, status: status, order_id: order_id },
+			function () {
+				Swal({
+					title: "Success",
+					text: "Status changed!",
+					type: "success",
+				});
+			}
+		);
+	});
+});
