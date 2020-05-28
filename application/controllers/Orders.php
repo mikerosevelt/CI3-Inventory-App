@@ -165,7 +165,7 @@ class Orders extends CI_Controller
     $data['order'] = $this->Order->getOderDetailById($id);
     if ($id) {
       if ($data['order']) {
-        $this->Order->softDeleteOrder($id);
+        $this->Order->deleteOrder($id);
         $this->session->set_flashdata('swal', 'Order has been deleted');
         redirect('orders');
       } else {

@@ -54,7 +54,7 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>Invoice #</th>
+                    <!-- <th>Invoice #</th> -->
                     <th>Order #</th>
                     <th>Total Amount</th>
                     <th class="text-center">Status</th>
@@ -68,9 +68,9 @@
                   foreach ($invoices as $i) : ?>
                     <tr>
                       <td><?= $n++ ?></td>
-                      <td><a href=""><?= $i['id'] ?></a></td>
+                      <!-- <td><a href=""><?= $i['id'] ?></a></td> -->
                       <td><a href=""><?= $i['order_id'] ?></a></td>
-                      <td><?= $i['total_amount'] ?></td>
+                      <td><?= number_format($i['total_amount']) ?></td>
                       <?php if ($i['status'] == 'Paid') : ?>
                         <td class="text-center"><span class="label label-success"><?= $i['status'] ?></span></td>
                       <?php else : ?>

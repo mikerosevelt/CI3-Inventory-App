@@ -68,7 +68,7 @@ class Order extends CI_Model
     # code...
   }
 
-  // Delete an order & invoice
+  // Delete an order, order detail & invoice permanently
   public function deleteOrder($id)
   {
     $this->db->where('id', $id);

@@ -37,12 +37,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h3>86%</h3>
+              <h3><?= $total_product ?></h3>
               <h6 class="card-subtitle">Total Product</h6>
             </div>
             <div class="col-12">
               <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style="width: 85%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-success" role="progressbar" style='width: 5%; height: 6px;' aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
@@ -54,12 +54,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h3>40%</h3>
-              <h6 class="card-subtitle">Pending Product</h6>
+              <h3><?= $total_paid; ?></h3>
+              <h6 class="card-subtitle">Total Paid Order</h6>
             </div>
             <div class="col-12">
               <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 40%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-info" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
@@ -71,12 +71,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h3>56%</h3>
-              <h6 class="card-subtitle">Product A</h6>
+              <h3><?= $total_incoming; ?></h3>
+              <h6 class="card-subtitle">Incoming Product</h6>
             </div>
             <div class="col-12">
               <div class="progress">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 56%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-danger" role="progressbar" style="width: 5%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>
@@ -88,12 +88,12 @@
         <div class="card-body">
           <div class="row">
             <div class="col-12">
-              <h3>26%</h3>
-              <h6 class="card-subtitle">Product B</h6>
+              <h3><?= $total_outgoing; ?></h3>
+              <h6 class="card-subtitle">Outgoing Product</h6>
             </div>
             <div class="col-12">
               <div class="progress">
-                <div class="progress-bar bg-inverse" role="progressbar" style="width: 26%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <div class="progress-bar bg-inverse" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
               </div>
             </div>
           </div>

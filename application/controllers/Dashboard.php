@@ -19,6 +19,10 @@ class Dashboard extends CI_Controller
   {
     $data['title'] = 'Dashboard | Inventory App';
     $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $data['total_product'] = $this->db->get('products')->num_rows();
+    $data['total_paid'] = $this->db->get_where('transactions', ['status' => 'Completed'])->num_rows();
+    $data['total_incoming'] = $this->db->get('purchases')->num_rows();
+    $data['total_outgoing'] = $this->db->get_where('orders', ['status' => 'Success'])->num_rows();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
