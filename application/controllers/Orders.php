@@ -79,6 +79,7 @@ class Orders extends CI_Controller
     echo json_encode($this->db->get_where('products', ['id' => $this->input->post('id')])->row_array());
   }
 
+  // Fetch order product
   public function fetchProductOrder()
   {
     // echo json_encode($this->db->get('items')->result_array());
@@ -124,7 +125,7 @@ class Orders extends CI_Controller
   // Get total amount on create new order page
   public function getTotal()
   {
-    echo json_encode($this->cart->total());
+    echo number_format(json_encode($this->cart->total()));
   }
 
   // Load items list

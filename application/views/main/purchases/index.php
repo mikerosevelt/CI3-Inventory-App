@@ -74,7 +74,7 @@
                       <td><?= $p['name'] ?></td>
                       <td><?= $p['qty'] ?></td>
                       <td><?= $p['unit'] ?></td>
-                      <td><?= $p['total_price'] ?></td>
+                      <td><?= number_format($p['total_price']) ?></td>
                       <td><?= date('d F Y', $p['createdAt']) ?></td>
                       <td class="text-center">
                         <!-- <div class="dropdown">

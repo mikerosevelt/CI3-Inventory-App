@@ -65,9 +65,8 @@ class Products extends CI_Controller
   public function create()
   {
     $data['title'] = 'Add New Product | Inventory App';
-    // $data['userlist'] = $this->User->getAllUsers();
-    $data['suppliers'] = $this->db->get('suppliers')->result_array();
-    $data['categories'] = $this->db->get('categories')->result_array();
+    $data['suppliers'] = $this->db->get_where('suppliers', ['deletedAt' => null])->result_array();
+    $data['categories'] = $this->db->get_where('categories', ['isActive' => 1])->result_array();
     $data['employee'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
 
     $this->load->view('templates/main/header', $data);

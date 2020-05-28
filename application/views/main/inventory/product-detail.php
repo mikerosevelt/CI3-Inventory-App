@@ -76,7 +76,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Category</label>
-                    <select class="form-control" name="category" id="category">
+                    <select class="form-control select2" name="category" id="category" style="width: 100%;">
                       <?php foreach ($categories as $c) : ?>
                         <?php if ($c['id'] == $product['category_id']) : ?>
                           <option value="<?= $c['id'] ?>" selected><?= $c['category'] ?></option>
@@ -91,7 +91,7 @@
                 <div class="col-md-4">
                   <div class="form-group">
                     <label class="control-label">Supplier</label>
-                    <select class="form-control" name="supplier" id="supplier">
+                    <select class="form-control select2" name="supplier" id="supplier" style="width: 100%;">
                       <?php foreach ($suppliers as $s) : ?>
                         <?php if ($s['id'] == $product['supplier_id']) : ?>
                           <option value="<?= $s['id'] ?>" selected><?= $s['supplier_name'] ?></option>
