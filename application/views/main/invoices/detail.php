@@ -132,7 +132,7 @@
           <input type="hidden" name="order_id" id="order_id" value="<?= $invoice['order_id'] ?>">
           <div class="form-control">
             <label for="notes" class="h4">Notes</label>
-            <textarea class="form-control" name="notes" id="notes" cols="30" rows="3"></textarea>
+            <textarea class="form-control" name="notes" id="notes" cols="30" rows="3"><?= $invoice['notes'] ?></textarea>
             <div class="text-center">
               <button type="submit" class="btn btn-primary mt-3 mb-3">Save Changes</button>
             </div>

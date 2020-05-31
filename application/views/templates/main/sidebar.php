@@ -199,7 +199,7 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
               </a>
             </li>
             <li class="sidebar-item">
-              <a href="inbox-email.html" class="sidebar-link">
+              <a href="<?= base_url('settings/backup') ?>" class="sidebar-link">
                 <i class="mdi mdi-email"></i>
                 <span class="hide-menu"> Backup Database </span>
               </a>

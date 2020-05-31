@@ -23,21 +23,25 @@ class Invoice extends CI_Model
   public function updateInvoiceStatus($id)
   {
     $status = $this->input->post('status');
-    $this->db->set('status', $status);
-    $this->db->set('updatedAt', time());
-    $this->db->where('id', $id);
-    $this->db->update('invoices');
     if ($status == 'Paid') {
       $this->db->set('status', "Success");
       $this->db->set('updatedAt', time());
       $this->db->where('id', $this->input->post('order_id'));
       $this->db->update('orders');
+      // Invoice status
+      $this->db->set('paidAt', time());
     } else if ($status == 'Cancelled') {
       $this->db->set('status', "Cancelled");
       $this->db->set('updatedAt', time());
       $this->db->where('id', $this->input->post('order_id'));
       $this->db->update('orders');
+      // Invoice status
+      $this->db->set('paidAt', null);
     }
+    $this->db->set('status', $status);
+    $this->db->set('updatedAt', time());
+    $this->db->where('id', $id);
+    $this->db->update('invoices');
   }
 
   // Update invoice notes
