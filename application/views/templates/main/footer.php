@@ -373,6 +373,7 @@
 <!--Custom JavaScript -->
 <script src="<?= base_url('assets/'); ?>js/custom.min.js"></script>
 <script src="<?= base_url('assets/'); ?>js/script.js"></script>
+<script src="<?= base_url('assets/'); ?>js/transaction.js"></script>
 <!--This page plugins -->
 <script src="<?= base_url('assets/'); ?>extra-libs/DataTables/datatables.min.js"></script>
 <!-- <script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>

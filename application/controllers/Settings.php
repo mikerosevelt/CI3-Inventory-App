@@ -21,6 +21,9 @@ class Settings extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  /**
+   * Backup database
+   */
   public function backup()
   {
     $data['title'] = 'Backup Database | Inventory App';
@@ -31,5 +34,20 @@ class Settings extends CI_Controller
     $this->load->view('templates/main/sidebar');
     $this->load->view('main/settings/backup', $data);
     $this->load->view('templates/main/footer');
+  }
+
+  // DB backup and download method
+  public function backupdb()
+  {
+    // Load the DB utility class
+    $this->load->dbutil();
+
+    // Backup your entire database and assign it to a variable
+    $backup = $this->dbutil->backup();
+    write_file('/path/to/mybackup' . date('d-F-Y') . '.gz', $backup);
+
+    // Load the download helper and send the file to your desktop
+    $this->load->helper('download');
+    force_download('mybackup' . date('d-F-Y') . '.gz', $backup);
   }
 }

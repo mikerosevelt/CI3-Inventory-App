@@ -4,7 +4,9 @@ $(".custom-file-input").on("change", function () {
 	$(this).next(".custom-file-label").addClass("selected").html(fileName);
 });
 
-// Edit Category
+/**
+ * Edit category
+ */
 $(function () {
 	// Add button
 	$("#btnAddCategory").on("click", function () {
@@ -36,7 +38,9 @@ $(function () {
 	});
 });
 
-// Edit Supplier
+/**
+ * Edit supplier data
+ */
 $(function () {
 	// Add button
 	$("#btnAddCategory").on("click", function () {
@@ -75,7 +79,9 @@ $(function () {
 	});
 });
 
-// Edit Customer Data
+/**
+ * Edit customer data
+ */
 $(function () {
 	// Add button
 	$("#btnAddCustomer").on("click", function () {
@@ -113,10 +119,12 @@ $(function () {
 	});
 });
 
-// Add outgoing product (order)
-// Get total price
-// Add items
-// Remove items
+/**
+ * Add outgoing product (order)
+ * Get total price
+ * Add items
+ * Remove items
+ */
 $(function () {
 	getTotal();
 
@@ -192,7 +200,9 @@ $(function () {
 	});
 });
 
-// Update Invoice Status
+/**
+ * Update invoice status
+ */
 $(function () {
 	$("#status").on("change", function () {
 		const id = $("#id").val();

@@ -42,7 +42,7 @@
           <div class="card-body">
             <div class="text-center">
               <p class="h5">This tool can be used to generate and download a file export of databse in .sql format.</p>
-              <button class="btn mt-3">Download File</button>
+              <button class="btn mt-3 btn-dl">Download File</button>
             </div>
           </div>
         </div>
