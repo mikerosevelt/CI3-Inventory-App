@@ -64,7 +64,7 @@
                   foreach ($transactions as $t) : ?>
                     <tr>
                       <td><?= $n++ ?></td>
-                      <td><a href="javascript:void(0)" class="receipt-btn" data-id="<?= $t['id'] ?>" data-toggle="modal" data-target="#receiptModal"><?= $t['id'] ?></a></td>
+                      <td><a href="javascript:void(0)" title="Click to view receipt" class="receipt-btn" data-id="<?= $t['id'] ?>" data-toggle="modal" data-target="#receiptModal"><?= $t['id'] ?></a></td>
                       <td><?= $t['id'] ?></td>
                       <td><?= number_format($t['total_amount']) ?></td>
                       <?php if ($t['status'] == 'Paid') : ?>
@@ -109,14 +109,14 @@
                   <div class="pull-right text-right">
                     <address>
                       <h3>To,</h3>
-                      <h4 class="font-bold">Customer Name</h4>
-                      Address
-                      <p class="text-muted m-l-5">E 104, Dharti-2,
+                      <h4 class="font-bold" id="csname">Customer Name</h4>
+                      <span id="email">Email</span>
+                      <p class="text-muted m-l-5" id="address">E 104, Dharti-2,
                         <br /> Nr' Viswakarma Temple,
                         <br /> Talaja Road,
                         <br /> Bhavnagar - 364002</p>
-                      <p class="m-t-30"><b>Invoice Date :</b> <i class="fa fa-calendar"></i> date</p>
-                      <p><b>Due Date :</b> <i class="fa fa-calendar"></i> date</p>
+                      <p class=""><b>Status :</b> <span id="status">Paid</span></p>
+                      <p><b>Paid Date :</b> <i class="fa fa-calendar"></i> <span id="date">date</span></p>
                     </address>
                   </div>
                 </div>
@@ -132,34 +132,17 @@
                           <th class="text-right">Total</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>1</td>
-                          <td>test</td>
-                          <td>1</td>
-                          <td>pcs</td>
-                          <td>0</td>
-                        </tr>
-                        <!-- <?php $n = 1;
-                              foreach ($items as $i) : ?>
-                          <tr>
-                            <td class="text-center"><?= $n++ ?></td>
-                            <td><?= $i['product_name'] ?></td>
-                            <td class="text-right"><?= $i['quantity'] ?></td>
-                            <td class="text-right"><?= $i['unit'] ?></td>
-                            <td class="text-right"><?= number_format($i['subtotal']) ?></td>
-                          </tr>
-                        <?php endforeach; ?> -->
+                      <tbody id="show_data">
                       </tbody>
                     </table>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="pull-right m-t-30 text-right">
-                    <p>Sub - Total amount: 0</p>
+                    <p id="sub-total-amount">Sub - Total amount: 0</p>
                     <!-- <p>vat (10%) : $138 </p> -->
                     <hr>
-                    <h3><b>Total :</b> 0</h3>
+                    <h3><b>Total :</b> <span id="total">0</span></h3>
                   </div>
                   <div class="clearfix"></div>
                   <hr>
