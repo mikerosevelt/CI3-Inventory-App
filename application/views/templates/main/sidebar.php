@@ -171,15 +171,27 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
           </a>
           <ul aria-expanded="false" class="collapse  first-level">
             <li class="sidebar-item">
+              <a href="<?= base_url('reports') ?>" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> Overview </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
               <a href="inbox-email.html" class="sidebar-link">
                 <i class="mdi mdi-email"></i>
-                <span class="hide-menu"> Transactions Report </span>
+                <span class="hide-menu"> Transactions </span>
               </a>
             </li>
             <li class="sidebar-item">
               <a href="inbox-email.html" class="sidebar-link">
                 <i class="mdi mdi-email"></i>
                 <span class="hide-menu"> Product Stock Report </span>
+              </a>
+            </li>
+            <li class="sidebar-item">
+              <a href="inbox-email.html" class="sidebar-link">
+                <i class="mdi mdi-email"></i>
+                <span class="hide-menu"> Users Log </span>
               </a>
             </li>
           </ul>
