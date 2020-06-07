@@ -26,4 +26,40 @@ class Reports extends CI_Controller
     $this->load->view('main/reports/index', $data);
     $this->load->view('templates/main/footer');
   }
+
+  public function transactions()
+  {
+    $data['title'] = 'Transactions Report | Inventory App';
+    // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/reports/transactions-report', $data);
+    $this->load->view('templates/main/footer');
+  }
+
+  public function inventory()
+  {
+    $data['title'] = 'Inventory Report | Inventory App';
+    // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/reports/inventory', $data);
+    $this->load->view('templates/main/footer');
+  }
+
+  public function usersLog()
+  {
+    $data['title'] = 'Inventory Report | Inventory App';
+    // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/reports/users-log', $data);
+    $this->load->view('templates/main/footer');
+  }
 }

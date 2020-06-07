@@ -8,7 +8,7 @@
   <div class="page-breadcrumb">
     <div class="row">
       <div class="col-5 align-self-center">
-        <h4 class="page-title">Reports Overview</h4>
+        <h4 class="page-title">Inventory Report</h4>
         <div class="d-flex align-items-center">
 
         </div>
@@ -20,7 +20,10 @@
               <li class="breadcrumb-item">
                 <a href="<?= base_url('dashboard') ?>">Dashboard</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">Reports</li>
+              <li class="breadcrumb-item">
+                <a href="<?= base_url('reports') ?>">Reports</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">Inventory Report</li>
             </ol>
           </nav>
         </div>
@@ -39,51 +42,43 @@
     <!-- ============================================================== -->
     <div class="row">
       <div class="col-12">
+
         <div class="card">
           <div class="card-body">
+            <form action="">
+              <!-- <div class="form-group row">
+                <label for="name" class="col-sm-2 col-form-label text-right">Customer Name</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name" placeholder="Start Typing to Search Client">
+                </div>
+              </div> -->
+              <!-- <div class="form-group row">
+                <label for="filter" class="col-sm-2 col-form-label text-right">Filter By</label>
+                <div class="col-sm-2">
+                  <select name="filter" id="filter" class="form-control">
+                    <option>Date Created</option>
+                    <option>Customer Name</option>
+                  </select>
+                </div>
+              </div> -->
+              <div class="form-group row">
+                <label for="date" class="col-sm-2 col-form-label text-right">Date Start</label>
+                <div class="col-sm-3">
+                  <input type="date" class="form-control" id="date1" placeholder="">
+                </div>
+                <label for="date" class="col-sm-2 col-form-label text-right">Date End</label>
+                <div class="col-sm-3">
+                  <input type="date" class="form-control" id="date2" placeholder="">
+                </div>
+              </div>
 
-            <div class="text-center text-dark">
-              <h5>Transactions</h5>
-            </div>
-            <div class="text-center mb-3">
-              <a href="" class="btn btn-success border-secondary text-dark">Monthly Income Report</a>
-              <a href="" class="btn btn-success border-secondary text-dark">Transactions</a>
-              <a href="" class="btn btn-success border-secondary text-dark">Purchases</a>
-              <a href="" class="btn btn-success border-secondary text-dark">Sales</a>
-              <a href="" class="btn btn-success border-secondary text-dark">Capital</a>
-              <a href="" class="btn btn-success border-secondary text-dark">Income by Product (Profit)</a>
-            </div>
-
-            <div class="text-center text-dark">
-              <h5>Inventory</h5>
-            </div>
-            <div class="text-center mb-3">
-              <a href="" class="btn btn-secondary border-secondary text-dark">Incoming Product</a>
-              <a href="" class="btn btn-secondary border-secondary text-dark">Outgoing Product</a>
-              <a href="" class="btn btn-secondary border-secondary text-dark">Product Stock</a>
-            </div>
-
-            <div class="text-center text-dark">
-              <h5>Users (Employees)</h5>
-            </div>
-            <div class="text-center mb-3">
-              <a href="" class="btn btn-dark">Users</a>
-              <a href="" class="btn btn-dark">Incoming Product</a>
-              <a href="" class="btn btn-dark">Product Stock</a>
-            </div>
-
-            <div class="text-center text-dark">
-              <h5>Exports</h5>
-            </div>
-            <div class="text-center mb-3">
-              <a href="" class="btn btn-info">Orders</a>
-              <a href="" class="btn btn-info">Purchases</a>
-              <a href="" class="btn btn-info">Users</a>
-              <a href="" class="btn btn-info">Invoices</a>
-              <a href="" class="btn btn-info">Transactions</a>
-            </div>
+              <div class="text-center mt-3">
+                <button class="btn btn-light text-dark border-secondary">Generate Report</button>
+              </div>
+            </form>
           </div>
         </div>
+        <!-- END OF CARD -->
       </div>
     </div>
     <!-- ============================================================== -->
