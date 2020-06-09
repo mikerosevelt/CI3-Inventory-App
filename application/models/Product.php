@@ -53,6 +53,7 @@ class Product extends CI_Model
       $purchase = [
         'user_id' => $employeeId,
         'supplier_id' => $supplier,
+        'product_code' => $this->input->post('code', true),
         'product' => $productName,
         'price' => $price,
         'qty' => $qty,

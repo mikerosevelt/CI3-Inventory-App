@@ -142,7 +142,7 @@
                   <select class="form-control select2" id="product" name="product" style="width: 100%">
                     <option>Choose Product</option>
                     <?php foreach ($products as $p) : ?>
-                      <option value="<?= $p['id'] ?>" data-pid="<?= $p['id'] ?>"><?= $p['product_name'] ?></option>
+                      <option value="<?= $p['id'] ?>" data-pid="<?= $p['id'] ?>" data-pcode="<?= $p['product_code'] ?>"><?= $p['product_name'] ?></option>
                     <?php endforeach; ?>
                   </select>
                 </div>
@@ -186,14 +186,6 @@
               </tbody>
             </table>
           </div>
-          <!-- <div class="col-lg mb-4">
-            <div class="row float-right">
-              <div class="col-lg">
-                <span class="h5 mr-5">Subtotal</span>
-                <span class="">0000000</span>
-              </div>
-            </div>
-          </div> -->
           <div class="col-lg mb-4">
             <div class="row float-right">
               <div class="col-lg">
@@ -213,31 +205,6 @@
         </form>
       </div>
     </div>
-    <!--MODAL HAPUS-->
-    <!-- <div class="modal fade" id="ModalHapus" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="myModalLabel">Remove item</h4>
-          </div>
-          <form class="form-horizontal">
-            <div class="modal-body">
-
-              <input type="hidden" name="itemId" id="itemId" value="">
-              <div class="alert alert-warning">
-                <p>Are you sure to remove this item?</p>
-              </div>
-
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-              <button class="remove-btn btn btn-danger" id="remove-btn">Remove</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div> -->
-    <!--END MODAL HAPUS-->
     <!-- ============================================================== -->
     <!-- End PAge Content -->
     <!-- ============================================================== -->

@@ -46,21 +46,6 @@
         <div class="card">
           <div class="card-body">
             <form action="">
-              <!-- <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label text-right">Customer Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" placeholder="Start Typing to Search Client">
-                </div>
-              </div> -->
-              <!-- <div class="form-group row">
-                <label for="filter" class="col-sm-2 col-form-label text-right">Filter By</label>
-                <div class="col-sm-2">
-                  <select name="filter" id="filter" class="form-control">
-                    <option>Date Created</option>
-                    <option>Customer Name</option>
-                  </select>
-                </div>
-              </div> -->
               <div class="form-group row">
                 <label for="date" class="col-sm-2 col-form-label text-right">Date Start</label>
                 <div class="col-sm-3">
@@ -79,6 +64,38 @@
           </div>
         </div>
         <!-- END OF CARD -->
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table table id="zero_config" class="table table-striped table-bordered table-hover display">
+                <thead>
+                  <th>#</th>
+                  <th>Product Name</th>
+                  <th>Date Added</th>
+                  <th>Added By</th>
+                  <th>Incoming</th>
+                  <th>Outgoing</th>
+                  <th>Final Stock</th>
+                </thead>
+                <tbody>
+                  <?php
+                  $no = 1;
+                  foreach ($product as $p) : ?>
+                    <tr>
+                      <td><?= $no++ ?></td>
+                      <td><?= $p['product_name']; ?></td>
+                      <td><?= $p['createdAt']; ?></td>
+                      <td><?= $p['user_id']; ?></td>
+                      <td><?= $p['user_id']; ?></td>
+                      <td><?= $p['user_id']; ?></td>
+                      <td><?= $p['qty_stock']; ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- ============================================================== -->

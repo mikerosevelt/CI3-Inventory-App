@@ -91,6 +91,7 @@ class Orders extends CI_Controller
   {
     $data = [
       'id' => $this->input->post('id'),
+      'pcode' => $this->input->post('pcode'),
       'name' => $this->input->post('product_name'),
       'qty' => $this->input->post('qty'),
       'unit' => $this->input->post('unit'),
@@ -150,10 +151,23 @@ class Orders extends CI_Controller
    */
   public function insert()
   {
-    $this->Order->addNewOrder();
-    $this->cart->destroy();
-    $this->session->set_flashdata('swal', 'New order has been added');
-    redirect('orders');
+    $this->form_validation->set_rules('name', 'Name', 'trim|required');
+    $this->form_validation->set_rules('email', 'email', 'trim|required');
+    $this->form_validation->set_rules('phone', 'phone', 'trim|required');
+    $this->form_validation->set_rules('address', 'address', 'trim|required');
+    $this->form_validation->set_rules('city', 'city', 'trim|required');
+    $this->form_validation->set_rules('state', 'state', 'trim|required');
+    $this->form_validation->set_rules('postcode', 'postcode', 'trim|required');
+    $this->form_validation->set_rules('country', 'country', 'trim|required');
+
+    if ($this->form_validation->run() == false) {
+      $this->create();
+    } else {
+      $this->Order->addNewOrder();
+      $this->cart->destroy();
+      $this->session->set_flashdata('swal', 'New order has been added');
+      redirect('orders');
+    }
   }
 
   /**

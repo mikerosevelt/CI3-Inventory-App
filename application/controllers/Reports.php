@@ -6,7 +6,7 @@ class Reports extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    // $this->load->model('User');
+    $this->load->model('Report');
 
     // Check User session
     // if (!$this->session->userdata['email']) {
@@ -43,6 +43,7 @@ class Reports extends CI_Controller
   {
     $data['title'] = 'Inventory Report | Inventory App';
     // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $data['product'] = $this->Report->getReportProducts();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
