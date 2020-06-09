@@ -30,7 +30,6 @@ class Reports extends CI_Controller
   public function transactions()
   {
     $data['title'] = 'Transactions Report | Inventory App';
-    // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
@@ -42,14 +41,25 @@ class Reports extends CI_Controller
   public function inventory()
   {
     $data['title'] = 'Inventory Report | Inventory App';
-    // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
-    $data['product'] = $this->Report->getReportProducts();
+    $data['product'] = $this->Report->getAllProducts();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
     $this->load->view('templates/main/sidebar');
     $this->load->view('main/reports/inventory', $data);
     $this->load->view('templates/main/footer');
+  }
+
+  public function test()
+  {
+    $array = $this->Report->getAllProducts();
+    // print_r(json_encode($this->Report->getTotalOutgoing()));
+    // foreach ($array as $a) {
+    //   $val += $a['quantity'];
+    // }
+    // $data['totalOutgoing'] = $val;
+    // print_r($array);
+    print_r(json_encode($this->Report->getAllProducts()));
   }
 
   public function usersLog()

@@ -7,6 +7,7 @@ class Orders extends CI_Controller
   {
     parent::__construct();
     $this->load->model('Order');
+    // $this->load->model('Product');
   }
 
   public function index()
@@ -91,7 +92,7 @@ class Orders extends CI_Controller
   {
     $data = [
       'id' => $this->input->post('id'),
-      'pcode' => $this->input->post('pcode'),
+      'product_code' => $this->input->post('product_code'),
       'name' => $this->input->post('product_name'),
       'qty' => $this->input->post('qty'),
       'unit' => $this->input->post('unit'),

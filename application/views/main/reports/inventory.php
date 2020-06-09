@@ -76,6 +76,7 @@
                   <th>Incoming</th>
                   <th>Outgoing</th>
                   <th>Final Stock</th>
+                  <th>Unit</th>
                 </thead>
                 <tbody>
                   <?php
@@ -84,11 +85,12 @@
                     <tr>
                       <td><?= $no++ ?></td>
                       <td><?= $p['product_name']; ?></td>
-                      <td><?= $p['createdAt']; ?></td>
-                      <td><?= $p['user_id']; ?></td>
-                      <td><?= $p['user_id']; ?></td>
-                      <td><?= $p['user_id']; ?></td>
+                      <td><?= date('d F Y', $p['createdAt']); ?></td>
+                      <td><?= $p['name']; ?></td>
+                      <td><?= $p['outgoing']; ?></td>
+                      <td><?= $p['outgoing']; ?></td>
                       <td><?= $p['qty_stock']; ?></td>
+                      <td><?= $p['unit']; ?></td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

@@ -160,7 +160,7 @@ $(function () {
 
 	$(".btn-add-product").on("click", function () {
 		const id = $("#product").find(":selected").val();
-		const pcode = $("#product").find(":selected").data("pcode");
+		const product_code = $("#product").find(":selected").data("pcode");
 		const product_name = $("#product").find(":selected").text();
 		const qty = $("#qty").val();
 		const unit = $("#unit").val();
@@ -170,7 +170,7 @@ $(function () {
 			`${url}orders/addItem`,
 			{
 				id: id,
-				pcode: pcode,
+				product_code: product_code,
 				product_name: product_name,
 				qty: qty,
 				unit: unit,

@@ -37,7 +37,7 @@ class Order extends CI_Model
     foreach ($this->cart->contents() as $c) {
       $orderDetail = [
         'order_id' => $order_id,
-        'product_code' => $c['pcode'],
+        'product_code' => $c['product_code'],
         'product_name' => $c['name'],
         'price' => $c['price'],
         'quantity' => $c['qty'],
