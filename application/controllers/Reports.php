@@ -15,6 +15,9 @@ class Reports extends CI_Controller
     // }
   }
 
+  /**
+   * @desc Report overview
+   */
   public function index()
   {
     $data['title'] = 'Reports Overview | Inventory App';
@@ -27,6 +30,9 @@ class Reports extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  /**
+   * @desc Transactions report
+   */
   public function transactions()
   {
     $data['title'] = 'Transactions Report | Inventory App';
@@ -38,6 +44,9 @@ class Reports extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  /**
+   * @desc Inventory report
+   */
   public function inventory()
   {
     $data['title'] = 'Inventory Report | Inventory App';
@@ -50,10 +59,17 @@ class Reports extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  /**
+   * @desc Product history report
+   * @param /product_code
+   */
   public function history()
   {
+    $code = $this->uri->segment(3);
     $data['title'] = 'Product History Report | Inventory App';
-    // $data['product'] = $this->Report->getAllProducts();
+    $data['product'] = $this->Report->getProductByCode($code);
+    $data['history']['outgoing'] = $this->Report->getOrderProductByCode($code);
+    $data['history']['incoming'] = $this->Report->getAllPurchasesByCode($code);
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');

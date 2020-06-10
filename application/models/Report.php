@@ -3,20 +3,13 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 class Report extends CI_Model
 {
-  // Get all products
-  public function getReportProducts()
-  {
-    return $this->db->get('products')->result_array();
-  }
-
-  // Get total outgoing per product group by success only
+  // Get total outgoing per product
   public function getTotalOutgoing()
   {
     $this->db->select('products.product_code, orders.id, orders.status, orders_detail.order_id, orders_detail.product_code, orders_detail.quantity');
     $this->db->from('orders_detail');
     $this->db->join('orders', 'orders_detail.order_id = orders.id');
     $this->db->join('products', 'orders_detail.product_code = products.product_code');
-    $this->db->having('status', 'Success');
     return $this->db->get()->result_array();
   }
 
@@ -30,6 +23,39 @@ class Report extends CI_Model
     $this->db->join('users', 'users.id = products.user_id');
     $this->db->join('orders', 'orders.id = orders_detail.order_id');
     $this->db->group_by('products.id');
+    return $this->db->get()->result_array();
+  }
+
+  public function getProductByCode($code)
+  {
+    $this->db->select('products.*, users.name');
+    $this->db->from('products');
+    $this->db->join('users', 'users.id = products.user_id');
+    $this->db->where('products.product_code', $code);
+    return $this->db->get()->row_array();
+  }
+
+  // Get all purchases by product code
+  public function getAllPurchasesByCode($code)
+  {
+    $this->db->select('purchases.*, users.name, suppliers.supplier_name');
+    $this->db->from('purchases');
+    $this->db->join('users', 'users.id = purchases.user_id');
+    $this->db->join('suppliers', 'suppliers.id = purchases.supplier_id');
+    $this->db->where('purchases.product_code', $code);
+    $this->db->order_by('purchases.createdAt', 'desc');
+    return $this->db->get()->result_array();
+  }
+
+  // Get order product on orders_detail by code
+  public function getOrderProductByCode($code)
+  {
+    $this->db->select('orders_detail.*, orders.*, users.name');
+    $this->db->from('orders_detail');
+    $this->db->join('orders', 'orders.id = orders_detail.order_id');
+    $this->db->join('users', 'users.id = orders.user_id');
+    $this->db->where('orders_detail.product_code', $code);
+    $this->db->order_by('orders.createdAt', 'desc');
     return $this->db->get()->result_array();
   }
 

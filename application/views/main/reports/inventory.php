@@ -42,7 +42,7 @@
     <!-- ============================================================== -->
     <div class="row">
       <div class="col-12">
-
+        <!-- Date range -->
         <div class="card">
           <div class="card-body">
             <form action="">
@@ -67,7 +67,7 @@
         <div class="card">
           <div class="card-body">
             <div class="table-responsive">
-              <table table id="zero_config" class="table table-striped table-bordered table-hover display">
+              <table table id="file_export" class="table table-striped table-bordered table-hover display">
                 <thead>
                   <th>#</th>
                   <th>Product Name</th>
@@ -98,7 +98,7 @@
                             <i class="mdi mdi-dots-vertical"></i>
                           </a>
                           <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                            <a class="dropdown-item" href="<?= base_url('orders/detail/') ?>">See History</a>
+                            <a class="dropdown-item" href="<?= base_url('reports/history/') . $p['product_code'] ?>">See History</a>
                           </div>
                         </div>
                       </td>

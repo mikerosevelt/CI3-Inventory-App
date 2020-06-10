@@ -50,18 +50,23 @@
             <div class="table-responsive">
               <table table id="zero_config" class="table table-striped table-bordered table-hover display">
                 <thead>
-                  <th>#</th>
                   <th>Product Name</th>
                   <th>Date Added</th>
                   <th>Added By</th>
                   <th>Incoming</th>
-                  <th>Outgoing</th>
+                  <!-- <th>Outgoing</th> -->
                   <th>Stock</th>
                   <th>Unit</th>
-                  <th></th>
                 </thead>
                 <tbody>
-
+                  <tr>
+                    <td><?= $product['product_name'] ?></td>
+                    <td><?= date('d F Y', $product['createdAt']) ?></td>
+                    <td><?= $product['name'] ?></td>
+                    <td><?= $product['incoming'] ?></td>
+                    <td><?= $product['qty_stock'] ?></td>
+                    <td><?= $product['unit'] ?></td>
+                  </tr>
                 </tbody>
               </table>
             </div>
@@ -72,112 +77,72 @@
         <!-- TIMELINE CARD -->
         <div class="card">
           <div class="card-header">
-            <h4 class="">Timeline History</h4>
+            <div class="row">
+              <h4 class="col-lg-6">Timeline History</h4>
+              <div class="col-lg-6">
+                <button id="print" class="btn btn-default btn-outline float-right" type="button"> <span><i class="fa fa-print"></i> Print</span> </button>
+              </div>
+            </div>
           </div>
-          <div class="card-body">
+          <div class="card-body printableArea">
             <ul class="timeline">
               <!-- timeline item | Timeline-inverted = Right side -->
-              <li class="timeline-item">
-                <div class="timeline-badge success"><img alt="user" src="../../assets/images/users/1.jpg" alt="img" class="img-fluid">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4 class="timeline-title">Genelia</h4>
-                    <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago
-                        via Twitter</small> </p>
+              <?php foreach ($history['incoming'] as $i) : ?>
+                <li class="timeline-item">
+                  <div class="timeline-badge info"><small>In</small>
                   </div>
-                  <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
-                      laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia
-                      pariatur? Est cum veniam excepturi. Maiores praesentium, porro
-                      voluptas suscipit facere rem dicta, debitis.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted timeline-item">
-                <div class="timeline-badge warning"><img class="img-fluid" alt="user" src="../../assets/images/users/2.jpg" alt="img"> </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4 class="timeline-title">Ritesh Deshmukh</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p><img class="img-fluid" alt="user" src="../../assets/images/users/3.jpg" alt="img"></p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium
-                      maiores odit qui est tempora eos, nostrum provident explicabo
-                      dignissimos debitis vel! Adipisci eius voluptates, ad aut recusandae
-                      minus eaque facere.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-item">
-                <div class="timeline-badge danger"><span class="font-12">2018</span></div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus
-                      numquam facilis enim eaque, tenetur nam id qui vel velit similique
-                      nihil iure molestias aliquam, voluptatem totam quaerat, magni
-                      commodi quisquam.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted timeline-item">
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
-                      est quaerat asperiores sapiente, eligendi, nihil. Itaque quos, alias
-                      sapiente rerum quas odit! Aperiam officiis quidem delectus libero,
-                      omnis ut debitis!</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-item">
-                <div class="timeline-badge info"><i class="fa fa-save"></i> </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                  </div>
-                  <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis minus
-                      modi quam ipsum alias at est molestiae excepturi delectus nesciunt,
-                      quibusdam debitis amet, beatae consequuntur impedit nulla qui!
-                      Laborum, atque.</p>
-                    <hr>
-                    <div class="btn-group">
-                      <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-cog"></i> <span class="caret"></span> </button>
-                      <div class="dropdown-menu">
-                        <a class="dropdown-item" href="javascript:void(0)">Action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Another
-                          action</a>
-                        <a class="dropdown-item" href="javascript:void(0)">Something
-                          else here</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="javascript:void(0)">Separated
-                          link</a>
-                      </div>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title"><?= $i['name']; ?></h4>
+                      <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= date('d F Y H:i:s', $i['createdAt']); ?></small> </p>
+                    </div>
+                    <div class="timeline-body">
+                      <p>
+                        Incoming product or stock <?= $i['qty']; ?> <?= $i['unit']; ?> from supplier <?= $i['supplier_name']; ?>
+
+                        <br><br>
+                        Price per unit : <?= number_format($i['price']); ?><br>
+                        Total price : <?= number_format($i['total_price']); ?><br>
+                        <br>
+                        laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia
+                        pariatur? Est cum veniam excepturi. Maiores praesentium, porro
+                        voluptas suscipit facere rem dicta, debitis.
+                      </p>
                     </div>
                   </div>
-                </div>
-              </li>
-              <li class="timeline-inverted timeline-item">
-                <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i> </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4 class="timeline-title">Lorem ipsum dolor</h4>
+                </li>
+              <?php endforeach; ?>
+
+              <?php foreach ($history['outgoing'] as $o) : ?>
+                <li class="timeline-inverted timeline-item">
+                  <div class="timeline-badge success"><small>Out</small>
                   </div>
-                  <div class="timeline-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt
-                      obcaecati, quaerat tempore officia voluptas debitis consectetur
-                      culpa amet, accusamus dolorum fugiat, animi dicta aperiam, enim
-                      incidunt quisquam maxime neque eaque.</p>
+                  <div class="timeline-panel">
+                    <div class="timeline-heading">
+                      <h4 class="timeline-title"><?= $o['name']; ?></h4>
+                      <p><small class="text-muted"><i class="fa fa-clock-o"></i> <?= date('d F Y H:i:s', $o['createdAt']); ?></small> </p>
+                    </div>
+                    <div class="timeline-body">
+                      <h6>Customer Info</h6>
+                      <?php $str = $o['customer_address'];
+                      $add = explode('|', $str); ?>
+                      <p><?= $o['customer_name']; ?>, was ordered <?= $o['quantity'] ?> <?= $o['unit'] ?>
+                        to address <?= $add['0']; ?> <?= $add['1']; ?> <?= $add['2']; ?> <?= $add['3']; ?>
+                        <?= $add['4']; ?>
+                        .<br><br>
+                        price per unit : <?= number_format($o['price']) ?>
+                        <br>
+                        subtotal : <?= number_format($o['subtotal']) ?>
+                        <br>
+                        Status: <?= $o['status']; ?>
+                        <br><br>
+                        <?= $o['customer_email']; ?><br><?= $o['customer_phone']; ?>
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </li>
+                </li>
+              <?php endforeach; ?>
+
             </ul>
           </div>
         </div>

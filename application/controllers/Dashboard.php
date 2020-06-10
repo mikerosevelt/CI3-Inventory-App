@@ -22,7 +22,7 @@ class Dashboard extends CI_Controller
     $data['total_product'] = $this->db->get('products')->num_rows();
     $data['total_paid'] = $this->db->get_where('invoices', ['status' => 'Paid'])->num_rows();
     $data['total_incoming'] = $this->db->get('purchases')->num_rows();
-    $data['total_outgoing'] = $this->db->get_where('orders', ['status' => 'Success'])->num_rows();
+    $data['total_outgoing'] = $this->db->get('orders')->num_rows();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
