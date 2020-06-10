@@ -61,6 +61,14 @@ class Order extends CI_Model
       'createdAt' => time()
     ];
     $this->db->insert('invoices', $invoice);
+
+    // Insert user (employee) activity to database
+    $users = [
+      'user_id' => $this->input->post('employeeId'),
+      'activity' => 'Add new order',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   // Update an order status
@@ -78,5 +86,13 @@ class Order extends CI_Model
     $this->db->delete('orders_detail');
     $this->db->where('order_id', $id);
     $this->db->delete('invoices');
+
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Delete an order include detail and invoice permanently',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 }

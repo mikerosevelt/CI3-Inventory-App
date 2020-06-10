@@ -57,6 +57,13 @@ class Product extends CI_Model
         'createdAt' => time()
       ];
       $this->db->insert('purchases', $purchase);
+
+      $users = [
+        'user_id' => $employeeId,
+        'activity' => 'Add product stock',
+        'createdAt' => time()
+      ];
+      $this->db->insert('users_activity', $users);
     }
 
     $config['upload_path']          = './assets/images/product/';
@@ -94,6 +101,13 @@ class Product extends CI_Model
         'createdAt' => time()
       ];
       $this->db->insert('purchases', $purchase);
+
+      $users = [
+        'user_id' => $employeeId,
+        'activity' => 'Add new product',
+        'createdAt' => time()
+      ];
+      $this->db->insert('users_activity', $users);
     } else {
       echo $this->upload->display_errors();
     }
@@ -126,6 +140,13 @@ class Product extends CI_Model
       $this->db->set('updatedAt', time());
       $this->db->where('id', $id);
       $this->db->update('products');
+
+      $users = [
+        'user_id' => $this->input->post('employeeId', true),
+        'activity' => 'Update product data',
+        'createdAt' => time()
+      ];
+      $this->db->insert('users_activity', $users);
     } else {
       echo $this->upload->display_errors();
     }
@@ -165,6 +186,13 @@ class Product extends CI_Model
     ];
 
     $this->db->insert('categories', $data);
+
+    $users = [
+      'user_id' => $id,
+      'activity' => 'Add new category',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   public function getCategoryById($id)

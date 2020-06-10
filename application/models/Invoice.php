@@ -42,6 +42,13 @@ class Invoice extends CI_Model
     $this->db->set('updatedAt', time());
     $this->db->where('id', $id);
     $this->db->update('invoices');
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Update invoice status',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   // Update invoice notes
@@ -51,6 +58,14 @@ class Invoice extends CI_Model
     $this->db->set('updatedAt', time());
     $this->db->where('id', $id);
     $this->db->update('invoices');
+
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Update invoice notes',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   // Delete an Invoice
