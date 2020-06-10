@@ -75,7 +75,7 @@
                   <th>Added By</th>
                   <th>Incoming</th>
                   <th>Outgoing</th>
-                  <th>Final Stock</th>
+                  <th>Stock</th>
                   <th>Unit</th>
                   <th></th>
                 </thead>
@@ -88,7 +88,7 @@
                       <td><?= $p['product_name']; ?></td>
                       <td><?= date('d F Y', $p['createdAt']); ?></td>
                       <td><?= $p['name']; ?></td>
-                      <td><?= $p['outgoing']; ?></td>
+                      <td><?= $p['incoming']; ?></td>
                       <td><?= $p['outgoing']; ?></td>
                       <td><?= $p['qty_stock']; ?></td>
                       <td><?= $p['unit']; ?></td>

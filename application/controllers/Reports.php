@@ -50,6 +50,18 @@ class Reports extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  public function history()
+  {
+    $data['title'] = 'Product History Report | Inventory App';
+    // $data['product'] = $this->Report->getAllProducts();
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/reports/product-history', $data);
+    $this->load->view('templates/main/footer');
+  }
+
   public function test()
   {
     $array = $this->Report->getAllProducts();

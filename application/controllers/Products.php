@@ -81,7 +81,8 @@ class Products extends CI_Controller
    */
   public function insert()
   {
-    $this->form_validation->set_rules('code', 'Product Code', 'required|trim|is_unique[products.product_code]');
+    // $this->form_validation->set_rules('code', 'Product Code', 'required|trim|is_unique[products.product_code]');
+    $this->form_validation->set_rules('code', 'Product Code', 'required|trim');
     $this->form_validation->set_rules('name', 'Name', 'required|trim');
     $this->form_validation->set_rules('category', 'Category', 'required|trim');
     $this->form_validation->set_rules('supplier', 'Supplier', 'required|trim');
@@ -105,7 +106,7 @@ class Products extends CI_Controller
    */
   public function update()
   {
-    // $this->form_validation->set_rules('code', 'Product Code', 'required|trim|is_unique[products.product_code]');
+    $this->form_validation->set_rules('code', 'Product Code', 'required|trim|is_unique[products.product_code]');
     $this->form_validation->set_rules('name', 'Name', 'required|trim');
     $this->form_validation->set_rules('category', 'Category', 'required|trim');
     $this->form_validation->set_rules('supplier', 'Supplier', 'required|trim');

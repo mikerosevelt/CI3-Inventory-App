@@ -17,22 +17,18 @@ class Report extends CI_Model
     $this->db->join('orders', 'orders_detail.order_id = orders.id');
     $this->db->join('products', 'orders_detail.product_code = products.product_code');
     $this->db->having('status', 'Success');
-    // $this->db->having('orders_detail.product_code', 'products.product_code');
     return $this->db->get()->result_array();
   }
 
   // Get all products group by products.id
   public function getAllProducts()
   {
-    $this->db->select('users.name, products.product_code, products.product_name, products.qty_stock, products.unit, products.createdAt');
+    $this->db->select('users.name, products.product_code, products.product_name, products.incoming, products.qty_stock, products.unit, products.createdAt');
     $this->db->select_sum('orders_detail.quantity', 'outgoing');
     $this->db->from('products');
     $this->db->join('orders_detail', 'orders_detail.product_code = products.product_code');
     $this->db->join('users', 'users.id = products.user_id');
     $this->db->join('orders', 'orders.id = orders_detail.order_id');
-    // $this->db->join('purchases', 'purchases.product_code = products.product_code');
-    // $this->db->having('orders.status', 'Success');
-    // $this->db->group_by('products.product_code');
     $this->db->group_by('products.id');
     return $this->db->get()->result_array();
   }

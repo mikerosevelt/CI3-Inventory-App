@@ -3,11 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Product extends CI_Model
 {
+  // Get all products
   public function getAllProducts()
   {
     return $this->db->get('products')->result_array();
   }
 
+  // Get single product with detail by id
   public function getProductDetailById($id)
   {
     $this->db->select('users.id, users.name, suppliers.id, suppliers.code, suppliers.supplier_name,products.*');
@@ -18,6 +20,10 @@ class Product extends CI_Model
     return $this->db->get()->row_array();
   }
 
+  /**
+   * Add new product
+   * Add new purchases
+   */
   public function addProduct()
   {
     $employeeId = $this->input->post('employeeId', true);
@@ -27,6 +33,31 @@ class Product extends CI_Model
     $qty = $this->input->post('quantity', true);
     $unit = $this->input->post('unit', true);
     $totalPrice = $price * $qty;
+    $code = $this->input->post('code', true);
+    $currentProduct = $this->db->get_where('products', ['product_code' => $code])->row_array();
+    // If the product code same, just update quantity and incoming.
+    // And add new purchases
+    if ($code == $currentProduct['product_code']) {
+      $newStock = $currentProduct['qty_stock'] + $qty;
+      $newIncoming = $currentProduct['incoming'] + $qty;
+      $this->db->set('qty_stock', $newStock);
+      $this->db->set('incoming', $newIncoming);
+      $this->db->where('product_code', $code);
+      $this->db->update('products');
+
+      $purchase = [
+        'user_id' => $employeeId,
+        'supplier_id' => $supplier,
+        'product_code' => $code,
+        'product' => $currentProduct['product_name'],
+        'price' => $currentProduct['price'],
+        'qty' => $qty,
+        'unit' => $unit,
+        'total_price' => $totalPrice,
+        'createdAt' => time()
+      ];
+      $this->db->insert('purchases', $purchase);
+    }
 
     $config['upload_path']          = './assets/images/product/';
     $config['allowed_types']        = 'gif|jpg|png';
@@ -37,12 +68,13 @@ class Product extends CI_Model
       $product = [
         'user_id' => $employeeId,
         'supplier_id' => $supplier,
-        'product_code' => $this->input->post('code', true),
+        'product_code' => $code,
         'product_name' => $productName,
         'image' => $this->upload->data('file_name'),
         'price' => $price,
         'description' => $this->input->post('description', true),
         'qty_stock' => $qty,
+        'incoming' => $qty,
         'unit' => $unit,
         'category_id' => $this->input->post('category', true),
         'createdAt' => time()
@@ -53,7 +85,7 @@ class Product extends CI_Model
       $purchase = [
         'user_id' => $employeeId,
         'supplier_id' => $supplier,
-        'product_code' => $this->input->post('code', true),
+        'product_code' => $code,
         'product' => $productName,
         'price' => $price,
         'qty' => $qty,
