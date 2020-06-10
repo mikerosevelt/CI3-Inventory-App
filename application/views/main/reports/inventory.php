@@ -77,6 +77,7 @@
                   <th>Outgoing</th>
                   <th>Final Stock</th>
                   <th>Unit</th>
+                  <th></th>
                 </thead>
                 <tbody>
                   <?php
@@ -91,6 +92,16 @@
                       <td><?= $p['outgoing']; ?></td>
                       <td><?= $p['qty_stock']; ?></td>
                       <td><?= $p['unit']; ?></td>
+                      <td class="text-center">
+                        <div class="dropdown">
+                          <a class="btn btn-icon-only" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="mdi mdi-dots-vertical"></i>
+                          </a>
+                          <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                            <a class="dropdown-item" href="<?= base_url('orders/detail/') ?>">See History</a>
+                          </div>
+                        </div>
+                      </td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>

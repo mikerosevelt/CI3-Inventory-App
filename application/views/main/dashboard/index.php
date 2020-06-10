@@ -35,68 +35,77 @@
     <div class="card-group">
       <div class="card">
         <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <h3><?= $total_product ?></h3>
-              <h6 class="card-subtitle">Total Product</h6>
-            </div>
-            <div class="col-12">
-              <div class="progress">
-                <div class="progress-bar bg-success" role="progressbar" style='width: 5%; height: 6px;' aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <a href="<?= base_url('products') ?>">
+            <div class="row">
+              <div class="col-12">
+                <h3><?= $total_product ?></h3>
+                <h6 class="card-subtitle">Total Product</h6>
+              </div>
+              <div class="col-12">
+                <div class="progress">
+                  <div class="progress-bar bg-success" role="progressbar" style='width: 5%; height: 6px;' aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Column -->
+      <!-- Column -->
+      <div class="card">
+        <div class="card-body">
+          <a href="<?= base_url('orders') ?>">
+            <div class="row">
+              <div class="col-12">
+                <h3><?= $total_paid; ?></h3>
+                <h6 class="card-subtitle">Total Paid Order</h6>
+              </div>
+              <div class="col-12">
+                <div class="progress">
+                  <div class="progress-bar bg-info" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
       <!-- Column -->
       <!-- Column -->
       <div class="card">
         <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <h3><?= $total_paid; ?></h3>
-              <h6 class="card-subtitle">Total Paid Order</h6>
-            </div>
-            <div class="col-12">
-              <div class="progress">
-                <div class="progress-bar bg-info" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <a href="<?= base_url('purchases') ?>">
+            <div class="row">
+              <div class="col-12">
+                <h3><?= $total_incoming; ?></h3>
+                <h6 class="card-subtitle">Incoming Product</h6>
+              </div>
+              <div class="col-12">
+                <div class="progress">
+                  <div class="progress-bar bg-danger" role="progressbar" style="width: 5%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
       <!-- Column -->
       <!-- Column -->
       <div class="card">
         <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <h3><?= $total_incoming; ?></h3>
-              <h6 class="card-subtitle">Incoming Product</h6>
-            </div>
-            <div class="col-12">
-              <div class="progress">
-                <div class="progress-bar bg-danger" role="progressbar" style="width: 5%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+          <a href="<?= base_url('orders') ?>">
+            <div class="row">
+              <div class="col-12">
+                <h3><?= $total_outgoing; ?></h3>
+                <h6 class="card-subtitle">Outgoing Product</h6>
+              </div>
+              <div class="col-12">
+                <div class="progress">
+                  <div class="progress-bar bg-inverse" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <!-- Column -->
-      <!-- Column -->
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <h3><?= $total_outgoing; ?></h3>
-              <h6 class="card-subtitle">Outgoing Product</h6>
-            </div>
-            <div class="col-12">
-              <div class="progress">
-                <div class="progress-bar bg-inverse" role="progressbar" style="width: 0%; height: 6px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-              </div>
-            </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
