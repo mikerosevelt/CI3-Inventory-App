@@ -191,7 +191,7 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
             <li class="sidebar-item">
               <a href="<?= base_url('reports/usersLog') ?>" class="sidebar-link">
                 <i class="mdi mdi-email"></i>
-                <span class="hide-menu"> Users Log </span>
+                <span class="hide-menu"> Users Activity </span>
               </a>
             </li>
           </ul>
