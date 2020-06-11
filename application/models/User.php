@@ -32,6 +32,7 @@ class User extends CI_Model
     $this->db->insert('users_activity', $users);
   }
 
+  // Get all users
   public function getAllUsers()
   {
     $this->db->select('user_role.*, users.id,users.name, users.email, users.role_id, users.createdAt, users.deletedAt, users.updatedAt');
@@ -41,6 +42,7 @@ class User extends CI_Model
     return $this->db->get()->result_array();
   }
 
+  // Get a user detail by id
   public function getUserById($id)
   {
     $this->db->select('user_role.*, users.id, users.name, users.email, users.dob, users.phone, users.address, users.city, users.state, users.postcode, users.country, users.role_id, users.createdAt, users.deletedAt, users.updatedAt');
@@ -72,7 +74,7 @@ class User extends CI_Model
     $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
     $users = [
       'user_id' => $userData['id'],
-      'activity' => 'Delete a user not permanently',
+      'activity' => 'Deleted a user not permanently',
       'createdAt' => time()
     ];
     $this->db->insert('users_activity', $users);

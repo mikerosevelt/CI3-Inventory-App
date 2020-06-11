@@ -62,22 +62,33 @@
                     <?php endif; ?>
                   </select>
                 </div>
-                <small class="form-control-feedback"> Select one to change. </small>
+                <small class="form-control-feedback"> *Select one to change. </small>
               </div>
-              <!-- <div class="row text-center justify-content-md-center">
-                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i>
-                    <font class="font-medium">254</font>
-                  </a></div>
-                <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i>
-                    <font class="font-medium">54</font>
-                  </a></div>
-              </div> -->
+              <div class="row text-center justify-content-md-center">
+                <div class="col-6">
+                  <p>Last Login</p>
+                  <?php if ($log) : ?>
+                    <p><?= time_ago($log['last_login']); ?></p>
+                  <?php else : ?>
+                    <p>Haven't sign in yet</p>
+                  <?php endif; ?>
+                </div>
+                <div class="col-6">
+                  <p>Ip Address</p>
+                  <?php if ($log) : ?>
+                    <p><?= $log['ip_address']; ?></p>
+                  <?php else : ?>
+                    <p>Haven't sign in yet</p>
+                  <?php endif; ?>
+                </div>
+              </div>
             </center>
           </div>
           <div>
             <hr>
           </div>
-          <div class="card-body"> <small class="text-muted">Email address </small>
+          <div class="card-body">
+            <small class="text-muted">Email address </small>
             <h6><?= $detail['email']; ?></h6> <small class="text-muted p-t-30 db">Phone</small>
             <h6><?= $detail['phone']; ?></h6> <small class="text-muted p-t-30 db">Address</small>
             <h6><?= $detail['address']; ?> <?= $detail['city']; ?>, <?= $detail['state']; ?> <?= $detail['postcode']; ?></h6>

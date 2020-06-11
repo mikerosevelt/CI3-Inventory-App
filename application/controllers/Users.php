@@ -23,6 +23,7 @@ class Users extends CI_Controller
 
   /**
    * @desc Show user detail
+   * @param /user_id
    */
   public function detail()
   {
@@ -74,7 +75,7 @@ class Users extends CI_Controller
   }
 
   /**
-   * @desc Insert new user to Database
+   * @desc Insert new user to database
    */
   public function insert()
   {
@@ -110,6 +111,7 @@ class Users extends CI_Controller
 
   /**
    * @desc Soft delete a user
+   * @param /user_id
    */
   public function delete()
   {
