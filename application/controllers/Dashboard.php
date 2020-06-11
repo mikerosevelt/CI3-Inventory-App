@@ -6,7 +6,7 @@ class Dashboard extends CI_Controller
   public function __construct()
   {
     parent::__construct();
-    // $this->load->model('User');
+    $this->load->model('User');
 
     // Check User session
     // if (!$this->session->userdata['email']) {
@@ -23,6 +23,7 @@ class Dashboard extends CI_Controller
     $data['total_paid'] = $this->db->get_where('invoices', ['status' => 'Paid'])->num_rows();
     $data['total_incoming'] = $this->db->get('purchases')->num_rows();
     $data['total_outgoing'] = $this->db->get('orders')->num_rows();
+    $data['user_logs'] = $this->User->getAllUsersLog();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');

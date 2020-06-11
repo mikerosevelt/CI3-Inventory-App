@@ -689,6 +689,38 @@
         </div>
       </div>
     </div>
+    <!-- USER LOG -->
+    <div class="card">
+      <div class="card-header">
+        <h5>User Logs</h5>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table table id="zero_config" class="table table-striped table-bordered table-hover display">
+            <thead>
+              <th>#</th>
+              <th>User Name</th>
+              <th>Ip Address</th>
+              <th>Hostname</th>
+              <th>Last Login</th>
+            </thead>
+            <tbody>
+              <?php
+              $n = 1;
+              foreach ($user_logs as $ul) : ?>
+                <tr>
+                  <td><?= $n++; ?></td>
+                  <td><?= $ul['name']; ?></td>
+                  <td><?= $ul['ip_address']; ?></td>
+                  <td><?= $ul['host']; ?></td>
+                  <td><?= time_ago($ul['last_login']); ?></td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
   <!-- ============================================================== -->
   <!-- Trade history / Exchange -->

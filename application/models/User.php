@@ -22,6 +22,14 @@ class User extends CI_Model
     ];
 
     $this->db->insert('users', $data);
+
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Created new user',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   public function getAllUsers()
@@ -42,26 +50,40 @@ class User extends CI_Model
     return $this->db->get()->row_array();
   }
 
-  /**
-   * Get user logs by user id
-   */
+  // Get user logs by user id
   public function getUserLog($id)
   {
     return $this->db->get_where('user_logs', ['user_id' => $id])->row_array();
   }
 
-  /**
-   * 
-   */
+  // Update user data
   public function updateUserData($id)
   {
     // 
   }
 
+  // Soft delete (not permanently) a user
   public function softDelete($id)
   {
     $this->db->set('deletedAt', time());
     $this->db->where('id', $id);
     $this->db->update('users');
+
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Delete a user not permanently',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
+  }
+
+  // Get all user logs
+  public function getAllUsersLog()
+  {
+    $this->db->select('users.name, user_logs.*');
+    $this->db->from('user_logs');
+    $this->db->join('users', 'users.id = user_logs.user_id');
+    return $this->db->get()->result_array();
   }
 }
