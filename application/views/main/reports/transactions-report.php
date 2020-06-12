@@ -42,25 +42,9 @@
     <!-- ============================================================== -->
     <div class="row">
       <div class="col-12">
-
         <div class="card">
           <div class="card-body">
             <form action="">
-              <!-- <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label text-right">Customer Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" placeholder="Start Typing to Search Client">
-                </div>
-              </div> -->
-              <!-- <div class="form-group row">
-                <label for="filter" class="col-sm-2 col-form-label text-right">Filter By</label>
-                <div class="col-sm-2">
-                  <select name="filter" id="filter" class="form-control">
-                    <option>Date Created</option>
-                    <option>Customer Name</option>
-                  </select>
-                </div>
-              </div> -->
               <div class="form-group row">
                 <label for="date" class="col-sm-2 col-form-label text-right">Date Start</label>
                 <div class="col-sm-3">
@@ -78,14 +62,45 @@
             </form>
           </div>
         </div>
-        <!-- <div class="card">
+        <!-- Card table -->
+        <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Line Chart</h4>
-            <div>
-              <canvas id="line-chart" height="150"></canvas>
+            <div class="table-responsive">
+              <table id="file_export" class="table table-striped table-bordered table-hover display">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <!-- <th>Invoice #</th> -->
+                    <th>Invoice #</th>
+                    <th>Total Amount</th>
+                    <th class="text-center">Status</th>
+                    <th>Invoice Date</th>
+                    <th>Paid Date</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+              </table>
             </div>
           </div>
-        </div> -->
+        </div>
+        <!-- End of card table -->
+        <div class="">
+          <table align="center" width=30% class="">
+            <thead>
+              <th>Total Income</th>
+              <th>Total Expenditure</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td><?= number_format($income); ?></td>
+                <td><?= number_format($expenditure); ?></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
     <!-- ============================================================== -->

@@ -4,12 +4,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Report extends CI_Model
 {
   // Get total outgoing per product
-  public function getTotalOutgoing()
+  public function getTotalOutgoing($code)
   {
-    $this->db->select('products.product_code, orders.id, orders.status, orders_detail.order_id, orders_detail.product_code, orders_detail.quantity');
+    // $this->db->select('orders_detail.quantity');
+    $this->db->select_sum('orders_detail.quantity');
     $this->db->from('orders_detail');
     $this->db->join('orders', 'orders_detail.order_id = orders.id');
-    $this->db->join('products', 'orders_detail.product_code = products.product_code');
+    $this->db->where('orders_detail.product_code', $code);
     return $this->db->get()->result_array();
   }
 
@@ -56,6 +57,23 @@ class Report extends CI_Model
     $this->db->join('users', 'users.id = orders.user_id');
     $this->db->where('orders_detail.product_code', $code);
     $this->db->order_by('orders.createdAt', 'desc');
+    return $this->db->get()->result_array();
+  }
+
+  // Get total income
+  public function getTotalIncome()
+  {
+    $this->db->select_sum('total_amount', 'income');
+    $this->db->from('invoices');
+    $this->db->where('status', "Paid");
+    return $this->db->get()->result_array();
+  }
+
+  // Get total expenditure
+  public function getTotalExpanditure()
+  {
+    $this->db->select_sum('total_price', 'expenditure');
+    $this->db->from('purchases');
     return $this->db->get()->result_array();
   }
 

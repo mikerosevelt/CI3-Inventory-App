@@ -36,6 +36,8 @@ class Reports extends CI_Controller
   public function transactions()
   {
     $data['title'] = 'Transactions Report | Inventory App';
+    $data['income'] = $this->Report->getTotalIncome()[0]["income"];
+    $data['expenditure'] = $this->Report->getTotalExpanditure()[0]["expenditure"];
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
@@ -68,6 +70,7 @@ class Reports extends CI_Controller
     $code = $this->uri->segment(3);
     $data['title'] = 'Product History Report | Inventory App';
     $data['product'] = $this->Report->getProductByCode($code);
+    $data['totalOut'] = $this->Report->getTotalOutgoing($code)[0]['quantity'];
     $data['history']['outgoing'] = $this->Report->getOrderProductByCode($code);
     $data['history']['incoming'] = $this->Report->getAllPurchasesByCode($code);
 
@@ -80,14 +83,17 @@ class Reports extends CI_Controller
 
   public function test()
   {
-    $array = $this->Report->getAllProducts();
-    // print_r(json_encode($this->Report->getTotalOutgoing()));
+    // $array = $this->Report->getAllProducts();
+    // print_r($this->Report->getTotalOutgoing('P01')[0]['quantity']);
     // foreach ($array as $a) {
     //   $val += $a['quantity'];
     // }
     // $data['totalOutgoing'] = $val;
     // print_r($array);
-    print_r(json_encode($this->Report->getAllProducts()));
+    // print_r(json_encode($this->Report->getAllProducts()));
+    echo "<br>";
+    echo "<br>";
+    // var_dump($this->Report->getTotalExpanditure()[0]["expenditure"]);
   }
 
   public function usersLog()
