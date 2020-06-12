@@ -63,7 +63,7 @@ class Product extends CI_Model
         'activity' => 'Add product stock',
         'createdAt' => time()
       ];
-      $this->db->insert('users_activity', $users);
+      $this->db->insert('users_activities', $users);
     }
 
     $config['upload_path']          = './assets/images/product/';
@@ -107,7 +107,7 @@ class Product extends CI_Model
         'activity' => 'Add new product',
         'createdAt' => time()
       ];
-      $this->db->insert('users_activity', $users);
+      $this->db->insert('users_activities', $users);
     } else {
       echo $this->upload->display_errors();
     }
@@ -146,7 +146,7 @@ class Product extends CI_Model
         'activity' => 'Update product data',
         'createdAt' => time()
       ];
-      $this->db->insert('users_activity', $users);
+      $this->db->insert('users_activities', $users);
     } else {
       echo $this->upload->display_errors();
     }
@@ -192,7 +192,7 @@ class Product extends CI_Model
       'activity' => 'Add new category',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   public function getCategoryById($id)

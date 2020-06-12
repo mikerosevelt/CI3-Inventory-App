@@ -68,7 +68,7 @@ class Order extends CI_Model
       'activity' => 'Add new order',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Update an order status
@@ -93,6 +93,6 @@ class Order extends CI_Model
       'activity' => 'Delete an order include detail and invoice permanently',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 }

@@ -54,7 +54,7 @@
                   <th>Date Added</th>
                   <th>Added By</th>
                   <th>Incoming</th>
-                  <!-- <th>Outgoing</th> -->
+                  <th>Outgoing</th>
                   <th>Stock</th>
                   <th>Unit</th>
                 </thead>
@@ -64,6 +64,7 @@
                     <td><?= date('d F Y', $product['createdAt']) ?></td>
                     <td><?= $product['name'] ?></td>
                     <td><?= $product['incoming'] ?></td>
+                    <td><?= $totalOut ?></td>
                     <td><?= $product['qty_stock'] ?></td>
                     <td><?= $product['unit'] ?></td>
                   </tr>
@@ -103,10 +104,6 @@
                         <br><br>
                         Price per unit : <?= number_format($i['price']); ?><br>
                         Total price : <?= number_format($i['total_price']); ?><br>
-                        <br>
-                        laboriosam dolor perspiciatis omnis exercitationem. Beatae, officia
-                        pariatur? Est cum veniam excepturi. Maiores praesentium, porro
-                        voluptas suscipit facere rem dicta, debitis.
                       </p>
                     </div>
                   </div>

@@ -91,8 +91,8 @@ class Reports extends CI_Controller
     // $data['totalOutgoing'] = $val;
     // print_r($array);
     // print_r(json_encode($this->Report->getAllProducts()));
-    echo "<br>";
-    echo "<br>";
+    // echo "<br>";
+    // echo "<br>";
     // var_dump($this->Report->getTotalExpanditure()[0]["expenditure"]);
   }
 
