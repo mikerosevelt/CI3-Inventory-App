@@ -45,7 +45,7 @@
 
         <div class="card">
           <div class="card-body">
-            <form action="">
+            <form action="<?= base_url('reports/test') ?>" method="post">
               <!-- <div class="form-group row">
                 <label for="name" class="col-sm-2 col-form-label text-right">Customer Name</label>
                 <div class="col-sm-10">
@@ -64,11 +64,11 @@
               <div class="form-group row">
                 <label for="date" class="col-sm-2 col-form-label text-right">Date Start</label>
                 <div class="col-sm-3">
-                  <input type="date" class="form-control" id="date1" placeholder="">
+                  <input type="date" class="form-control" id="start" name="start" placeholder="">
                 </div>
                 <label for="date" class="col-sm-2 col-form-label text-right">Date End</label>
                 <div class="col-sm-3">
-                  <input type="date" class="form-control" id="date2" placeholder="">
+                  <input type="date" class="form-control" id="end" name="end" placeholder="">
                 </div>
               </div>
 
@@ -88,7 +88,6 @@
                 <thead>
                   <tr>
                     <th>Name</th>
-                    <!-- <th>Invoice #</th> -->
                     <th>Activity</th>
                     <th>Date</th>
                   </tr>

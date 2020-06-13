@@ -81,8 +81,34 @@ class Reports extends CI_Controller
     $this->load->view('templates/main/footer');
   }
 
+  // Generate report by date range
+  // date start - date end
+  public function generateReport()
+  {
+    $this->form_validation->set_rules('start', 'Start', 'trim|required');
+    $this->form_validation->set_rules('end', 'End', 'trim|required');
+
+    if ($this->form_validation->run() == false) {
+      echo $this->usersActivities();
+    } else {
+      $start = strtotime($this->input->post('start'));
+      $end = strtotime($this->input->post('end'));
+      $type = $this->input->post('type');
+      $result = $this->Report->getUsersActivitiesByDateRange($start, $end);
+      if ($result) {
+        var_dump($result);
+      } else {
+        echo "Data not found!";
+      }
+    }
+  }
+
   public function test()
   {
+
+    // var_dump($start);
+    // var_dump($end);
+    // die();
     // $array = $this->Report->getAllProducts();
     // print_r($this->Report->getTotalOutgoing('P01')[0]['quantity']);
     // foreach ($array as $a) {
@@ -94,6 +120,8 @@ class Reports extends CI_Controller
     // echo "<br>";
     // echo "<br>";
     // var_dump($this->Report->getTotalExpanditure()[0]["expenditure"]);
+    // var_dump();
+
   }
 
   public function usersActivities()
