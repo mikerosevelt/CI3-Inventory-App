@@ -70,17 +70,30 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <!-- <th>Invoice #</th> -->
-                    <th>Invoice #</th>
+                    <th>Transaction #</th>
                     <th>Total Amount</th>
                     <th class="text-center">Status</th>
-                    <th>Invoice Date</th>
                     <th>Paid Date</th>
-                    <th></th>
+                    <!-- <th></th> -->
                   </tr>
                 </thead>
                 <tbody>
-
+                  <?php
+                  $n = 1;
+                  foreach ($transactions as $t) :
+                  ?>
+                    <tr>
+                      <td><?= $n++; ?></td>
+                      <td><?= $t['id']; ?></td>
+                      <td><?= number_format($t['total_amount']); ?></td>
+                      <td class="text-center"><?= $t['status']; ?></td>
+                      <?php if ($t['paidAt']) : ?>
+                        <td><?= date('d F Y H:i:s', $t['paidAt']); ?></td>
+                      <?php else : ?>
+                        <td>-</td>
+                      <?php endif; ?>
+                    </tr>
+                  <?php endforeach; ?>
                 </tbody>
               </table>
             </div>

@@ -100,5 +100,15 @@ class Report extends CI_Model
     return $this->db->get()->result_array();
   }
 
+  // Get all transactions where status 'paid' and 'cancelled'
+  public function getAllTransactions()
+  {
+    $this->db->select('invoices.*');
+    $this->db->from('invoices');
+    $this->db->where('status', 'Paid');
+    $this->db->or_where('status', 'Cancelled');
+    return $this->db->get()->result_array();
+  }
+
   /** END OF REPORT MODEL */
 }

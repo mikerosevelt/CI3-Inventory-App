@@ -39,6 +39,10 @@ class Reports extends CI_Controller
     $data['income'] = $this->Report->getTotalIncome()[0]["income"];
     $data['expenditure'] = $this->Report->getTotalExpanditure()[0]["expenditure"];
 
+    $data['transactions'] = $this->Report->getAllTransactions();
+    // var_dump($data['transactions']);
+    // die();
+
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
     $this->load->view('templates/main/sidebar');

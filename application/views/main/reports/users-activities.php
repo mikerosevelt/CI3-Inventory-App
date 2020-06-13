@@ -97,7 +97,7 @@
                     <tr>
                       <td><?= $a['name']; ?></td>
                       <td><?= $a['activity']; ?></td>
-                      <td><?= date('d F Y h:i:s', $a['createdAt']); ?></td>
+                      <td><?= date('d F Y H:i:s', $a['createdAt']); ?></td>
                     </tr>
                   <?php endforeach; ?>
                 </tbody>
