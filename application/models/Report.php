@@ -77,5 +77,14 @@ class Report extends CI_Model
     return $this->db->get()->result_array();
   }
 
+  public function getAllUsersActivities()
+  {
+    $this->db->select('users.name, users_activities.*');
+    $this->db->from('users_activities');
+    $this->db->join('users', 'users.id = users_activities.user_id');
+    $this->db->order_by('users_activities.createdAt', 'desc');
+    return $this->db->get()->result_array();
+  }
+
   /** END OF REPORT MODEL */
 }

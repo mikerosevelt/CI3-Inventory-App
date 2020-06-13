@@ -96,15 +96,16 @@ class Reports extends CI_Controller
     // var_dump($this->Report->getTotalExpanditure()[0]["expenditure"]);
   }
 
-  public function usersLog()
+  public function usersActivities()
   {
     $data['title'] = 'Inventory Report | Inventory App';
     // $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $data['activities'] = $this->Report->getAllUsersActivities();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
     $this->load->view('templates/main/sidebar');
-    $this->load->view('main/reports/users-log', $data);
+    $this->load->view('main/reports/users-activities', $data);
     $this->load->view('templates/main/footer');
   }
 }

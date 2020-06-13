@@ -8,7 +8,7 @@
   <div class="page-breadcrumb">
     <div class="row">
       <div class="col-5 align-self-center">
-        <h4 class="page-title">Transactions Report</h4>
+        <h4 class="page-title">Users Activities</h4>
         <div class="d-flex align-items-center">
 
         </div>
@@ -23,7 +23,7 @@
               <li class="breadcrumb-item">
                 <a href="<?= base_url('reports') ?>">Reports</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">Transactions Report</li>
+              <li class="breadcrumb-item active" aria-current="page">Users Activities</li>
             </ol>
           </nav>
         </div>
@@ -79,19 +79,48 @@
           </div>
         </div>
         <!-- END of CARD -->
+
+        <!-- Card table -->
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="file_export" class="table table-striped table-bordered table-hover display">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <!-- <th>Invoice #</th> -->
+                    <th>Activity</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php foreach ($activities as $a) : ?>
+                    <tr>
+                      <td><?= $a['name']; ?></td>
+                      <td><?= $a['activity']; ?></td>
+                      <td><?= date('d F Y h:i:s', $a['createdAt']); ?></td>
+                    </tr>
+                  <?php endforeach; ?>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <!-- End of card table -->
       </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- End PAge Content -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- Right sidebar -->
-    <!-- ============================================================== -->
-    <!-- .right-sidebar -->
-    <!-- ============================================================== -->
-    <!-- End Right sidebar -->
-    <!-- ============================================================== -->
   </div>
   <!-- ============================================================== -->
-  <!-- End Container fluid  -->
+  <!-- End PAge Content -->
   <!-- ============================================================== -->
+  <!-- ============================================================== -->
+  <!-- Right sidebar -->
+  <!-- ============================================================== -->
+  <!-- .right-sidebar -->
+  <!-- ============================================================== -->
+  <!-- End Right sidebar -->
+  <!-- ============================================================== -->
+</div>
+<!-- ============================================================== -->
+<!-- End Container fluid  -->
+<!-- ============================================================== -->
