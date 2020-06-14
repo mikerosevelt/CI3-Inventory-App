@@ -45,30 +45,18 @@
 
         <div class="card">
           <div class="card-body">
-            <form action="<?= base_url('reports/test') ?>" method="post">
-              <!-- <div class="form-group row">
-                <label for="name" class="col-sm-2 col-form-label text-right">Customer Name</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" id="name" placeholder="Start Typing to Search Client">
-                </div>
-              </div> -->
-              <!-- <div class="form-group row">
-                <label for="filter" class="col-sm-2 col-form-label text-right">Filter By</label>
-                <div class="col-sm-2">
-                  <select name="filter" id="filter" class="form-control">
-                    <option>Date Created</option>
-                    <option>Customer Name</option>
-                  </select>
-                </div>
-              </div> -->
+            <form action="<?= base_url('reports/generatereport') ?>" method="post">
+              <input type="hidden" name="type" value="Activities">
               <div class="form-group row">
                 <label for="date" class="col-sm-2 col-form-label text-right">Date Start</label>
                 <div class="col-sm-3">
                   <input type="date" class="form-control" id="start" name="start" placeholder="">
+                  <?= form_error('start', '<small class="text-danger pl-1">', '</small>'); ?>
                 </div>
                 <label for="date" class="col-sm-2 col-form-label text-right">Date End</label>
                 <div class="col-sm-3">
                   <input type="date" class="form-control" id="end" name="end" placeholder="">
+                  <?= form_error('end', '<small class="text-danger pl-1">', '</small>'); ?>
                 </div>
               </div>
 

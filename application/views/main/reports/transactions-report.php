@@ -44,15 +44,18 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <form action="">
+            <form action="<?= base_url('reports/generatereport') ?>" method="post">
+              <input type="hidden" name="type" value="Transactions">
               <div class="form-group row">
                 <label for="date" class="col-sm-2 col-form-label text-right">Date Start</label>
                 <div class="col-sm-3">
-                  <input type="date" class="form-control" id="date1" placeholder="">
+                  <input type="date" class="form-control" id="start" name="start" placeholder="">
+                  <?= form_error('start', '<small class="text-danger pl-1">', '</small>'); ?>
                 </div>
                 <label for="date" class="col-sm-2 col-form-label text-right">Date End</label>
                 <div class="col-sm-3">
-                  <input type="date" class="form-control" id="date2" placeholder="">
+                  <input type="date" class="form-control" id="end" name="end" placeholder="">
+                  <?= form_error('end', '<small class="text-danger pl-1">', '</small>'); ?>
                 </div>
               </div>
 

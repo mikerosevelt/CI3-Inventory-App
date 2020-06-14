@@ -89,27 +89,29 @@ class Reports extends CI_Controller
   // date start - date end
   public function generateReport()
   {
-    $this->form_validation->set_rules('start', 'Start', 'trim|required');
-    $this->form_validation->set_rules('end', 'End', 'trim|required');
+    $this->form_validation->set_rules('start', 'Start date', 'trim|required');
+    $this->form_validation->set_rules('end', 'End date', 'trim|required');
 
     if ($this->form_validation->run() == false) {
-      echo $this->usersActivities();
+      if ($this->input->post('type') == 'Activities') {
+        echo $this->usersActivities();
+      } else if ($this->input->post('type') == 'Transactions') {
+        echo $this->transactions();
+      }
     } else {
       $start = strtotime($this->input->post('start'));
       $end = strtotime($this->input->post('end'));
-      $type = $this->input->post('type');
-      $result = $this->Report->getUsersActivitiesByDateRange($start, $end);
+      $result = $this->Report->getReportByDateRange($start, $end);
       if ($result) {
         var_dump($result);
       } else {
-        echo "Data not found!";
+        echo "Record not found!";
       }
     }
   }
 
   public function test()
   {
-
     // var_dump($start);
     // var_dump($end);
     // die();

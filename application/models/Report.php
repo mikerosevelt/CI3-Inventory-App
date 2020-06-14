@@ -27,6 +27,7 @@ class Report extends CI_Model
     return $this->db->get()->result_array();
   }
 
+  // Get single product by code
   public function getProductByCode($code)
   {
     $this->db->select('products.*, users.name');
@@ -88,16 +89,29 @@ class Report extends CI_Model
   }
 
   // Get users activities by specific date range
-  public function getUsersActivitiesByDateRange($start, $end)
+  public function getReportByDateRange($start, $end)
   {
-    $where = "users_activities.createdAt BETWEEN " . $start . " AND " . $end;
+    $type = $this->input->post('type');
 
-    $this->db->select('users.name, users_activities.*');
-    $this->db->from('users_activities');
-    $this->db->join('users', 'users.id = users_activities.user_id');
-    $this->db->where($where);
-    $this->db->order_by('users_activities.createdAt', 'desc');
-    return $this->db->get()->result_array();
+    if ($type == 'Activities') {
+      $where = "users_activities.createdAt BETWEEN " . $start . " AND " . $end;
+      $this->db->select('users.name, users_activities.*');
+      $this->db->from('users_activities');
+      $this->db->join('users', 'users.id = users_activities.user_id');
+      $this->db->where($where);
+      $this->db->order_by('users_activities.createdAt', 'desc');
+      return $this->db->get()->result_array();
+    } else if ($type == 'Transactions') {
+      $where = "invoices.createdAt BETWEEN " . $start . " AND " . $end;
+      $this->db->select('invoices.*');
+      $this->db->from('invoices');
+      $this->db->where($where);
+      $this->db->where('status', 'Paid');
+      $this->db->or_where('status', 'Cancelled');
+      return $this->db->get()->result_array();
+    } else {
+      redirect('reports');
+    }
   }
 
   // Get all transactions where status 'paid' and 'cancelled'

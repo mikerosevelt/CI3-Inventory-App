@@ -23,6 +23,15 @@ class Supplier extends CI_Model
       'createdAt' => time()
     ];
     $this->db->insert('suppliers', $data);
+
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Add new supplier',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   public function getSupplierById($id)
@@ -44,12 +53,31 @@ class Supplier extends CI_Model
     $this->db->set('updatedAt', time());
     $this->db->where('id', $id);
     $this->db->update('suppliers');
+
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Update supplier data',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
+  // Soft delete supplier
   public function deleteSupplier($id)
   {
     $this->db->set('deletedAt', time());
     $this->db->where('id', $id);
     $this->db->update('suppliers');
+
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Soft delete supplier',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 }

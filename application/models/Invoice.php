@@ -42,6 +42,7 @@ class Invoice extends CI_Model
     $this->db->set('updatedAt', time());
     $this->db->where('id', $id);
     $this->db->update('invoices');
+    // Insert user activity
     $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
     $users = [
       'user_id' => $userData['id'],

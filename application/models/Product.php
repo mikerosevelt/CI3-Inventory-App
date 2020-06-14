@@ -152,22 +152,40 @@ class Product extends CI_Model
     }
   }
 
+  // Soft delete product
   public function softDeleteProduct($id)
   {
     $this->db->set('deletedAt', time());
     $this->db->where('id', $id);
     $this->db->update('products');
+
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Soft delete product',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
+  // Delete product permanently
   public function deleteProduct($id)
   {
     $this->db->where('id', $id);
     $this->db->delete('products');
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Delete product permanently',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
-  /**
-   * Categories functions
-   */
+
+  // Categories functions
   public function getAllCategories()
   {
     $this->db->select('users.id, users.name, categories.*');
@@ -176,6 +194,7 @@ class Product extends CI_Model
     return $this->db->get()->result_array();
   }
 
+  // Add category
   public function addCategory($id)
   {
     $data = [
@@ -200,6 +219,7 @@ class Product extends CI_Model
     return $this->db->get_where('categories', ['id' => $id])->row_array();
   }
 
+  // Update category
   public function updateCategory($id)
   {
     $this->db->set('category', $this->input->post('category'));
@@ -207,6 +227,15 @@ class Product extends CI_Model
     $this->db->set('updatedAt', time());
     $this->db->where('id', $id);
     $this->db->update('categories');
+
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Update category',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 
   // Soft delete category
@@ -215,5 +244,14 @@ class Product extends CI_Model
     $this->db->set('deletedAt', time());
     $this->db->where('id', $id);
     $this->db->update('categories');
+
+    // Insert user activity
+    $userData = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+    $users = [
+      'user_id' => $userData['id'],
+      'activity' => 'Soft delete category',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activity', $users);
   }
 }
