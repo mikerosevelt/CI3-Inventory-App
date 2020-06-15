@@ -28,27 +28,29 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
           <i class="mdi mdi-dots-horizontal"></i>
           <span class="hide-menu">Menu</span>
         </li>
-        <!-- MANAGE USERS -->
-        <li class="sidebar-item">
-          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-            <i class="mdi mdi-account-edit"></i>
-            <span class="hide-menu">Manage Users </span>
-          </a>
-          <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item">
-              <a href="<?= base_url('users') ?>" class="sidebar-link">
-                <i class="mdi mdi-users"></i>
-                <span class="hide-menu"> View All Users </span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?= base_url('users/create') ?>" class="sidebar-link">
-                <i class="mdi mdi-account-plus"></i>
-                <span class="hide-menu"> Add New User </span>
-              </a>
-            </li>
-          </ul>
-        </li>
+        <?php if ($user['role_id'] == 1) : ?>
+          <!-- MANAGE USERS -->
+          <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+              <i class="mdi mdi-account-edit"></i>
+              <span class="hide-menu">Manage Users </span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+              <li class="sidebar-item">
+                <a href="<?= base_url('users') ?>" class="sidebar-link">
+                  <i class="mdi mdi-users"></i>
+                  <span class="hide-menu"> View All Users </span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="<?= base_url('users/create') ?>" class="sidebar-link">
+                  <i class="mdi mdi-account-plus"></i>
+                  <span class="hide-menu"> Add New User </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        <?php endif; ?>
 
         <!-- MANAGE INVENTORY -->
         <li class="sidebar-item">
@@ -196,28 +198,30 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
             </li>
           </ul>
         </li>
-
         <!-- SETTINGS -->
-        <li class="sidebar-item">
-          <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
-            <i class="mdi mdi-settings"></i>
-            <span class="hide-menu">Settings </span>
-          </a>
-          <ul aria-expanded="false" class="collapse  first-level">
-            <li class="sidebar-item">
-              <a href="inbox-email.html" class="sidebar-link">
-                <i class="mdi mdi-email"></i>
-                <span class="hide-menu"> API Setting </span>
-              </a>
-            </li>
-            <li class="sidebar-item">
-              <a href="<?= base_url('settings/backup') ?>" class="sidebar-link">
-                <i class="mdi mdi-email"></i>
-                <span class="hide-menu"> Backup Database </span>
-              </a>
-            </li>
-          </ul>
-        </li>
+        <?php if ($user['role_id'] == 1) : ?>
+          <li class="sidebar-item">
+            <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+              <i class="mdi mdi-settings"></i>
+              <span class="hide-menu">Settings </span>
+            </a>
+            <ul aria-expanded="false" class="collapse  first-level">
+              <li class="sidebar-item">
+                <a href="inbox-email.html" class="sidebar-link">
+                  <i class="mdi mdi-email"></i>
+                  <span class="hide-menu"> API Setting </span>
+                </a>
+              </li>
+              <li class="sidebar-item">
+                <a href="<?= base_url('settings/backup') ?>" class="sidebar-link">
+                  <i class="mdi mdi-email"></i>
+                  <span class="hide-menu"> Backup Database </span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        <?php endif; ?>
+
         <li class="sidebar-item">
           <a class="sidebar-link waves-effect waves-dark sidebar-link" href="<?= base_url('auth/logout') ?>">
             <i class="mdi mdi-directions"></i>

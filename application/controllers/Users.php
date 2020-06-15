@@ -158,4 +158,76 @@ class Users extends CI_Controller
     $this->load->view('main/users/profile', $data);
     $this->load->view('templates/main/footer');
   }
+
+  // Update logged in user detail
+  public function updateProfile()
+  {
+    $this->form_validation->set_rules('name', 'Name', 'trim|required');
+    $this->form_validation->set_rules('email', 'email', 'trim|required|valid_email');
+    $this->form_validation->set_rules('phone', 'phone', 'trim|required');
+    $this->form_validation->set_rules('address', 'address', 'trim|required|max_length[100]');
+    $this->form_validation->set_rules('city', 'city', 'trim|required');
+    $this->form_validation->set_rules('state', 'state', 'trim|required');
+    $this->form_validation->set_rules('postcode', 'postcode', 'trim|required');
+    $this->form_validation->set_rules('country', 'country', 'trim|required');
+
+    if ($this->form_validation->run() == false) {
+      echo $this->profile();
+    } else {
+      $this->User->updateUserProfile();
+      $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Your profil has been updated!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+      redirect('users/profile');
+    }
+  }
+
+  // Update logged in user password
+  public function updatePassword()
+  {
+    $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata('email')])->row_array();
+
+    $this->form_validation->set_rules('current', 'Current Password', 'trim|required');
+    $this->form_validation->set_rules('password', 'New Password', 'required|trim|min_length[5]', [
+      'min_length' => 'Password is too short'
+    ]);
+    $this->form_validation->set_rules('password2', 'Repeat Password', 'required|trim|min_length[5]|matches[password]', [
+      'matches' => 'Password do not match',
+    ]);
+
+    if ($this->form_validation->run() == false) {
+      echo $this->profile();
+    } else {
+      $current_password = $this->input->post('current');
+      $new_password = $this->input->post('password');
+
+      if (!password_verify($current_password, $data['user']['password'])) {
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">Wrong current password!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('users/profile');
+      } else {
+        if ($current_password == $new_password) {
+          $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">New password cannot be the same as current password!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+          redirect('users/profile');
+        } else {
+          $this->User->updateUserPassword();
+          $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">Your password has been updated!
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+          redirect('users/profile');
+        }
+      }
+    }
+  }
 }

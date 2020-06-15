@@ -104,4 +104,42 @@ class User extends CI_Model
   {
     return $this->db->get_where('users_activities', ['user_id' => $id])->result_array();
   }
+
+  // Update user profle data
+  public function updateUserProfile()
+  {
+    $id = $this->input->post('id');
+    $name = $this->input->post('name');
+    $email = $this->input->post('email');
+    $phone = $this->input->post('phone');
+    $address = $this->input->post('address');
+    $city = $this->input->post('city');
+    $state = $this->input->post('state');
+    $postcode = $this->input->post('postcode');
+    $country = $this->input->post('country');
+
+    $this->db->set('name', $name);
+    $this->db->set('email', $email);
+    $this->db->set('phone', $phone);
+    $this->db->set('address', $address);
+    $this->db->set('city', $city);
+    $this->db->set('state', $state);
+    $this->db->set('postcode', $postcode);
+    $this->db->set('country', $country);
+    $this->db->set('updatedAt', time());
+    $this->db->where('id', $id);
+    $this->db->update('users');
+  }
+
+  // update user password
+  public function updateUserPassword()
+  {
+    $id = $this->input->post('id');
+    $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+
+    $this->db->set('password', $password);
+    $this->db->set('updatedAt', time());
+    $this->db->where('id', $id);
+    $this->db->update('users');
+  }
 }

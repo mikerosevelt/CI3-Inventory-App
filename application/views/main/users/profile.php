@@ -38,6 +38,7 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     <!-- Row -->
+    <?= $this->session->flashdata('message') ?>
     <div class="row">
       <!-- Column -->
       <div class="col-lg-4 col-xlg-3 col-md-5">
@@ -125,84 +126,49 @@
             </div>
             <div class="tab-pane fade" id="last-month" role="tabpanel" aria-labelledby="pills-profile-tab">
               <div class="card-body">
-                <div class="row">
-                  <div class="col-md-3 col-xs-6 b-r"> <strong>Full Name</strong>
-                    <br>
-                    <p class="text-muted"><?= $user['name']; ?></p>
-                  </div>
-                  <div class="col-md-3 col-xs-6 b-r"> <strong>Mobile</strong>
-                    <br>
-                    <p class="text-muted"><?= $user['phone']; ?></p>
-                  </div>
-                  <div class="col-md-3 col-xs-6 b-r"> <strong>Email</strong>
-                    <br>
-                    <p class="text-muted"><?= $user['email']; ?></p>
-                  </div>
-                  <div class="col-md-3 col-xs-6"> <strong>Location</strong>
-                    <br>
-                    <p class="text-muted"><?= $user['country']; ?></p>
-                  </div>
-                </div>
-                <hr>
-                <p class="m-t-30">Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui numquam aliquam dolor inventore similique quae distinctio facere tempora eum consequuntur alias assumenda, quam odit consequatur quasi commodi, quod nobis perferendis!</p>
-                <h4 class="font-medium m-t-30">Skill Set</h4>
-                <hr>
-                <h5 class="m-t-30">Wordpress <span class="pull-right">80%</span></h5>
-                <div class="progress">
-                  <div class="progress-bar bg-success" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width:80%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                </div>
-                <h5 class="m-t-30">HTML 5 <span class="pull-right">90%</span></h5>
-                <div class="progress">
-                  <div class="progress-bar bg-info" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width:90%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                </div>
-                <h5 class="m-t-30">jQuery <span class="pull-right">50%</span></h5>
-                <div class="progress">
-                  <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                </div>
-                <h5 class="m-t-30">Photoshop <span class="pull-right">70%</span></h5>
-                <div class="progress">
-                  <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:70%; height:6px;"> <span class="sr-only">50% Complete</span> </div>
-                </div>
-              </div>
-            </div>
-            <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
-              <div class="card-body">
-                <form class="form-horizontal form-material">
+                <form class="form-horizontal form-material" action="<?= base_url('users/updateProfile') ?>" method="POST">
+                  <input type="hidden" name="id" value="<?= $user['id']; ?>">
                   <div class="form-group">
                     <label class="col-md-12">Full Name</label>
                     <div class="col-md-12">
-                      <input type="text" placeholder="<?= $user['name']; ?>" class="form-control form-control-line">
+                      <input type="text" name="name" value="<?= $user['name']; ?>" class="form-control form-control-line">
+                      <?= form_error('name', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="example-email" class="col-md-12">Email</label>
                     <div class="col-md-12">
-                      <input type="email" placeholder="<?= $user['email']; ?>" class="form-control form-control-line" name="example-email" id="example-email">
+                      <input type="email" name="email" value="<?= $user['email']; ?>" class="form-control form-control-line" name="example-email" id="example-email">
+                      <?= form_error('email', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-md-12">Phone No</label>
                     <div class="col-md-12">
-                      <input type="text" placeholder="<?= $user['phone']; ?>" class="form-control form-control-line">
+                      <input type="text" name="phone" value="<?= $user['phone']; ?>" class="form-control form-control-line">
+                      <?= form_error('phone', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                   </div>
                   <div class="form-group">
                     <label class="col-md-12">Address</label>
                     <div class="col-md-12">
-                      <input type="text" placeholder="<?= $user['address']; ?>" class="form-control form-control-line">
+                      <input type="text" name="address" value="<?= $user['address']; ?>" class="form-control form-control-line">
+                      <?= form_error('address', '<small class="text-danger pl-1">', '</small>'); ?>
                     </div>
                   </div>
                   <div class="form-group row">
                     <div class="col-md-6">
                       <label class="col-md">City</label>
                       <div class="col-md">
-                        <input type="text" placeholder="<?= $user['city']; ?>" class="form-control form-control-line">
+                        <input type="text" name="city" value="<?= $user['city']; ?>" class="form-control form-control-line">
+                        <?= form_error('city', '<small class="text-danger pl-1">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <label class="col-md">State</label>
                       <div class="col-md">
-                        <input type="text" placeholder="<?= $user['state']; ?>" class="form-control form-control-line">
+                        <input type="text" name="state" value="<?= $user['state']; ?>" class="form-control form-control-line">
+                        <?= form_error('state', '<small class="text-danger pl-1">', '</small>'); ?>
                       </div>
                     </div>
                   </div>
@@ -210,19 +176,63 @@
                     <div class="col-md-6">
                       <label class="col-md">Post Code</label>
                       <div class="col-md">
-                        <input type="text" placeholder="<?= $user['postcode']; ?>" class="form-control form-control-line">
+                        <input type="text" name="postcode" value="<?= $user['postcode']; ?>" class="form-control form-control-line">
+                        <?= form_error('postcode', '<small class="text-danger pl-1">', '</small>'); ?>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <label class="col-md">Country</label>
                       <div class="col-md">
-                        <input type="text" placeholder="<?= $user['country']; ?>" class="form-control form-control-line">
+                        <input type="text" name="country" value="<?= $user['country']; ?>" class="form-control form-control-line">
+                        <?= form_error('country', '<small class="text-danger pl-1">', '</small>'); ?>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <div class="col-sm-12">
                       <button type="submit" class="btn btn-success">Update Profile</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="tab-pane fade" id="previous-month" role="tabpanel" aria-labelledby="pills-setting-tab">
+              <div class="card-body">
+                <div class="h4 card-title mb-3 text-center">Notification</div>
+                <p>You will get notification on your email.</p>
+                <div class="form-group">
+                  <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="checkbox1" value="check">
+                    <label class="custom-control-label" for="checkbox1">Notification</label>
+                  </div>
+                </div>
+                <hr>
+                <div class="h4 card-title mb-3 text-center">Change Password</div>
+                <form class="form-horizontal form-material" action="<?= base_url('users/updatePassword') ?>" method="POST">
+                  <input type="hidden" name="id" value="<?= $user['id']; ?>">
+                  <div class="form-group">
+                    <label class="col-md-12">Current Password</label>
+                    <div class="col-md-12">
+                      <input type="password" name="current" class="form-control form-control-line">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="example-email" class="col-md-12">New Password</label>
+                    <div class="col-md-12">
+                      <input type="password" class="form-control form-control-line" name="password">
+                      <?= form_error('password', '<small class="text-danger pl-1">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-md-12">Repeat Password</label>
+                    <div class="col-md-12">
+                      <input type="password" name="password2" class="form-control form-control-line">
+                      <?= form_error('password2', '<small class="text-danger pl-1">', '</small>'); ?>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-sm-12">
+                      <button type="submit" class="btn btn-success">Update Password</button>
                     </div>
                   </div>
                 </form>

@@ -84,7 +84,7 @@ class Report extends CI_Model
     $this->db->select('users.name, users_activities.*');
     $this->db->from('users_activities');
     $this->db->join('users', 'users.id = users_activities.user_id');
-    $this->db->order_by('users_activities.createdAt', 'desc');
+    $this->db->order_by('users_activities.createdAt', 'DESC');
     return $this->db->get()->result_array();
   }
 
@@ -99,7 +99,7 @@ class Report extends CI_Model
       $this->db->from('users_activities');
       $this->db->join('users', 'users.id = users_activities.user_id');
       $this->db->where($where);
-      $this->db->order_by('users_activities.createdAt', 'desc');
+      $this->db->order_by('users_activities.createdAt', 'DESC');
       return $this->db->get()->result_array();
     } else if ($type == 'Transactions') {
       $where = "invoices.createdAt BETWEEN " . $start . " AND " . $end;
