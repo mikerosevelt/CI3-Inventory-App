@@ -52,6 +52,16 @@ class User extends CI_Model
     return $this->db->get()->row_array();
   }
 
+  // Get a user profile by email
+  public function getUserProfile()
+  {
+    $this->db->select('user_role.*, users.id, users.name, users.email, users.dob, users.phone, users.address, users.city, users.state, users.postcode, users.country, users.role_id, users.createdAt, users.deletedAt, users.updatedAt');
+    $this->db->from('users');
+    $this->db->join('user_role', 'users.role_id = user_role.id');
+    $this->db->where('users.email', $this->session->userdata('email'));
+    return $this->db->get()->row_array();
+  }
+
   // Get user logs by user id
   public function getUserLog($id)
   {
@@ -87,5 +97,11 @@ class User extends CI_Model
     $this->db->from('user_logs');
     $this->db->join('users', 'users.id = user_logs.user_id');
     return $this->db->get()->result_array();
+  }
+
+  // Get user activity
+  public function getUserActivities($id)
+  {
+    return $this->db->get_where('users_activities', ['user_id' => $id])->result_array();
   }
 }

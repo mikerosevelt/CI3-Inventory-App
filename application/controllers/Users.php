@@ -103,6 +103,7 @@ class Users extends CI_Controller
 
   /**
    * @desc Update user data
+   * @param /user_id
    */
   public function update()
   {
@@ -140,5 +141,21 @@ class Users extends CI_Controller
         </div>');
       redirect('users');
     }
+  }
+
+  // User profile page
+  public function profile()
+  {
+    $data['title'] = 'My Profile | Inventory App';
+
+    $data['user'] = $this->User->getUserProfile();
+    $data['log'] = $this->User->getUserLog($data['user']['id']);
+    $data['activities'] = $this->User->getUserActivities($data['user']['id']);
+
+    $this->load->view('templates/main/header', $data);
+    $this->load->view('templates/main/topbar');
+    $this->load->view('templates/main/sidebar');
+    $this->load->view('main/users/profile', $data);
+    $this->load->view('templates/main/footer');
   }
 }

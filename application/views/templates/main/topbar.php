@@ -218,7 +218,7 @@ $user = $this->db->get_where('users', ['email' => $this->session->userdata('emai
             <p class=" m-b-0"><?= $user['email'] ?></p>
           </div>
         </div>
-        <a class="dropdown-item" href="javascript:void(0)">
+        <a class="dropdown-item" href="<?= base_url('users/profile') ?>">
           <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
         <a class="dropdown-item" href="javascript:void(0)">
           <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
