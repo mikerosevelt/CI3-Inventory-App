@@ -41,6 +41,7 @@
     <!-- Start Page Content -->
     <!-- ============================================================== -->
     <!-- Row -->
+    <?= $this->session->flashdata('message') ?>
     <div class="row">
       <!-- Column -->
       <div class="col-lg-4 col-xlg-3 col-md-5">

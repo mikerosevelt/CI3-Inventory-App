@@ -29,7 +29,7 @@ class User extends CI_Model
       'activity' => 'Created new user',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Get all users

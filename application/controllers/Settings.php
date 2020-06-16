@@ -13,6 +13,13 @@ class Settings extends CI_Controller
       redirect('auth');
     }
 
+    // Check user role
+    $data['user'] = $this->db->get_where('users', ['email' => $this->session->userdata['email']])->row_array();
+    if ($data['user']['role_id'] != 1) {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">You are not authorized!</div>');
+      redirect('dashboard');
+    }
+
     // $this->load->model('Order');
   }
 
