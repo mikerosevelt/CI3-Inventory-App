@@ -6,6 +6,13 @@ class Users extends CI_Controller
   public function __construct()
   {
     parent::__construct();
+
+    // Check User session
+    if (!$this->session->userdata['email']) {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Please login!</div>');
+      redirect('auth');
+    }
+
     $this->load->model('User');
   }
 

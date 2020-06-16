@@ -9,10 +9,10 @@ class Dashboard extends CI_Controller
     $this->load->model('User');
 
     // Check User session
-    // if (!$this->session->userdata['email']) {
-    //   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Please login!</div>');
-    //   redirect('auth');
-    // }
+    if (!$this->session->userdata['email']) {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Please login!</div>');
+      redirect('auth');
+    }
   }
 
   public function index()

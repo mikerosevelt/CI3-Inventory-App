@@ -9,10 +9,10 @@ class Reports extends CI_Controller
     $this->load->model('Report');
 
     // Check User session
-    // if (!$this->session->userdata['email']) {
-    //   $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Please login!</div>');
-    //   redirect('auth');
-    // }
+    if (!$this->session->userdata['email']) {
+      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Please login!</div>');
+      redirect('auth');
+    }
   }
 
   /**
@@ -103,9 +103,15 @@ class Reports extends CI_Controller
       $end = strtotime($this->input->post('end'));
       $result = $this->Report->getReportByDateRange($start, $end);
       if ($result) {
-        var_dump($result);
+        echo json_encode($result);
       } else {
-        echo "Record not found!";
+        $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Record not found.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+          </div>');
+        redirect('reports');
       }
     }
   }
