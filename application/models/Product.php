@@ -166,7 +166,7 @@ class Product extends CI_Model
       'activity' => 'Soft delete product',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Delete product permanently
@@ -181,9 +181,8 @@ class Product extends CI_Model
       'activity' => 'Delete product permanently',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
-
 
   // Categories functions
   public function getAllCategories()
@@ -235,7 +234,7 @@ class Product extends CI_Model
       'activity' => 'Update category',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Soft delete category
@@ -252,6 +251,6 @@ class Product extends CI_Model
       'activity' => 'Soft delete category',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 }
