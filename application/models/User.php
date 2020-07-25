@@ -87,7 +87,7 @@ class User extends CI_Model
       'activity' => 'Deleted a user not permanently',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Get all user logs

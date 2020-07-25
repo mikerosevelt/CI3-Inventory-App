@@ -49,7 +49,7 @@ class Invoice extends CI_Model
       'activity' => 'Update invoice status',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Update invoice notes
@@ -66,7 +66,7 @@ class Invoice extends CI_Model
       'activity' => 'Update invoice notes',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Delete an Invoice

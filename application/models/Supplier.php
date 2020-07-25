@@ -31,7 +31,7 @@ class Supplier extends CI_Model
       'activity' => 'Add new supplier',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   public function getSupplierById($id)
@@ -61,7 +61,7 @@ class Supplier extends CI_Model
       'activity' => 'Update supplier data',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 
   // Soft delete supplier
@@ -78,6 +78,6 @@ class Supplier extends CI_Model
       'activity' => 'Soft delete supplier',
       'createdAt' => time()
     ];
-    $this->db->insert('users_activity', $users);
+    $this->db->insert('users_activities', $users);
   }
 }
