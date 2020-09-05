@@ -169,7 +169,7 @@
                     </div>
                   </div>
                   <div class="btn btn-info waves-effect waves-light"><span>Upload Anonther Image</span>
-                    <input type="file" class="upload" name="image" id="image" required>
+                    <input type="file" class="upload" name="image" id="image">
                   </div>
                 </div>
               </div>

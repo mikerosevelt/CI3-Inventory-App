@@ -127,29 +127,32 @@ class Product extends CI_Model
       if ($data['products']['image'] != 'default.png') {
         unlink(FCPATH . '/assets/images/product/' . $data['products']['image']);
       }
-      $this->db->set('user_id', $this->input->post('employeeId', true));
-      $this->db->set('supplier_id', $this->input->post('supplier', true));
-      $this->db->set('product_code', $this->input->post('code', true));
-      $this->db->set('product_name', $this->input->post('name', true));
-      $this->db->set('image', $this->upload->data('file_name'));
-      $this->db->set('price', $this->input->post('price', true));
-      $this->db->set('description', $this->input->post('description', true));
-      $this->db->set('qty_stock', $this->input->post('stock', true));
-      $this->db->set('unit', $this->input->post('unit', true));
-      $this->db->set('category_id', $this->input->post('category', true));
-      $this->db->set('updatedAt', time());
-      $this->db->where('id', $id);
-      $this->db->update('products');
-
-      $users = [
-        'user_id' => $this->input->post('employeeId', true),
-        'activity' => 'Update product data',
-        'createdAt' => time()
-      ];
-      $this->db->insert('users_activities', $users);
+      $fileName = $this->upload->data('file_name');
     } else {
       echo $this->upload->display_errors();
+      $fileName = $data['products']['image'];
     }
+
+    $this->db->set('user_id', $this->input->post('employeeId', true));
+    $this->db->set('supplier_id', $this->input->post('supplier', true));
+    $this->db->set('product_code', $this->input->post('code', true));
+    $this->db->set('product_name', $this->input->post('name', true));
+    $this->db->set('image', $fileName);
+    $this->db->set('price', $this->input->post('price', true));
+    $this->db->set('description', $this->input->post('description', true));
+    $this->db->set('qty_stock', $this->input->post('stock', true));
+    $this->db->set('unit', $this->input->post('unit', true));
+    $this->db->set('category_id', $this->input->post('category', true));
+    $this->db->set('updatedAt', time());
+    $this->db->where('id', $id);
+    $this->db->update('products');
+
+    $users = [
+      'user_id' => $this->input->post('employeeId', true),
+      'activity' => 'Update product data',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activities', $users);
   }
 
   // Soft delete product
