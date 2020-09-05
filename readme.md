@@ -1,1 +1,1 @@
-Inventory App
+## Codeigniter 3 Inventory App
