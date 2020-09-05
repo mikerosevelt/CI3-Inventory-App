@@ -102,6 +102,7 @@ class Reports extends CI_Controller
       $result = $this->Report->getReportByDateRange($start, $end);
       if ($result) {
         $this->load->library('table');
+        echo 'Date: ' . $this->input->post('start') . ' - ' . $this->input->post('end');
         echo $this->table->generate($result);
       } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">

@@ -72,45 +72,48 @@ class Product extends CI_Model
 
     $this->upload->initialize($config);
     if ($this->upload->do_upload('image')) {
-      $product = [
-        'user_id' => $employeeId,
-        'supplier_id' => $supplier,
-        'product_code' => $code,
-        'product_name' => $productName,
-        'image' => $this->upload->data('file_name'),
-        'price' => $price,
-        'description' => $this->input->post('description', true),
-        'qty_stock' => $qty,
-        'incoming' => $qty,
-        'unit' => $unit,
-        'category_id' => $this->input->post('category', true),
-        'createdAt' => time()
-      ];
-
-      $this->db->insert('products', $product);
-
-      $purchase = [
-        'user_id' => $employeeId,
-        'supplier_id' => $supplier,
-        'product_code' => $code,
-        'product' => $productName,
-        'price' => $price,
-        'qty' => $qty,
-        'unit' => $unit,
-        'total_price' => $totalPrice,
-        'createdAt' => time()
-      ];
-      $this->db->insert('purchases', $purchase);
-
-      $users = [
-        'user_id' => $employeeId,
-        'activity' => 'Add new product',
-        'createdAt' => time()
-      ];
-      $this->db->insert('users_activities', $users);
+      $fileName = $this->upload->data('file_name');
     } else {
       echo $this->upload->display_errors();
+      $fileName = 'nopic.png';
     }
+
+    $product = [
+      'user_id' => $employeeId,
+      'supplier_id' => $supplier,
+      'product_code' => $code,
+      'product_name' => $productName,
+      'image' => $fileName,
+      'price' => $price,
+      'description' => $this->input->post('description', true),
+      'qty_stock' => $qty,
+      'incoming' => $qty,
+      'unit' => $unit,
+      'category_id' => $this->input->post('category', true),
+      'createdAt' => time()
+    ];
+
+    $this->db->insert('products', $product);
+
+    $purchase = [
+      'user_id' => $employeeId,
+      'supplier_id' => $supplier,
+      'product_code' => $code,
+      'product' => $productName,
+      'price' => $price,
+      'qty' => $qty,
+      'unit' => $unit,
+      'total_price' => $totalPrice,
+      'createdAt' => time()
+    ];
+    $this->db->insert('purchases', $purchase);
+
+    $users = [
+      'user_id' => $employeeId,
+      'activity' => 'Add new product',
+      'createdAt' => time()
+    ];
+    $this->db->insert('users_activities', $users);
   }
 
   public function updateDataProduct()

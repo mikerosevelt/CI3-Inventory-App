@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 16, 2020 at 08:56 AM
+-- Generation Time: Sep 05, 2020 at 10:29 AM
 -- Server version: 5.7.24
 -- PHP Version: 7.2.14
 
@@ -98,12 +98,7 @@ CREATE TABLE `invoices` (
 --
 
 INSERT INTO `invoices` (`id`, `order_id`, `total_amount`, `status`, `notes`, `paidAt`, `createdAt`, `deletedAt`, `updatedAt`) VALUES
-(7, 9, 50000, 'Paid', NULL, 1591880536, 1591772918, NULL, 1591880536),
-(8, 10, 30000, 'Paid', NULL, 1591954009, 1591794656, NULL, 1591954009),
-(10, 12, 75000, 'Paid', NULL, 1592070225, 1591964522, NULL, 1592070225),
-(11, 13, 75000, 'Paid', NULL, 1592070238, 1591965012, NULL, 1592070238),
-(12, 14, 70000, 'Unpaid', NULL, NULL, 1592232598, NULL, NULL),
-(13, 15, 155000, 'Paid', NULL, 1592295996, 1592295947, NULL, 1592295996);
+(1, 1, 6000000, 'Paid', NULL, 1599300987, 1599300951, NULL, 1599300987);
 
 -- --------------------------------------------------------
 
@@ -131,12 +126,7 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `customer_name`, `customer_phone`, `customer_email`, `customer_address`, `total_item`, `total_price`, `status`, `createdAt`, `deletedAt`, `updatedAt`) VALUES
-(9, 1, 'Meidhy Kismawan', '08123075819', 'test@test.com', 'jl.dukuh v gg.h,tabah no.44|jakarta timur|CA|13550|Indonesia', 1, 50000, 'Success', 1591772918, 0, 1591880536),
-(10, 1, 'Betsy Hosler', '2054758010', 'test@test.com', '79 E Emerson St|Los Angeles|California|90012|USA', 1, 30000, 'Success', 1591794656, 0, 1591954009),
-(12, 1, 'John Doe', '12054758010', 'johndoe@employee.com', '155 Silicon Valley Dr|San Jose|CA|90050|USA', 1, 75000, 'Success', 1591964522, 0, 1592070225),
-(13, 1, 'Mark Sanders', '2627517301', 'mark@email.com', '08 Oxford Rd|WAUKESHA|Wisconsin|53186|USA', 2, 75000, 'Success', 1591965012, 0, 1592070238),
-(14, 3, 'Meidhy Krismawan', '6035542213', 'test@test.com', '1365 Park Ave|Los Angles|California|90012|USA', 2, 70000, 'Processing', 1592232598, 0, 0),
-(15, 1, 'Betsy Hosler', '2054758010', 'test@test.com', '79 E Emerson St|Los Angeles|California|90012|USA', 3, 155000, 'Success', 1592295947, 0, 1592295996);
+(1, 1, 'Lorem Ipsum', '123456789', 'loremipsum@example.com', '136 Park avenue|Los Angles|CA|90015|USA', 1, 6000000, 'Success', 1599300951, 0, 1599300987);
 
 -- --------------------------------------------------------
 
@@ -160,17 +150,7 @@ CREATE TABLE `orders_detail` (
 --
 
 INSERT INTO `orders_detail` (`id`, `order_id`, `product_code`, `product_name`, `price`, `quantity`, `unit`, `subtotal`) VALUES
-(9, 9, 'P01', 'Product 1', 10000, 5, 'Box', 50000),
-(10, 10, 'P01', 'Product 1', 10000, 3, 'Box', 30000),
-(11, 11, 'P02', 'Product 2', 15000, 5, 'Pcs', 75000),
-(12, 12, 'P02', 'Product 2', 15000, 5, 'Pcs', 75000),
-(13, 13, 'P01', 'Product 1', 10000, 3, 'Box', 30000),
-(14, 13, 'P02', 'Product 2', 15000, 3, 'Pcs', 45000),
-(15, 14, 'P01', 'Product 1', 10000, 4, 'Box', 40000),
-(16, 14, 'P02', 'Product 2', 15000, 2, 'Pcs', 30000),
-(17, 15, 'P01', 'Product 1', 10000, 5, 'Box', 50000),
-(18, 15, 'P02', 'Product 2', 15000, 4, 'Pcs', 60000),
-(19, 15, 'P03', 'Product 3', 15000, 3, 'Box', 45000);
+(1, 1, 'IP6S', 'iPhone 6S', 6000000, 1, 'Pcs', 6000000);
 
 -- --------------------------------------------------------
 
@@ -201,9 +181,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `user_id`, `supplier_id`, `product_code`, `product_name`, `image`, `price`, `description`, `qty_stock`, `incoming`, `unit`, `category_id`, `createdAt`, `deletedAt`, `updatedAt`) VALUES
-(8, 1, 1, 'P01', 'Product 1', 'nopic.png', 10000, 'Test', 20, 40, 'Box', 1, 1591756536, NULL, NULL),
-(10, 1, 2, 'P02', 'Product 2', 'nopic2.png', 15000, 'Test product 2', 6, 20, 'Pcs', 2, 1591964177, NULL, NULL),
-(11, 1, 1, 'P03', 'Product 3', 'no_image_ava.png', 15000, 'test', 27, 30, 'Box', 2, 1592295802, NULL, NULL);
+(1, 1, 1, 'IP6S', 'iPhone 6S', 'iphone.png', 6000000, 'iPhone 6S New', 9, 10, 'Pcs', 1, 1599299673, NULL, 1599300820);
 
 -- --------------------------------------------------------
 
@@ -230,10 +208,7 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `user_id`, `supplier_id`, `product_code`, `product`, `price`, `qty`, `unit`, `total_price`, `createdAt`, `deletedAt`) VALUES
-(6, 1, 1, 'P01', 'Product 1', 10000, 30, 'Box', 300000, 1591756536, NULL),
-(7, 1, 2, 'P01', 'Product 1', 10000, 10, 'Box', 100000, 1591777569, NULL),
-(9, 1, 2, 'P02', 'Product 2', 15000, 20, 'Pcs', 300000, 1591964177, NULL),
-(10, 1, 1, 'P03', 'Product 3', 15000, 30, 'Box', 450000, 1592295802, NULL);
+(1, 1, 1, 'IP6S', 'iPhone 6S', 6000000, 10, 'Pcs', 60000000, 1599299673, NULL);
 
 -- --------------------------------------------------------
 
@@ -312,8 +287,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `dob`, `phone`, `address`, `city`, `state`, `postcode`, `country`, `role_id`, `createdAt`, `deletedAt`, `updatedAt`) VALUES
 (1, 'Alyssa Alcantar', 'admin@admin.com', '$2y$10$3u8IMADK36RYhJFWrX9yLuJjMA/4//LJY6rTSmTdGIKr6OmeMm/NW', 1589303750, '+1 234 567 890', '1365 Park Ave', 'Los Angeles', 'CA', '90005', 'USA', 1, 1589303750, NULL, NULL),
 (3, 'Betsy Hosler VII', 'employee@employe.com', '$2y$10$DN7pI2XySQCc0x/TgZADh.nQzZ0lzVLJWdZG11DhA018A/cqzevoy', 1589303750, '+1 234 567 890', '1365 Park Cr', 'New Jersey', 'NJ', '12001', 'USA', 2, 1589464156, NULL, NULL),
-(5, 'John Doe', 'johndoe@employee.com', '$2y$10$5vvySto5ogiTvBF7f8GT.uCylfc3VL4Y1d7xSSdjKttJpMnEjJMKC', 769824000, '12054758010', '155 Silicon Valley Dr', 'San Jose', 'CA', '90050', 'USA', 2, 1589552000, NULL, NULL),
-(6, 'pegawai', 'test@test.com', '$2y$10$pXsI55YQirna1EmnJ786bezSM4GwhvzYogmltlZaMfjkbRLfP3MbS', 641692800, '6035542213', '1365 Park Ave', 'Los Angles', 'California', '90012', 'USA', 2, 1592295490, NULL, NULL);
+(5, 'John Doe', 'johndoe@employee.com', '$2y$10$5vvySto5ogiTvBF7f8GT.uCylfc3VL4Y1d7xSSdjKttJpMnEjJMKC', 769824000, '12054758010', '155 Silicon Valley Dr', 'San Jose', 'CA', '90050', 'USA', 2, 1589552000, 1599295991, NULL);
 
 -- --------------------------------------------------------
 
@@ -333,13 +307,10 @@ CREATE TABLE `users_activities` (
 --
 
 INSERT INTO `users_activities` (`id`, `user_id`, `activity`, `createdAt`) VALUES
-(1, 1, 'Add new product', 1591964177),
-(2, 1, 'Add new order', 1591964522),
-(3, 1, 'Add new order', 1591965012),
-(4, 3, 'Add new order', 1592232598),
-(5, 1, 'Created new user', 1592295614),
-(6, 1, 'Add new product', 1592295802),
-(7, 1, 'Add new order', 1592295947);
+(1, 1, 'Add new product', 1599299673),
+(2, 1, 'Update product data', 1599300820),
+(3, 1, 'Add new order', 1599300951),
+(4, 1, 'Update invoice status', 1599300987);
 
 -- --------------------------------------------------------
 
@@ -361,7 +332,7 @@ CREATE TABLE `user_logs` (
 --
 
 INSERT INTO `user_logs` (`id`, `user_id`, `ip_address`, `host`, `user_agent`, `last_login`) VALUES
-(1, 1, '127.0.0.1', 'activate.navicat.com', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36', 1592295371),
+(1, 1, '127.0.0.1', 'activate.navicat.com', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.83 Safari/537.36 Edg/85.0.564.44', 1599295345),
 (2, 3, '127.0.0.1', 'activate.navicat.com', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36', 1592297162);
 
 -- --------------------------------------------------------
@@ -504,31 +475,31 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `invoices`
 --
 ALTER TABLE `invoices`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `orders_detail`
 --
 ALTER TABLE `orders_detail`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -546,13 +517,13 @@ ALTER TABLE `transactions`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users_activities`
 --
 ALTER TABLE `users_activities`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_logs`
