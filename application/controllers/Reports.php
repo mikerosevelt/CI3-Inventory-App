@@ -40,8 +40,6 @@ class Reports extends CI_Controller
     $data['expenditure'] = $this->Report->getTotalExpanditure()[0]["expenditure"];
 
     $data['transactions'] = $this->Report->getAllTransactions();
-    // var_dump($data['transactions']);
-    // die();
 
     $this->load->view('templates/main/header', $data);
     $this->load->view('templates/main/topbar');
@@ -103,7 +101,8 @@ class Reports extends CI_Controller
       $end = strtotime($this->input->post('end'));
       $result = $this->Report->getReportByDateRange($start, $end);
       if ($result) {
-        echo json_encode($result);
+        $this->load->library('table');
+        echo $this->table->generate($result);
       } else {
         $this->session->set_flashdata('message', '<div class="alert alert-danger alert-dismissible fade show" role="alert">
             Record not found.
